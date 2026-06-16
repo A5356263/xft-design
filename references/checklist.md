@@ -1,22 +1,12 @@
 # Delivery Checklist
 
-本文件是 `xft-design 6.0` 的最终验收门。页面生成完成后，必须先通过本清单，再输出最终 HTML。
+本文件是按需读取的人工复核参考，不是每次生成的强制节点。
 
-说明：
-- `SKILL.md` 负责定义完整生成流程。
-- `assets/shells/admin-side-shell.html` 负责页面 seed 和后台壳子。
-- `assets/page-blocks.html` 负责页面主体结构片段。
-- 本文件负责最终检查和复审闭环，不负责生成页面。
+只有在以下情况才读取本文件：
+- 用户要求人工复核
+- 需要排查 Final Check / validator 未覆盖的问题
 
-## 使用方式
-
-生成完成后，按以下顺序执行：
-
-1. 先做 P0 检查。
-2. 任一 P0 不通过，必须回到页面继续修正。
-3. P0 全通过后，再做 P1 检查。
-4. 如果两个及以上 P1 不通过，至少再修一轮。
-5. 最后做一次复审，确认页面类型、结构、组件和业务语义一致，再输出。
+生成时不需要默认读取本文件。
 
 ## P0 - 必须通过
 
@@ -169,12 +159,17 @@
 ### 输出检查
 
 - [ ] 是否输出完整单文件 HTML？
-- [ ] 主入口是否为 `index.html`？
-- [ ] CSS 是否全部内联？
+- [ ] 输出文件是否位于 `examples/` 根目录，且符合 `{slug}-{YYYY-MM-DD}-v<N>.html` 命名格式？
+- [ ] 是否没有输出到 `examples/archive/` 或 skill 包外部？
+- [ ] `XFT_ROUTE` 是否紧跟 `<!DOCTYPE html>` 之后？
+- [ ] 第一个 `<style>` 是否确实为 `tokens.css` 原文？
+- [ ] style 块顺序是否为：tokens.css → shell 原 style → components.css → 页面级新增 CSS？
+- [ ] CSS 是否全部内联，无外链 stylesheet？
 
 ### 示例复制检查
 
 - [ ] 是否没有复制 `examples/` 中的业务字段、页面标题、示例数据、品牌信息和业务流程？
+- [ ] 是否没有读取或引用 `examples/archive/` 下的任何文件？archive 目录仅供人工历史对比，不得作为生成依据。
 
 ## 复审闭环
 

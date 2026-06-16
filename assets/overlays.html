@@ -1,27 +1,27 @@
 <!--
 Overlay Structures Reference
 
-本文件只放覆盖层结构，不包含完整页面壳子。
-适用于 Page Overlay 场景，独立弹窗默认与 blank-shell 组合使用。
+This file only contains overlay bodies.
+Use OVERLAY_SLOT to mount them into the final document.
 -->
 
 <!-- Modal -->
 <div data-overlay="Modal" class="overlay-mask">
   <div class="modal">
-    <div class="overlay-panel-header">
+    <div class="overlay-header">
       <div>
         <h2 class="overlay-title">弹窗标题</h2>
         <p class="overlay-description">用于短流程表单、信息补充和普通编辑。</p>
       </div>
       <button class="btn btn-text" type="button" aria-label="关闭">关闭</button>
     </div>
-    <div class="overlay-panel-body">
+    <div class="overlay-body">
       <div class="form-field">
         <label class="field-label">字段名称</label>
         <div class="form-control">请输入</div>
       </div>
     </div>
-    <div class="overlay-panel-footer">
+    <div class="overlay-footer">
       <button class="btn btn-secondary" type="button">取消</button>
       <button class="btn btn-primary" type="button">确认</button>
     </div>
@@ -29,22 +29,22 @@ Overlay Structures Reference
 </div>
 
 <!-- Drawer -->
-<div data-overlay="Drawer" class="overlay-mask" style="justify-content:flex-end;padding:0;">
+<div data-overlay="Drawer" class="overlay-mask overlay-mask-right">
   <aside class="drawer">
-    <div class="overlay-panel-header">
+    <div class="overlay-header">
       <div>
         <h2 class="overlay-title">抽屉标题</h2>
         <p class="overlay-description">用于右侧详情、复杂配置和与列表强关联的查看 / 编辑。</p>
       </div>
       <button class="btn btn-text" type="button" aria-label="关闭">关闭</button>
     </div>
-    <div class="overlay-panel-body" style="flex:1;overflow:auto;">
-      <div class="page-card">
+    <div class="overlay-body overlay-body-scroll">
+      <div class="page-card form-card">
         <div class="field-label">内容区</div>
-        <div style="margin-top:8px;">这里填充详情、配置项或局部编辑内容。</div>
+        <div class="summary-value">这里填充详情、配置项或局部编辑内容。</div>
       </div>
     </div>
-    <div class="overlay-panel-footer">
+    <div class="overlay-footer">
       <button class="btn btn-secondary" type="button">取消</button>
       <button class="btn btn-primary" type="button">保存</button>
     </div>
@@ -54,16 +54,16 @@ Overlay Structures Reference
 <!-- ConfirmDialog -->
 <div data-overlay="ConfirmDialog" class="overlay-mask">
   <div class="confirm-dialog">
-    <div class="overlay-panel-header">
+    <div class="overlay-header">
       <div>
         <h2 class="overlay-title">确认操作</h2>
         <p class="overlay-description">用于删除、撤销、作废、提交等高风险二次确认。</p>
       </div>
     </div>
-    <div class="overlay-panel-body">
-      <div>确认后将执行不可逆操作，请再次确认。</div>
+    <div class="overlay-body">
+      <div class="summary-value">确认后将执行不可逆操作，请再次确认。</div>
     </div>
-    <div class="overlay-panel-footer">
+    <div class="overlay-footer">
       <button class="btn btn-secondary" type="button">取消</button>
       <button class="btn btn-danger" type="button">确认执行</button>
     </div>

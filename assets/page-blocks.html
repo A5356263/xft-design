@@ -1,18 +1,18 @@
 <!--
 Page Blocks Reference
 
-此文件只负责页面主体结构块，不包含完整后台壳子。
-使用时应先选择 shell，再将对应 block 填入 PAGE_CONTENT_SLOT。
+This file only contains page body blocks.
+Use a shell first, then inject one of these blocks into PAGE_CONTENT_SLOT or CONTENT_SLOT.
 -->
 
 <!-- ListPageBlock -->
 <section data-block="ListPageBlock">
   <div class="page-header">
-    <div>
+    <div class="page-header-main">
       <h1 class="page-title">页面标题</h1>
       <p class="page-description">页面说明文案，解释当前列表页的业务目标。</p>
     </div>
-    <div style="display:flex;gap:8px;">
+    <div class="page-header-actions">
       <button class="btn btn-secondary" type="button">批量导出</button>
       <button class="btn btn-primary" type="button">新建记录</button>
     </div>
@@ -35,7 +35,7 @@ Page Blocks Reference
       <label class="field-label">筛选字段</label>
       <div class="select-control">请选择负责人</div>
     </div>
-    <div style="display:flex;align-items:flex-end;gap:8px;">
+    <div class="filter-actions">
       <button class="btn btn-primary" type="button">查询</button>
       <button class="btn btn-secondary" type="button">重置</button>
     </div>
@@ -43,39 +43,45 @@ Page Blocks Reference
 
   <div class="page-card">
     <div class="table-toolbar">
-      <div style="font-weight:600;">列表标题</div>
-      <div style="display:flex;gap:8px;">
+      <div class="table-toolbar-left">
+        <div class="table-toolbar-title">列表标题</div>
+      </div>
+      <div class="table-toolbar-right">
         <button class="btn btn-secondary" type="button">批量操作</button>
         <button class="btn btn-secondary" type="button">列设置</button>
       </div>
     </div>
 
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>字段一</th>
-          <th>字段二</th>
-          <th>字段三</th>
-          <th>状态</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>内容</td>
-          <td>内容</td>
-          <td>内容</td>
-          <td><span class="status-tag status-info">处理中</span></td>
-          <td><span class="table-action">查看详情</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>字段一</th>
+            <th>字段二</th>
+            <th>字段三</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>内容</td>
+            <td>内容</td>
+            <td>内容</td>
+            <td><span class="status-tag status-info">处理中</span></td>
+            <td><span class="table-action">查看详情</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="pagination">
-      <span>共 128 条</span>
-      <button class="btn btn-secondary" type="button">上一页</button>
-      <button class="btn btn-primary" type="button">1</button>
-      <button class="btn btn-secondary" type="button">下一页</button>
+      <span class="pagination-info">共 128 条</span>
+      <div class="pagination-actions">
+        <button class="page-btn" type="button">上一页</button>
+        <button class="page-btn is-active" type="button">1</button>
+        <button class="page-btn" type="button">下一页</button>
+      </div>
     </div>
   </div>
 </section>
@@ -83,11 +89,11 @@ Page Blocks Reference
 <!-- DetailPageBlock -->
 <section data-block="DetailPageBlock">
   <div class="page-header">
-    <div>
+    <div class="page-header-main">
       <h1 class="page-title">详情标题</h1>
       <p class="page-description">说明当前详情页展示对象和使用场景。</p>
     </div>
-    <div style="display:flex;gap:8px;">
+    <div class="page-header-actions">
       <button class="btn btn-secondary" type="button">返回</button>
       <button class="btn btn-primary" type="button">主操作</button>
     </div>
@@ -96,33 +102,33 @@ Page Blocks Reference
   <div class="summary-card">
     <div class="summary-item">
       <div class="field-label">状态</div>
-      <div style="margin-top:8px;"><span class="status-tag status-success">已完成</span></div>
+      <div class="summary-value"><span class="status-tag status-success">已完成</span></div>
     </div>
     <div class="summary-item">
       <div class="field-label">负责人</div>
-      <div style="margin-top:8px;">张三</div>
+      <div class="summary-value">张三</div>
     </div>
     <div class="summary-item">
       <div class="field-label">发起时间</div>
-      <div style="margin-top:8px;">2026-06-15 10:20</div>
+      <div class="summary-value">2026-06-15 10:20</div>
     </div>
     <div class="summary-item">
       <div class="field-label">业务编号</div>
-      <div style="margin-top:8px;">NO.20260615001</div>
+      <div class="summary-value">NO.20260615001</div>
     </div>
   </div>
 
-  <div class="page-card detail-section">
+  <div class="page-card form-card detail-section">
     <div class="form-section">
       <h2 class="section-title">基础信息</h2>
       <div class="form-grid">
-        <div>
+        <div class="detail-field">
           <div class="field-label">字段名称</div>
-          <div>字段内容</div>
+          <div class="detail-field-value">字段内容</div>
         </div>
-        <div>
+        <div class="detail-field">
           <div class="field-label">字段名称</div>
-          <div>字段内容</div>
+          <div class="detail-field-value">字段内容</div>
         </div>
       </div>
     </div>
@@ -152,7 +158,7 @@ Page Blocks Reference
 <!-- FormPageBlock -->
 <section data-block="FormPageBlock">
   <div class="page-header">
-    <div>
+    <div class="page-header-main">
       <h1 class="page-title">表单标题</h1>
       <p class="page-description">说明填写目标、业务边界和提交后结果。</p>
     </div>
@@ -188,7 +194,7 @@ Page Blocks Reference
       </div>
     </div>
 
-    <div style="display:flex;justify-content:flex-end;gap:8px;">
+    <div class="form-footer-actions">
       <button class="btn btn-secondary" type="button">取消</button>
       <button class="btn btn-primary" type="button">提交</button>
     </div>
@@ -198,7 +204,7 @@ Page Blocks Reference
 <!-- SettingsPageBlock -->
 <section data-block="SettingsPageBlock">
   <div class="page-header">
-    <div>
+    <div class="page-header-main">
       <h1 class="page-title">设置标题</h1>
       <p class="page-description">说明配置生效范围和业务影响。</p>
     </div>
@@ -211,26 +217,28 @@ Page Blocks Reference
       <div class="settings-anchor-item">权限设置</div>
     </aside>
 
-    <div>
-      <section class="settings-section">
-        <div class="settings-section-title">基础设置</div>
+    <section class="settings-section">
+      <div class="settings-section-title">基础设置</div>
 
-        <div class="setting-item">
-          <div>
-            <div class="setting-title">设置项标题</div>
-            <div class="setting-description">设置项说明文案，解释开启或关闭后的影响。</div>
-          </div>
+      <div class="setting-item">
+        <div class="setting-main">
+          <div class="setting-title">设置项标题</div>
+          <div class="setting-description">设置项说明文案，解释开启或关闭后的影响。</div>
+        </div>
+        <div class="setting-status">
           <button class="btn btn-secondary" type="button">配置</button>
         </div>
+      </div>
 
-        <div class="setting-item">
-          <div>
-            <div class="setting-title">设置项标题</div>
-            <div class="setting-description">设置项说明文案。</div>
-          </div>
+      <div class="setting-item">
+        <div class="setting-main">
+          <div class="setting-title">设置项标题</div>
+          <div class="setting-description">设置项说明文案。</div>
+        </div>
+        <div class="setting-status">
           <span class="status-tag status-success">已启用</span>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
 </section>

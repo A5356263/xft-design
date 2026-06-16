@@ -5,44 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blank Shell</title>
   <style>
-    :root {
-      --color-brand-primary: #1966ff;
-      --color-brand-primary-hover: #1470E6;
-      --color-text-primary: #17233D;
-      --color-text-regular: #344563;
-      --color-text-secondary: #6B778C;
-      --color-text-placeholder: #A5ADBA;
-      --color-bg-page: #f5f7fa;
-      --color-bg-container: #ffffff;
-      --color-bg-subtle: #f7f9fc;
-      --color-border-light: #e6eaf0;
-      --color-border-regular: #d8dee8;
-      --color-danger: #E5484D;
-      --radius-md: 6px;
-      --radius-lg: 8px;
-      --radius-xl: 12px;
-      --shadow-medium: 0 8px 24px rgba(23, 35, 61, 0.12);
-      --shadow-large: 0 16px 40px rgba(23, 35, 61, 0.16);
-    }
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      background: var(--color-bg-page);
-      color: var(--color-text-primary);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "PingFang SC",
-        "Microsoft YaHei",
-        Arial,
-        sans-serif;
-      font-size: 14px;
-      line-height: 22px;
+      background: var(--color-layout-bg-neutral-gray);
+      color: var(--color-text-neutral-gray50);
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-regular);
+      line-height: calc(var(--font-size-regular) * var(--font-height-regular));
     }
 
     .blank-canvas {
@@ -50,170 +23,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      padding: var(--spacing-8);
     }
 
     .content-canvas {
       width: min(960px, 100%);
-      padding: 32px;
-      border: 1px solid var(--color-border-light);
-      border-radius: var(--radius-xl);
-      background: var(--color-bg-container);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .btn {
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 0 14px;
-      border: 1px solid var(--color-border-regular);
-      border-radius: var(--radius-md);
-      background: var(--color-bg-container);
-      color: var(--color-text-regular);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      border-color: var(--color-brand-primary);
-      background: var(--color-brand-primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--color-brand-primary-hover);
-    }
-
-    .btn-secondary {
-      background: var(--color-bg-container);
-      color: var(--color-text-regular);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--color-brand-primary);
-      color: var(--color-brand-primary);
-    }
-
-    .btn-text {
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: var(--color-brand-primary);
-    }
-
-    .btn-danger {
-      border-color: var(--color-danger);
-      color: var(--color-danger);
-      background: #fff5f5;
-    }
-
-    .btn-danger:hover {
-      background: #fee2e2;
-    }
-
-    .btn-text:hover {
-      text-decoration: underline;
-    }
-
-    .page-card {
-      padding: 16px;
-      border: 1px solid var(--color-border-light);
-      border-radius: var(--radius-lg);
-      background: var(--color-bg-container);
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field-label {
-      color: var(--color-text-secondary);
-      font-size: 13px;
-    }
-
-    .form-control {
-      height: 32px;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      border: 1px solid var(--color-border-regular);
-      border-radius: var(--radius-md);
-      background: var(--color-bg-container);
-      color: var(--color-text-placeholder);
-    }
-
-    .overlay-mask {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.38);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 1000;
-    }
-
-    .overlay-panel-header,
-    .overlay-panel-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .overlay-panel-header {
-      padding: 20px 24px 0;
-    }
-
-    .overlay-panel-body {
-      padding: 16px 24px 24px;
-    }
-
-    .overlay-panel-footer {
-      padding: 0 24px 24px;
-      justify-content: flex-end;
-    }
-
-    .modal,
-    .confirm-dialog {
-      width: min(560px, 100%);
-      border-radius: var(--radius-xl);
-      background: var(--color-bg-container);
-      box-shadow: var(--shadow-large);
-      overflow: hidden;
-    }
-
-    .drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(480px, 100vw);
-      height: 100vh;
-      background: var(--color-bg-container);
-      box-shadow: var(--shadow-large);
-      display: flex;
-      flex-direction: column;
-      z-index: 1001;
-    }
-
-    .overlay-title {
-      margin: 0;
-      font-size: 18px;
-      line-height: 26px;
-      font-weight: 600;
-      color: var(--color-text-primary);
-    }
-
-    .overlay-description {
-      margin: 8px 0 0;
-      color: var(--color-text-secondary);
-      font-size: 13px;
-      line-height: 20px;
+      padding: var(--spacing-8);
+      border: 1px solid var(--color-border-neutral);
+      border-radius: var(--border-radius-large);
+      background: var(--color-container-bg-neutral-bright);
+      box-shadow: var(--shadow-regular-bottom);
     }
   </style>
 </head>

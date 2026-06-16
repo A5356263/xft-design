@@ -1,7 +1,7 @@
 ---
 name: xft-design
-version: "6.0"
-description: Generate enterprise admin web prototypes with XFT design rules.
+version: "6.2"
+description: Generate enterprise admin web prototypes with a stable shell-to-block XFT flow.
 triggers:
   - 业务后台页面
   - 后台管理页面
@@ -17,9 +17,9 @@ od:
   mode: prototype
   preview:
     type: html
-    entry: index.html
+    entry: examples/
   outputs:
-    primary: index.html
+    primary: examples/
   design_system:
     requires: true
     sections:
@@ -31,483 +31,462 @@ od:
 
 # XFT Design Skill
 
-你是一个业务后台页面生成 agent。你的任务不是自由创作页面，而是严格按照业务组件规范、页面布局规范、导航框架规范，生成可预览、结构清晰、组件使用准确的业务页面。
+你是一个企业后台页面原型生成 agent。不要自由拼页面。必须走固定生成链，先判定范围和壳子，再选择 block / overlay，再填业务内容，最后输出带版本号的单文件到 `examples/`。
 
-本 skill 用于生成后台业务页面，包括但不限于首页、表格页、提单页、详情页、编辑页、设置页，以及弹窗、抽屉、确认框、空状态、局部组件状态。
+## Stable Flow
 
-## 核心原则
+生成顺序固定为：
 
-生成页面时必须先判断范围，再确定壳子，再生成内容。不要先画业务内容再补导航。
-
-默认后台完整结构必须是：
-
-```html
-<AppShell>
-  <TopNav />
-  <MainFrame>
-    <SideNav />
-    <WorkArea>
-      <ContextNavSlot />
-      <PageContent>
-        <div class="page-content-container">
-          <!-- PAGE_CONTENT_SLOT -->
-        </div>
-      </PageContent>
-    </WorkArea>
-  </MainFrame>
-  <div id="overlay-root"></div>
-</AppShell>
-```
-
-顶部导航、左侧导航、系统级多页签、页面内容区是后台业务页面的基础框架。页面内容不得直接贴在顶部导航下方，中间必须存在 `ContextNavSlot`。后台页面默认复用统一壳子，不要因为 `WebTabs`、`Breadcrumb` 或局部上下文差异拆多个 shell。
-
-## 平台适配
-
-本 skill 支持两类运行环境。
-
-### 有文件系统环境
-
-适用于 open-design、Claude Code、Codex、Cursor 等可以读取本地文件的环境。
-
-agent 必须优先读取当前 skill 目录下的文件：
-
-1. `design-systems/USAGE.md`
-2. `design-systems/DESIGN.md`
-3. `design-systems/tokens.css`
-4. `assets/shells/admin-side-shell.html`
-5. `assets/shells/blank-shell.html`
-6. `assets/page-blocks.html`
-7. `assets/overlays.html`
-8. `references/layouts.md`
-9. `references/component-selection.md`
-10. `references/checklist.md`
-
-### 无文件系统环境
-
-适用于 claude.ai、ChatGPT 对话等无法读取本地文件的环境。
-
-此时 agent 必须直接依据 `SKILL.md` 正文中的核心规则执行，不得假装已经读取了外部文件。正文内置的最小 fallback 规则如下：
-
-1. 生成范围判断：
-   `Full Page / Page Overlay / Component State`
-2. Shell 选择：
-   标准后台完整页面使用 `admin-side-shell`；
-   无导航 / 独立弹窗 / 局部组件使用 `blank-shell`
-3. 标准后台壳子结构：
-   `TopNav 48px`、`SideNav 188px`、`ContextNavSlot`、`PageContent`、`page-content-container`、`PAGE_CONTENT_SLOT`、`overlay-root`
-4. 页面主体结构：
-   列表页 = `PageHeader + FilterBar + TableToolbar + DataTable + Pagination`
-   详情页 = `PageHeader + SummaryCard + DetailSection + RelatedTable`
-   表单页 = `PageHeader + FormSection + FormFooterActions`
-   设置页 = `SettingsNav + SettingsPanel`
-5. 基础 class 命名：
-   `.btn / .btn-primary / .btn-secondary / .btn-text / .btn-danger`
-   `.form-control / .select-control / .textarea-control`
-   `.status-tag / .status-success / .status-warning / .status-error / .status-info`
-   `.data-table / .table-toolbar / .table-action / .pagination`
-   `.overlay-mask / .modal / .drawer / .confirm-dialog`
-5.x 最小 Token 子集（替代 tokens.css）：
-   颜色 — 强调色 regular: `#1966ff`，强调色 light: `#EBF3FF`
-          错误 regular: `#fa4332`，警告 regular: `#ff9326`，成功 regular: `#0ac767`
-          布局页面背景: `#f3f4f6`，容器卡片背景: `#ffffff`
-          中性文字: `rgba(19,34,64,0.95)` 递减至 `0.25`
-          中性边框: `rgba(19,34,64,0.15)`，分割线: `rgba(19,34,64,0.1)`
-   间距 — 基于 4px 栅格：4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48
-   圆角 — 小 4px / 中 6px / 大 12px
-   阴影 — 卡片 `0 8px 20px 0 rgba(19,34,64,0.16)`，弹窗 `0 12px 32px 0 rgba(19,34,64,0.2)`
-   规则 — 禁止裸色值；Surface 有 padding，Wrapper 用 itemSpacing；禁止装饰性效果
-6. 输出合同：
-   最终必须是完整自包含 HTML；
-   CSS 必须内联；
-   主入口为 `index.html`；
-   不得输出多个 HTML 文件
-
-## 工作流
-
-本 skill 采用一条完整生成链，而不是“想到什么写什么”：
-
-```text
-Step 0 范围判断
-→ Step 1 页面类型 / 交互类型判断
-→ Step 2 选择 shell 或画布
-→ Step 3 替换 shell 基础信息
-→ Step 4 选择结构来源
-→ Step 4.5 注入 Design Token
-→ Step 5 填充业务内容
-→ Step 6 视觉校准
-→ Step 7 输出
-→ Step 8 验收
-```
-
-### Step 0：判断生成范围
-
-先判断用户要生成的是完整页面、覆盖层，还是局部组件 / 状态。
-
-- `Full Page`
-  = 列表页、首页、提单页、详情页、编辑页、设置页、登录页、异常页、无导航页等完整页面。
-- `Page Overlay`
-  = `Modal / Drawer / ConfirmDialog`。
-- `Component State`
-  = `EmptyState / LoadingState / ErrorState / ButtonGroup / TableAction / FormField / StatusTag` 等局部对象。
+Route Decision
+→ Output ROUTE_DECISION
+→ 按 Conditional Reads 读取 Phase 2 必要资产
+→ Copy Shell as template（原文复制，不得重写）
+→ 在 shell 第一个 <style> 前插入 tokens.css 原文
+→ 保留 shell <style> 原文
+→ 在 shell <style> 后插入 components.css 原文
+→ 替换 Shell Slots（PAGE_CONTENT_SLOT / CONTENT_SLOT / OVERLAY_SLOT）
+→ 替换 Shell Chrome 可见占位文案
+→ 如确有必要，追加页面级新增 CSS（作为第四个 <style>，只能追加）
+→ 输出 examples/{slug}-{YYYY-MM-DD}-v<N>.html
+→ 如环境支持，运行 scripts/check_skill_output.py；否则按 Final Check 自检
 
 硬规则：
 
-- 当用户需求只涉及弹窗、抽屉、确认框时，必须判定为 `Page Overlay`。
-- `Page Overlay` 不得默认重构完整页面，不得修改导航结构、页面主体布局和无关组件。
-- `Page Overlay` 只允许生成覆盖层本身，以及表达触发来源所需的最小宿主上下文。
+- 不得跳过 Route Decision
+- 不得先写业务主体再补 shell
+- 不得在未选择 shell 和 page block 前生成主体内容
+- 不得输出多个 HTML 文件
+- 不得在 validator PASS，或无脚本环境下完成 Final Check 自检前，声称完成
 
-### Step 1：判断页面类型 / 交互类型
+## Route Decision Record
 
-`Full Page` 下优先匹配以下页面类型：
+进入 Phase 2 之前，必须先输出 ROUTE_DECISION。
+没有 ROUTE_DECISION，不得读取 shell / page-block / overlay / tokens / components 等资产文件。
 
-- 首页
-- 表格页
-- 提单页
-- 详情页
-- 编辑页
-- 设置页
-- 登录页
-- 异常页
-- 无导航页
+ROUTE_DECISION 只记录结果，不输出推理过程。
+ROUTE_DECISION 只输出在对话 / 执行日志中，不得写入任何 HTML 文件或资产文件。
+最终 HTML 只保留 XFT_ROUTE，且 XFT_ROUTE 必须紧跟 <!DOCTYPE html>。
 
-如果用户没有明确说明页面类型，则按需求自动判断：
+格式：
 
-- 出现数据列表、查询、筛选、批量操作、分页时，判断为表格页。
-- 出现新建、提交、申请、创建单据时，判断为提单页。
-- 出现查看记录、查看详情、审批详情、单据详情时，判断为详情页。
-- 出现修改、编辑、维护、配置表单时，判断为编辑页。
-- 出现系统配置、偏好设置、权限配置、参数配置时，判断为设置页。
-- 出现统计、概览、快捷入口、待办、趋势时，判断为首页。
-
-`Page Overlay` 下判断：
-
-- `Modal`
-- `Drawer`
-- `ConfirmDialog`
-
-`Component State` 下判断：
-
-- `EmptyState`
-- `LoadingState`
-- `ErrorState`
-- `ButtonGroup`
-- `TableAction`
-- `FormField`
-- `StatusTag`
-
-输出页面前，必须能明确说出当前对象属于哪一类；不能一边像表格页，一边又按详情页结构去做。
-
-### Step 2：选择 shell 或画布
-
-按范围和页面类型选择基础壳子：
-
-- 标准后台页面
-  → 使用 `assets/shells/admin-side-shell.html`
-- 登录页 / 异常页 / 用户明确要求无导航页
-  → 使用 `assets/shells/blank-shell.html`
-- 独立弹窗 / 独立抽屉 / 局部组件
-  → 使用 `assets/shells/blank-shell.html`
-- 后台页面里的弹窗 / 抽屉
-  → 使用 `admin-side-shell.html` 作为弱背景 + `assets/overlays.html`
-
-除以下页面外，所有业务页面默认使用统一后台框架：
-
-- 登录页
-- 注册页
-- 找回密码页
-- 403 / 404 / 500 异常页
-- 大屏可视化页面
-- 沉浸式看板页面
-- 用户明确要求无导航页面
-
-只要页面属于首页、表格页、提单页、详情页、编辑页、设置页，就必须进入统一后台壳子。
-
-### Step 3：替换 shell 基础信息
-
-选择 shell 后，必须先替换 shell 信息，再填页面主体。生成顺序必须是：
-
-```text
-TopNav → SideNav → ContextNavSlot → PageContent → 当前业务页面主体
+```
+<!-- ROUTE_DECISION
+scope: Full Page | Page Overlay | Component State
+page_type: HomePage | TablePage | CreatePage | DetailPage | EditPage | SettingsPage | LoginPage | ErrorPage | BlankPage | None
+shell: admin-side-shell | blank-shell
+page_block: ListPageBlock | DetailPageBlock | FormPageBlock | SettingsPageBlock | None
+overlay_type: Modal | Drawer | ConfirmDialog | None
+output: examples/{slug}-{YYYY-MM-DD}-v<N>.html
+-->
 ```
 
-必须处理：
+Route Decision 阶段选择的是资产名称，不读取资产内容。
 
-- TopNav 文案
-- SideNav 分组、菜单、选中态
-- WebTabs 文案和当前页
-- Breadcrumb 路径
-- ContextNavSlot 内容
+允许：根据 SKILL.md 的路由规则选择 shell / page_block / overlay_type 名称。
+不得：在 ROUTE_DECISION 输出前读取 shell / page-block / overlay / tokens / components 文件内容。
 
-#### TopNav 强规则
+ROUTE_DECISION 必须与最终 HTML 中的 XFT_ROUTE 保持一致。
+如果 Phase 2 发现 block 不存在、slot 不匹配或路由不成立，必须回退并重新输出 ROUTE_DECISION，不得静默发明结构。
 
-- 顶部导航位于页面最上方，固定高度 `48px`，颜色从左到右渐变为 `#3C8AFF → #4255FF`。
-- 顶部导航 tab 左右内边距为 `24px`。
-- 顶部导航 tab 选中态为白字加粗，字体下方展示与字体等宽的 `2px` 白色条，不展示背景色块。
-- 顶部导航 tab 未选中时字体不加粗，颜色为 `#ffffff` 的 `80%` 透明度。
-- 顶部导航用于系统级导航，不用于页面级业务内容。
-- 顶部导航可以包含系统名称、模块入口、全局搜索、消息、帮助、用户信息、全局操作。
-- 顶部导航不得包含表格筛选条件、表单提交按钮、详情页编辑按钮、页面局部 Tab、页面级业务分组。
+## Conditional Reads and Execution Protocol
 
-#### SideNav 强规则
+不要在生成前一次性读取全部文件。必须先完成 Route Decision，再按当前路由读取最少必要资产。
 
-- 左侧导航位于页面左侧，固定宽度 `188px`。
-- 左侧导航只有一级和二级导航，无三级导航。
-- 单条导航高度 `40px`，宽度 `172px`，单条导航上下左右内边距为 `8px`。
-- 一级导航必须展示 `描边 icon + 导航文案`。
-- 一级导航 icon 必须为线性描边样式，使用 `fill="none"` 和 `stroke="currentColor"` 的 SVG。
-- 二级导航仅展示文案，不展示 icon。
-- 二级导航文案距离导航项左侧为 `36px`。
-- 当前页面对应的二级导航必须有选中态。
-- 选中态文字和 icon 颜色为 `#1966ff`，二级选中背景色为 `#EBF3FF`。
-- 二级导航选中时，其所属一级导航也需变为主题色 `#1966ff`，但一级不展示背景色。
+无文件系统时，只能依据本文件中的最小规则执行，不得假装已读取外部文件。
 
-#### ContextNavSlot / WebTabs 强规则
+### Phase 1：Route Decision 前
 
-- 系统级 `WebTabs` 属于 shell 的 `ContextNavSlot`。
-- 页面内 tabs 属于 page block，不得替代 `WebTabs`。
-- 多页签位于顶部导航下方、页面内容上方，不得放入业务页面内容内部。
-- 多页签默认高度 `40px`。
-- 未选中页签默认宽度约 `128px`，选中页签默认宽度约 `130px`。
-- 当前页面必须同时在左侧导航和多页签中体现选中状态。
-- 多页签必须包含首页或固定页签、当前选中页签、关闭图标、上一页、下一页、更多按钮。
-- 页签文字过长时必须省略，不允许换行。
-- 不要因为 `WebTabs / Breadcrumb / ContextNav` 差异拆多个 shell。
-- 面包屑通常属于 `PageHeader` 或 `ContextNavSlot`，不单独拆 shell。
+只依赖本 SKILL.md。
 
-### Step 4：选择结构来源
+在读取任何 asset / reference / examples 文件之前，必须先完成：
 
-根据范围选择结构来源：
+- scope 判断
+- page_type 判断
+- shell 判断
+- page_block / overlay 判断
+- output path 确认（按文件命名规则生成版本号文件名）
 
-- `Full Page`
-  → 从 `assets/page-blocks.html` 选择页面主体结构块
-- `Page Overlay`
-  → 从 `assets/overlays.html` 选择 `Modal / Drawer / ConfirmDialog`
-- `Component State`
-  → 使用 `blank-shell.html + 基础组件 class` 生成局部结构
+Route Decision 完成前，不得读取：
 
-后台页面主体必须放入：
+- `examples/`
+- `examples/archive/`
+- `references/checklist.md`
+- 与当前路由无关的 shell / block / overlay / reference 文件
+
+### Phase 2：Route Decision 后，生成 HTML 前
+
+所有最终输出都必须读取：
+
+- `design-systems/tokens.css`
+- `components.css`
+
+按路由条件读取最少必要资产：
+
+- Full Page / 后台业务页 → `assets/shells/admin-side-shell.html`
+- LoginPage / ErrorPage / BlankPage / Component State / 独立 Overlay → `assets/shells/blank-shell.html`
+- TablePage / CreatePage / EditPage / DetailPage / SettingsPage → `assets/page-blocks.html`
+- Page Overlay → `assets/overlays.html`
+- HomePage（无 HomePageBlock）→ `references/layouts.md`
+- 组件选择有分歧时 → `references/component-selection.md`
+- token 或组件细节不确定时 → `design-systems/USAGE.md` 或 `design-systems/DESIGN.md`
+
+不得读取：
+
+- `examples/archive/`
+- 与当前路由无关的 shell / block / overlay
+- `references/checklist.md`
+
+Phase 2 是 Asset Assembly，只读取并装配 ROUTE_DECISION 已选中的资产，不重新判断或发明 page_type / shell / page_block。
+如 Phase 2 发现 block 不存在、slot 不匹配或路由不成立，必须回退并重新输出 ROUTE_DECISION。
+
+### Phase 3：最终验收
+
+生成文件后，必须先运行：
+
+```bash
+python3 scripts/check_skill_output.py examples/<生成文件名>.html
+```
+
+只有在以下情况才读取 `references/checklist.md`：
+
+- 用户要求人工复核
+- 需要排查 Final Check / validator 未覆盖的问题
+
+## Scope Routing
+
+### Full Page
+
+完整后台页面、首页、表格页、详情页、表单页、设置页、登录页、异常页、明确无导航页。
+
+### Page Overlay
+
+弹窗、抽屉、确认框。
+
+### Component State
+
+空状态、加载态、错误态、局部组件状态。
+
+硬规则：
+
+- 只涉及弹窗 / 抽屉 / 确认框的需求，不得扩写成完整页面
+- 局部组件状态不得默认生成完整后台页面
+
+## Page Type Routing
+
+- 查询 / 筛选 / 列表 / 表格 / 批量操作 / 分页 → `TablePage`
+- 新建 / 创建 / 提交 / 申请 / 发起流程 → `CreatePage`
+- 查看 / 详情 / 审批详情 / 单据详情 → `DetailPage`
+- 编辑 / 修改 / 维护 / 回填 → `EditPage`
+- 系统配置 / 参数配置 / 权限配置 / 偏好设置 → `SettingsPage`
+- 概览 / 指标 / 快捷入口 / 待办 / 趋势 → `HomePage`
+- 登录 / 注册 / 找回密码 → `LoginPage`
+- 403 / 404 / 500 / 异常 → `ErrorPage`
+- 明确无导航页面 → `BlankPage`
+
+## Shell Routing
+
+- 后台业务 `Full Page` → `admin-side-shell`
+- 登录页 / 异常页 / 明确无导航页 → `blank-shell`
+- 独立 `Page Overlay` → `blank-shell`
+- 后台页面内 `Page Overlay` → `admin-side-shell + OVERLAY_SLOT`
+- `Component State` → `blank-shell`
+
+## Page Blocks
+
+`assets/page-blocks.html` 当前实际存在的 block 只有：
+
+- `ListPageBlock`
+- `DetailPageBlock`
+- `FormPageBlock`
+- `SettingsPageBlock`
+
+路由规则：
+
+- `TablePage` → `ListPageBlock`
+- `CreatePage` → `FormPageBlock`
+- `EditPage` → `FormPageBlock`
+- `DetailPage` → `DetailPageBlock`
+- `SettingsPage` → `SettingsPageBlock`
+- `HomePage` → 不得发明 `HomePageBlock`；若无现成 block，使用 `references/layouts.md` 的首页结构要求生成，`page_block: None`
+
+硬规则：
+
+- page block 只能插入 `PAGE_CONTENT_SLOT` 或 `CONTENT_SLOT`
+- page block 不得包含 `TopNav / SideNav / WebTabs / AppShell`
+
+## Overlay Routing
+
+- 短流程表单 / 信息补充 / 普通编辑 → `Modal`
+- 右侧详情 / 复杂配置 / 保留列表上下文 → `Drawer`
+- 删除 / 撤销 / 作废 / 提交 / 高风险确认 → `ConfirmDialog`
+
+硬规则：
+
+- overlay 必须挂到 `OVERLAY_SLOT`
+- 页面内 overlay 必须挂载到顶层 `overlay-root`
+- 不得把 overlay 写进 `page-content-container` 内
+
+## Output Contract
+
+- 最终 HTML 输出到 `examples/` 目录，文件名格式为 `{page-type-slug}-{YYYY-MM-DD}-v{N}.html`
+- 最终 HTML 必须自包含
+- 不得输出到 `/tmp`、`examples/archive/` 或 skill 包外部目录
+- 最终 HTML 顶部必须保留 `XFT_ROUTE` 注释，位置应紧跟 `<!DOCTYPE html>` 之后
+- 没有 `XFT_ROUTE`，不得输出最终 HTML
+
+## 文件命名规则
+
+格式：`{page-type-slug}-{YYYY-MM-DD}-v{N}.html`
+
+`page_type` → slug 映射（来自 XFT_ROUTE）：
+
+| page_type | slug |
+|-----------|------|
+| TablePage | table-page |
+| CreatePage | create-page |
+| DetailPage | detail-page |
+| EditPage | edit-page |
+| SettingsPage | settings-page |
+| HomePage | home-page |
+| LoginPage | login-page |
+| ErrorPage | error-page |
+| BlankPage | blank-page |
+| None（Full Page） | page |
+
+scope 为 `Page Overlay` 时，用 `overlay_type` 替代 `page_type` 作为 slug：
+
+| overlay_type | slug |
+|---|---|
+| Modal | modal |
+| Drawer | drawer |
+| ConfirmDialog | confirm-dialog |
+
+版本号 N：扫描 `examples/` 目录，找出当天同 slug 文件中最大版本号，+1 后作为本次版本号；不存在则从 v1 开始。
+
+示例：
+- 今天第一次生成表格页 → `examples/table-page-2026-06-16-v1.html`
+- 今天第二次生成表格页 → `examples/table-page-2026-06-16-v2.html`
+- 今天第一次生成提单页 → `examples/create-page-2026-06-16-v1.html`
+- 今天第一次生成抽屉 → `examples/drawer-2026-06-16-v1.html`
+
+`examples/archive/` 仅保存历史示例，不参与生成。
+生成时不得读取、复制、引用 `examples/archive/` 下的任何文件。
+不得从 archive 示例中继承 HTML 结构、CSS、业务字段、token、inline style 或页面布局。
+
+## XFT_ROUTE
+
+最终 HTML 顶部必须包含：
+
+```html
+<!-- XFT_ROUTE
+scope: Full Page | Page Overlay | Component State
+page_type: HomePage | TablePage | CreatePage | DetailPage | EditPage | SettingsPage | LoginPage | ErrorPage | BlankPage | None
+overlay_type: Modal | Drawer | ConfirmDialog | None
+shell: admin-side-shell | blank-shell
+page_block: ListPageBlock | DetailPageBlock | FormPageBlock | SettingsPageBlock | None
+token_source: design-systems/tokens.css
+content_slot: PAGE_CONTENT_SLOT | CONTENT_SLOT | None
+overlay_slot: OVERLAY_SLOT | None
+-->
+```
+
+注意：
+
+- `HomePageBlock` 当前不存在，`HomePage` 默认 `page_block: None`
+- `SettingsPageBlock` 存在，可直接使用
+- 只要 `XFT_ROUTE` 中合法记录了 slot 名，就不算 slot 残留
+
+## Copy-as-template Execution Protocol
+
+读取 shell 后，必须以 shell 文件的 HTML 原文作为 base string 进行字符串级操作。
+
+不得根据记忆重写 shell HTML 或 CSS。
+不得合并、整理、优化、改写 shell style。
+不得修改 shell DOM、class、padding、margin、transition、shadow、radius、导航结构、micro-wrapper 或 page-content-container。
+
+最终 HTML 的 style 块顺序必须是：
+
+1. 第一个 `<style>`：`design-systems/tokens.css` 原文
+2. 第二个 `<style>`：shell 原有 `<style>` 原文，一字不改
+3. 第三个 `<style>`：`components.css` 原文
+4. 第四个 `<style>`：页面级新增 CSS，仅允许追加
+
+不得修改前三个 `<style>` 的内容。
+
+允许且仅允许以下操作：
+
+1. 在 shell 第一个 `<style>` 前插入 tokens.css 内容
+2. 保留 shell 原有 `<style>` 块原文不变
+3. 在 shell 原有 `<style>` 之后插入 components.css 内容
+4. 将 `<!-- PAGE_CONTENT_SLOT -->` 或 `<!-- CONTENT_SLOT -->` 替换为选定 page block 内容
+5. 将 `<!-- OVERLAY_SLOT -->` 替换为选定 overlay 内容；没有 overlay 时保持空 overlay root
+6. 在第四个 `<style>` 中追加页面级新增 CSS
+7. 替换 shell chrome 中的可见占位文案（见下节）
+
+除此之外，shell 原文必须保持不变。
+
+## Shell Chrome Text Replacement
+
+Copy Shell 不等于所有文字都不替换。
+
+必须保留（不得修改）：
+
+- shell DOM 层级
+- shell class
+- shell CSS
+- TopNav / SideNav / WebTabs / micro-wrapper / page-content-container 结构
+- padding / margin / transition / shadow / radius 等样式值
+
+必须替换 shell 中的可见占位文案：
+
+- 产品名称（`产品名称`）
+- 企业名称（`演示企业名称`）
+- TopNav 当前模块文案
+- SideNav 菜单文案与当前选中项
+- WebTabs 中的 `页面标签`
+- WebTabs 中的 `当前页面`
+- checker 封锁的其他 shell 占位文案
+
+示例：
+
+- `页面标签` → 替换为当前页面所属模块或上级页签
+- `当前页面` → 替换为当前生成页面名称
+- `产品名称` / `演示企业名称` → 根据业务语境替换；无明确业务时使用中性占位名称
+- SideNav 菜单项 → 替换为与当前页面匹配的后台菜单，并设置正确的选中态
+
+不得借此机会修改 shell DOM 结构、class、CSS、layout、spacing、transition、shadow 或 radius。
+
+## PageBlock and Overlay Usage
+
+page block / overlay 片段必须以资产原文为基础。
+
+不得重写：
+
+- page block DOM 结构
+- overlay DOM 结构
+- class
+- CSS
+- section 顺序
+- overlay 根结构
+
+不得为了"统一风格""优化写法""减少冗余"而重写 page-blocks / overlays 的结构和 class。
+
+## Component Contract
+
+生成时优先使用 `assets/page-blocks.html` 与 `assets/overlays.html` 中已存在的 canonical class：
+
+- `.btn / .btn-primary / .btn-secondary / .btn-text / .btn-danger`
+- `.form-field / .field-label / .form-control / .select-control / .textarea-control`
+- `.page-header / .page-header-main / .page-title / .page-description / .page-header-actions`
+- `.filter-bar / .filter-actions`
+- `.page-card / .table-toolbar / .table-toolbar-left / .table-toolbar-right / .data-table`
+- `.status-tag / .status-success / .status-warning / .status-error / .status-info / .status-neutral`
+- `.pagination / .pagination-actions / .page-btn`
+- `.summary-card / .summary-item / .detail-section`
+- `.settings-layout / .settings-anchor / .settings-anchor-item / .settings-section / .setting-item`
+- `.overlay-mask / .overlay-mask-right / .overlay-header / .overlay-body / .overlay-footer / .modal / .drawer / .confirm-dialog`
+
+不要再发明第二套按钮、状态标签、表单控件 class。旧 class 仅在兼容历史资产时可作为 alias，不应成为新生成页面的默认选择。
+
+## Token And Self-contained Rules
+
+- 最终 HTML 必须自包含
+- 不得保留 `<link rel="stylesheet">`
+- 不得保留 `../components.css`
+- `tokens.css` 必须作为第一个 `<style>` 块注入
+- `components.css` 的有效样式必须内联到最终 HTML
+- 页面级新增 CSS 必须继续使用 token 变量
+
+组件层禁止：
+
+- 裸色值
+- `rgba()` 直接写在 HTML 元素的 `style=""`
+- 裸字号
+- 裸间距
+- 裸圆角
+- 裸阴影
+
+说明：
+
+- `tokens.css` 内的裸值合法
+- shell 基础 CSS 内若仍存在 `rgba()`，只可作为人工复核项，不自动视为 P0 失败
+
+## Admin Full Page Hard Rules
+
+后台业务页必须满足：
+
+- `AppShell`
+- `TopNav`
+- `MainFrame`
+- `SideNav`
+- `WorkArea`
+- `WebTabs`
+- `PageContent`
+- `micro-wrapper`
+- `page-content-container`
+
+标准结构：
 
 ```html
 <section class="page-content">
-  <div class="page-content-container">
-    <!-- PAGE_CONTENT_SLOT -->
+  <div class="micro-wrapper">
+    <div class="page-content-container">
+      <!-- PAGE_CONTENT_SLOT -->
+    </div>
   </div>
 </section>
 ```
 
-结构规则：
+说明：
 
-- `page-content-container` 必须存在，且所有页面主体都在白色背景容器中展示。
-- `page-blocks.html` 不得包含 `TopNav / SideNav / WebTabs`。
-- `page-blocks.html` 只负责主体内容，不承担完整壳子。
-- `overlay-root` 必须位于 `app-shell` 最后，和 `main-frame` 平级。
-- `overlay-root` 不得放进 `page-content` 或 `page-content-container`，避免被滚动容器或 stacking context 截断。
+- `micro-wrapper` 默认保留
+- `micro-wrapper` 是透明布局层，不属于 page block
+- page block 必须插入 `page-content-container` 内
+- 不得把 page block 插到 `micro-wrapper` 外层
 
-页面主体结构映射如下：
+禁止：
 
-- 列表页
-  = `PageHeader + FilterBar + TableToolbar + DataTable + Pagination`
-- 详情页
-  = `PageHeader + SummaryCard + DetailSection + RelatedTable`
-- 表单页
-  = `PageHeader + FormSection + FormFooterActions`
-- 设置页
-  = `SettingsNav + SettingsPanel + SettingItem`
+- `PageContent` 直接贴在 `TopNav` 下方
+- 把 `WebTabs` 放进 `page-content-container`
+- 在 page block 中重复生成 `TopNav / SideNav / WebTabs`
+- 把页面内部 tab 当成 `WebTabs`
 
-首页主体应包含：
+## Content Fill Rules
 
-- 数据概览卡片
-- 快捷入口
-- 待办事项
-- 趋势图或业务看板
-- 最近访问或常用功能
+填充业务内容时，不允许：
 
-### Step 4.5：注入 Design Token
+- 复制 `examples/` 中的业务字段、示例数据、品牌信息、流程
+- 用无语义 `div` 堆叠伪装真实组件
+- 让导航文案、左侧选中态、多页签当前页互相不一致
 
-在填充业务内容之前，必须先将 `design-systems/tokens.css` 完整粘贴到输出 HTML 的第一个 `<style>` 块中。
+## Final Check
 
-规则：
+最终输出必须满足以下验收标准。
 
-- tokens.css 是所有 CSS 变量的唯一来源，不得在 `:root` 之外定义裸色值、裸字号、裸间距。
-- Token 变量写入第一个 `<style>` 块后，后续组件 CSS 写在后续 `<style>` 块中。
-- 无文件系统环境：从正文 fallback 中提取最小 Token 子集作为替代。
+如运行环境支持，必须运行：
 
-Token 使用强规则：
+```bash
+python3 scripts/check_skill_output.py examples/<生成文件名>.html
+```
 
-- 颜色：必须使用 `var(--color-*-*-*)`，禁止出现 `#1966ff`、`#ffffff`、`rgba(19,34,64,*)` 等裸色值。
-- 间距：组件间 itemSpacing 使用 `var(--spacing-N)`，Surface padding 使用 `var(--spacing-N)`。
-- 字号：使用 `var(--font-size-*)`，禁止裸 `font-size` 数值。
-- 圆角：使用 `var(--border-radius-*)`。
-- 阴影：卡片使用 `var(--shadow-regular-bottom)`，弹窗使用 `var(--shadow-large-bottom)`。
-- 字体族：使用 `var(--font-family-primary)`。
+validator FAIL 时，必须根据报错修正后重新运行 validator；不得默认读取 `references/checklist.md`。
 
-Surface / Wrapper 规则（来自 USAGE.md）：
+如运行环境不支持脚本执行，必须按以下条目自检：
 
-- 只有具备视觉边界（背景色 / 边框 / 阴影）的元素才拥有 `padding`——称为 Surface。
-- 纯布局容器（Wrapper）使用 `itemSpacing` 控制间距，默认 `padding: 0`。
-- 若容器 `padding >= 16` 但无视觉边界，必须将 padding 上移到最近的 Surface，或改为 `itemSpacing`。
+- XFT_ROUTE 存在且紧跟 `<!DOCTYPE html>`
+- 最终 HTML 不得包含 ROUTE_DECISION；只保留 XFT_ROUTE
+- 文件位于 `examples/` 根目录，命名符合 `{slug}-{YYYY-MM-DD}-v<N>.html`
+- 不得输出到 `examples/archive/`
+- 无外链 CSS，无 `../components.css`
+- 第一个 `<style>` 为 tokens.css 原文
+- 前三个 `<style>` 必须存在且顺序固定；第四个 `<style>` 仅在需要页面级补充样式时追加
+- 无 slot 残留（PAGE_CONTENT_SLOT / CONTENT_SLOT / OVERLAY_SLOT）
+- 无 shell 占位文案残留（页面标签 / 当前页面 等）
+- 无 inline style 属性
+- Full Page 结构完整（AppShell / TopNav / SideNav / WebTabs / page-content-container）
+- 如有 overlay，必须正确挂在 `overlay-root` 内；无 overlay 时不得强行生成 `data-overlay`
 
-桌面端默认间距：
+只有在以下情况才读取 `references/checklist.md`：
 
-- 页面内边距：`var(--spacing-7)`(32) 或 `var(--spacing-8)`(40)
-- 卡片 / Surface 内边距：`var(--spacing-6)`(24)
-- 章节间距：`var(--spacing-6)`(24)
-- 字段列表 itemSpacing：`var(--spacing-4)`(16)
-- Label 与控件间距：`var(--spacing-2)`(8)
-
-### Step 5：填充业务内容
-
-在确定结构后，再替换真实业务内容。允许替换：
-
-- 页面标题
-- 页面说明
-- 筛选项
-- 表格列
-- 表单字段
-- 详情字段
-- 状态标签
-- 操作按钮
-- 分页
-- 空状态
-- 错误态
-- 加载态
-- 弹窗标题
-- 弹窗正文
-- 弹窗底部操作
-- 抽屉内容
-
-通用规则：
-
-- 业务字段可以替换，结构层级不能乱改。
-- 导航和上下文必须与当前页面匹配。
-- 危险操作必须使用 danger 语义。
-- 主操作必须清晰且数量克制。
-- 不得用原生无语义 `div` 堆叠模拟业务组件。
-- 允许使用 HTML 作为预览实现，但结构命名、class 命名和视觉表现必须对应业务组件语义。
-- 所有 CSS 属性值必须引用 tokens.css 中的 Token 变量，禁止硬编码颜色 / 字号 / 间距数值。
-- 卡片容器使用 `var(--color-container-bg-neutral-bright)` + `var(--color-border-neutral)` + `var(--shadow-regular-bottom)` 组合。
-
-页面类型专项要求：
-
-#### 首页
-
-- 首页不要默认生成大表格作为唯一内容。
-- 不要省略快捷入口。
-- 不要把首页做成纯欢迎页。
-
-#### 表格页
-
-- 必须包含 `PageHeader + FilterBar + TableToolbar + DataTable + Pagination`。
-- 查询条件不得放进 `TopNav`。
-- 禁止用普通卡片堆叠替代 `DataTable`，除非用户明确要求卡片列表。
-- 禁止省略分页，除非数据明确少于一页。
-- 应体现空状态或加载状态。
-
-#### 提单页
-
-- 主体应包含页面标题、表单分组、字段、附件或说明区域、底部操作区。
-- 字段少于等于 8 个可使用基础表单；字段较多或存在语义分组时必须使用分组表单。
-- 存在明确流程步骤时使用分步表单。
-- 禁止字段超过 10 个仍使用无分组单列表单。
-- 禁止缺少取消或返回操作。
-
-#### 详情页
-
-- 主体应包含标题和状态、基础信息、业务详情、关联表格、操作记录或时间线中的核心部分。
-- 内容较少且从列表打开时可使用 `Drawer` 详情。
-- 禁止默认让所有字段可编辑。
-- 禁止没有状态信息、没有返回或主要操作。
-
-#### 编辑页
-
-- 结构与提单页相近，但必须体现已有数据回填状态。
-- 必须有保存和取消。
-- 禁止把编辑操作放到 `TopNav`。
-
-#### 设置页
-
-- 使用 `SettingsSection / SettingItem` 这类设置结构。
-- 不要默认使用 `DataTable` 作为设置页主体。
-- 设置项要有标题、说明、状态或控件，不是普通表格页伪装。
-- 禁止把设置分组做成 `WebTabs`。
-
-#### Overlay
-
-- `Modal` 适用于短流程表单、信息补充、普通编辑。
-- `Drawer` 适用于右侧详情、复杂配置、与列表强关联的查看 / 编辑。
-- `ConfirmDialog` 适用于删除、撤销、作废、提交等高风险二次确认。
-- 只涉及弹窗 / 抽屉 / 确认框的需求，必须走 overlay，不得默认重新生成完整页面。
-
-### Step 6：视觉校准
-
-按以下三层逐层校准页面视觉：
-
-**第一层 — Token 层：**
-
-- 检查是否存在裸色值（`#xxx`、`rgba()`）——全部替换为 `var(--color-*)`。
-- 检查是否存在裸字号（`font-size: 14px` 等）——替换为 `var(--font-size-*)`。
-- 检查是否存在裸间距（`padding: 24px` 等）——替换为 `var(--spacing-N)`。
-- 检查阴影 / 圆角是否使用了 Token 变量。
-
-**第二层 — 规则层：**
-
-- 按 `design-systems/DESIGN.md` 检查反模式：无大面积渐变、无厚重阴影、无超大圆角、无玻璃拟态。
-- 按 `design-systems/USAGE.md` 检查 Surface / Wrapper padding 归属：无视觉边界的容器不得有 `padding >= 16`。
-- 检查分隔手段是否按优先级：标题 + 间距 → Divider → 新 Surface。
-
-**第三层 — Class 层：**
-
-- 优先复用 shell 内联 CSS class。
-- 不得为按钮、表格、状态标签、表单控件、卡片临时发明同类新样式。
-- 后台页面应保持清晰、稳定、克制、高信息密度但不拥挤，结构层级明确，操作路径清晰。
-
-### Step 7：输出
-
-最终产物必须是：
-
-- 完整自包含 HTML
-- 主文件名 / 主入口为 `index.html`
-- CSS 全部内联
-- tokens.css 必须位于第一个 `<style>` 块，组件 CSS 写在后续 `<style>` 块
-- 不依赖外链 CSS
-- 不依赖外部 JS
-- 不输出多个 HTML 文件
-
-有文件系统环境：
-
-- 写入 `examples/<业务语义文件名>.html`，文件名使用小写中划线命名，体现页面业务含义（如 `expense-list.html`、`reimbursement-detail.html`）。
-- 不得写入当前工作目录的 `index.html`。
-
-无文件系统环境：
-
-- 直接返回完整 HTML，并明确该内容应保存为 `index.html`
-
-在 Open Design 预览契约下，主 artifact 统一按 `index.html` 处理；如果页面对外展示时需要业务语义化文件名，可以把它视为导出命名，而不是预览入口命名。
-
-### Step 8：验收
-
-页面生成完成后，必须读取并执行 `references/checklist.md`。
-
-执行方式：
-
-1. 先做 P0 检查
-2. 任一 P0 不通过，必须先修复页面
-3. P0 全通过后，再做 P1 检查
-4. 如果两个及以上 P1 不通过，至少再修一轮
-
-`SKILL.md` 正文中的最小验收项：
-
-- 是否判断了正确生成范围？
-- 是否没有把弹窗需求扩成整页？
-- 是否选择了正确 shell？
-- 是否存在 `page-content-container`？
-- 是否替换了导航文案和选中态？
-- 是否 page block 没有夹带完整 shell？
-- 是否 overlay 没有重构宿主页面？
-- 是否复用了已有 class？
-- 是否第一个 `<style>` 块粘贴了 tokens.css？
-- 是否组件 CSS 使用了 Token 变量而非裸色值 / 裸字号？
-- 是否 Surface / Wrapper padding 归属正确？
-- 是否最终输出完整 `index.html`？
-
-`references/checklist.md` 是最终验收门，不能跳过。
+- 用户要求人工复核
+- 需要排查 Final Check / validator 未覆盖的问题
