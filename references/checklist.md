@@ -163,7 +163,7 @@
 - [ ] 是否没有输出到 `examples/archive/` 或 skill 包外部？
 - [ ] `XFT_ROUTE` 是否紧跟 `<!DOCTYPE html>` 之后？
 - [ ] 第一个 `<style>` 是否确实为 `tokens.css` 原文？
-- [ ] style 块顺序是否为：tokens.css → shell 原 style → components.css → 页面级新增 CSS？
+- [ ] style 块顺序是否为：tokens.css → shell 原 style → 组件 CSS（来自 components.html） → 页面级新增 CSS？
 - [ ] CSS 是否全部内联，无外链 stylesheet？
 
 ### 示例复制检查

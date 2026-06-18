@@ -1,6 +1,6 @@
 # XFT 使用说明
 
-面向 Open Design Agent 的设计系统包使用指南。
+面向  Design Agent 的设计系统包使用指南。
 
 ## 阅读顺序
 

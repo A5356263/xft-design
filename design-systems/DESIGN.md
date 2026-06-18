@@ -70,17 +70,26 @@ Color token 遵循固定的维度顺序：`type-object-attribute-intention-promi
 
 ### Surface 与 Wrapper
 
-- **Surface（视觉承载层）** — 至少具备一种视觉边界的容器：背景色 / 边框 / 阴影。Surface 拥有 `padding`。
-- **Wrapper（纯布局层）** — 仅用于排列分组的容器，本身不产生可见的区块边界。Wrapper 使用 `itemSpacing` 控制间距，默认 `padding: 0`。
+容器分两类角色，不可混用：
 
-**规则：** 同一个视觉边界只由一层承担 padding。内层 Wrapper 通过 `itemSpacing` 控制排列，不叠加 padding。
+- **Wrapper（纯布局层）** — 仅用于排列子元素，自身不拥有视觉表现。没有背景、边框、阴影，不设置 `padding`，通过 `gap` / `direction` / `align` 控制排列。
+- **Surface（视觉承载层）** — 拥有可感知的表面和边界：背景色 / 边框 / 阴影，至少具备其一。拥有 `padding`。
 
-### 分隔手段优先级
+**选用规则：**
 
-区块需要区分时，从弱到强选择：
-1. 标题 + 间距（同一 Surface 内）
+- 布局-only 分组 → Wrapper。不添加任何视觉属性。
+- 需要可见表面或结构边界的内容块 → Surface（Card、Panel）。
+- 页面级结构分区（header、footer、content body） → 区域带（带背景区分的大区块）。
+
+**判定顺序（从弱到强）：** Wrapper → Surface → 区域带。默认使用 Wrapper，只有当内容确实需要视觉区分时才升级。
+
+**分隔手段优先级（从弱到强）：**
+
+1. 标题 + 间距（同一 Surface 内，用 Wrapper 分组）
 2. Divider 分割线（同一 Surface 内章节划分）
 3. 新 Surface — 至少选用一项：对比背景色 / 边框 / 阴影
+
+**同一视觉边界只由一层承担 padding。** 内层 Wrapper 通过 gap 控制排列，不叠加 padding。
 
 ## 5. 圆角
 
@@ -126,3 +135,33 @@ Color token 遵循固定的维度顺序：`type-object-attribute-intention-promi
 - 禁止使用 token 体系之外的配色。
 - 禁止所有文字使用同一字号和字重，导致层级扁平。
 - 禁止添加装饰性效果（大面积渐变、厚重阴影、超大圆角、玻璃拟态）。本系统刻意保持克制。
+- 不要默认将每个功能模块包裹在可见 Surface（Card/Panel）中。如果模块不需要独立的视觉边界，使用 Wrapper 做纯布局分组即可。只有当内容需要与周围区域产生视觉区分时，才升级为 Surface。
+
+## 9. 组件尺寸规则
+
+组件尺寸不纳入正式 Token 体系（与开发侧打通），以参考变量形式定义在 `components.html` 的 `:root` 中，前缀 `--ref-`。
+
+### 控件高度档位
+
+| 档位 | 参考变量 | 值 | 适用组件 |
+|------|---------|-----|---------|
+| xs | `--ref-ctrl-xs` | 16px | Checkbox、Radio、Badge dot |
+| sm | `--ref-ctrl-sm` | 24px | Tag、小尺寸按钮、Pagination 紧凑 |
+| md | `--ref-ctrl-md` | 32px | 默认控件高度：Button、Input、Select、DatePicker、Pagination |
+| lg | `--ref-ctrl-lg` | 40px | Menu item、Tab 卡片项、Table 标准行高 |
+
+### 弹层 / 浮层宽度
+
+| 组件 | 参考变量 | 默认宽度 |
+|------|---------|---------|
+| Modal | `--ref-modal-w` | 520px（宽屏 720px） |
+| Drawer | `--ref-drawer-w` | 372px |
+| Notification | `--ref-notification-w` | 384px |
+| Tooltip / Popover | `--ref-tooltip-max-w` | 最大 250px |
+
+### 特殊组件
+
+- **Switch**：高度 22px / 小尺寸 16px，不遵循控件高度体系
+- **Card header**：56px / 紧凑 38px（`--ref-card-header-h`）
+- **Table 行高**：紧凑 40px / 标准 48px / 宽松 56px
+- **Avatar**：小 24px / 标准 32px / 大 40px（与控件高度档位对齐）
