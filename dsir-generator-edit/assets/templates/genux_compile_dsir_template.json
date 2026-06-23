@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "spec_id": "example_genux_compile_dsir",
+    "schema_version": "0.1",
+    "project_id": "example-project",
+    "generated_from": "design-spec.md"
+  },
+  "project": {
+    "project_id": "example-project",
+    "shell_model": "single-page"
+  },
+  "shared_context": {
+    "project_scope": "single-page DSIR-native prototype",
+    "normalized_from": "design-spec.md",
+    "component_preset": "antd6"
+  },
+  "pages": [
+    {
+      "page_id": "example_page",
+      "page_type": "form",
+      "page_goal": "Support a reviewable single-page workflow",
+      "target_actor": "operator",
+      "primary_tasks": ["review data", "take action"],
+      "layout_mode": "three_column",
+      "density": "compact",
+      "presentation_preference": "information_first",
+      "review_criteria": ["page remains aligned with design spec"],
+      "sections": [
+        {
+          "section_id": "example_nav",
+          "section_role": "navigation",
+          "priority": "primary",
+          "content_kind": "semantic_region",
+          "placement_preference": "leading",
+          "blocks": [
+            {
+              "block_id": "example_nav-block",
+              "block_pattern": "section-navigation",
+              "semantic_payload": {
+                "page_id": "example_page",
+                "region_id": "example_nav",
+                "module_refs": ["example_context", "example_action"]
+              },
+              "compile_hints": {
+                "source": "dsir-native"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
