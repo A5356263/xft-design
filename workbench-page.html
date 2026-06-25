@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工作台首页</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: "PingFang SC","Microsoft YaHei",sans-serif; font-size: 14px; color: #17181a; }
+
+/* ── Global Shell ── */
+.global-shell {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 48px;
+  background: linear-gradient(135deg, #3C8AFF 0%, #4255FF 100%);
+  display: flex; align-items: center; justify-content: flex-start;
+  padding: 0 24px; color: #fff;
+}
+.global-shell .logo { font-size: 16px; font-weight: 700; margin-right: 32px; }
+.global-shell .nav { display: flex; gap: 24px; font-size: 14px; }
+.global-shell .nav span { opacity: .85; cursor: pointer; padding: 4px 0; border-bottom: 2px solid transparent; transition: .2s; }
+.global-shell .nav span:hover,
+.global-shell .nav span.active { opacity: 1; border-bottom-color: #fff; }
+.global-shell .user-area { margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px; }
+.global-shell .user-area .avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.global-shell .user-area .icon { font-size: 16px; cursor: pointer; }
+
+/* ── Content Area ── */
+.content-area {
+  padding-top: 68px;
+  padding-left: 24px; padding-right: 24px; padding-bottom: 24px;
+  background: #f3f4f6; min-height: 100vh;
+}
+
+/* ── 3-Column Grid ── */
+.workbench-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1400px;
+}
+.card {
+  background: #fff; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.06);
+  padding: 16px 20px; min-height: 160px;
+}
+.card .card-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.card .card-content { font-size: 13px; color: #595959; line-height: 1.8; }
+.card.span-1 { grid-column: span 1; }
+.card.span-2 { grid-column: span 2; }
+.card.span-3 { grid-column: span 3; }
+
+/* ── card placeholder ── */
+.stat-row { display: flex; gap: 24px; margin-top: 8px; }
+.stat-item { text-align: center; }
+.stat-item .num { font-size: 28px; font-weight: 700; color: #4255FF; }
+.stat-item .label { font-size: 12px; color: #999; margin-top: 4px; }
+.item-list { display: flex; flex-direction: column; gap: 10px; }
+.item-list .item { display: flex; justify-content: space-between; padding: 8px 12px; background: #fafafa; border-radius: 6px; font-size: 13px; }
+.item-list .item .tag { font-size: 11px; padding: 1px 6px; border-radius: 3px; }
+.item-list .item .tag.blue { background: #eef0ff; color: #4255FF; }
+.item-list .item .tag.orange { background: #fff7e6; color: #fa8c16; }
+</style>
+</head>
+<body>
+
+<!-- Global Shell -->
+<div class="global-shell">
+  <div class="logo">CMB 工作平台</div>
+  <div class="nav">
+    <span class="active">工作台</span>
+    <span>全部应用</span>
+  </div>
+  <div class="user-area">
+    <span class="icon">🔔</span>
+    <span class="avatar">U</span>
+    <span>用户名</span>
+  </div>
+</div>
+
+<!-- Content Area -->
+<div class="content-area">
+  <div class="workbench-grid">
+
+    <!-- Row 1: span-2 + span-1 -->
+    <div class="card span-2">
+      <div class="card-title">待办事项</div>
+      <div class="card-content">
+        <div class="item-list">
+          <div class="item"><span>项目 A 需求评审</span><span class="tag blue">待处理</span></div>
+          <div class="item"><span>季度报告提交</span><span class="tag orange">即将到期</span></div>
+          <div class="item"><span>新员工入职审批</span><span class="tag blue">待处理</span></div>
+          <div class="item"><span>系统升级确认</span><span class="tag blue">待处理</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card span-1">
+      <div class="card-title">快捷入口</div>
+      <div class="card-content">
+        <div class="item-list">
+          <div class="item"><span>审批中心</span></div>
+          <div class="item"><span>任务管理</span></div>
+          <div class="item"><span>日程安排</span></div>
+          <div class="item"><span>文档库</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: span-1 + span-1 + span-1 -->
+    <div class="card span-1">
+      <div class="card-title">数据概览</div>
+      <div class="card-content">
+        <div class="stat-row">
+          <div class="stat-item"><div class="num">128</div><div class="label">项目数</div></div>
+          <div class="stat-item"><div class="num">36</div><div class="label">进行中</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card span-1">
+      <div class="card-title">团队动态</div>
+      <div class="card-content">
+        <div class="item-list">
+          <div class="item"><span>张同学 提交了代码</span></div>
+          <div class="item"><span>李同学 完成了任务</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card span-1">
+      <div class="card-title">公告通知</div>
+      <div class="card-content">
+        <div class="item-list">
+          <div class="item"><span>系统维护通知</span></div>
+          <div class="item"><span>新版本发布说明</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: span-3 full width -->
+    <div class="card span-3">
+      <div class="card-title">项目进度一览</div>
+      <div class="card-content">
+        <div class="item-list">
+          <div class="item"><span>项目 Alpha</span><span>开发阶段 · 完成 75%</span></div>
+          <div class="item"><span>项目 Beta</span><span>测试阶段 · 完成 50%</span></div>
+          <div class="item"><span>项目 Gamma</span><span>需求阶段 · 完成 30%</span></div>
+          <div class="item"><span>项目 Delta</span><span>上线阶段 · 完成 90%</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
