@@ -1,4 +1,4 @@
-# Homepage 3-Column Adaptive Card Grid Pattern
+# homepage-grid-pattern
 
 本 Pattern 用于描述 Web 端首页类 Content Area 中的三等分自适应卡片布局。它是 Shell 的扩展层，不属于 Global Shell / App Shell 本身，但用于约束首页内容区卡片容器的排列、跨度和响应式宽度计算。
 
@@ -6,8 +6,6 @@
 
 - 工作台首页
 - 业务应用首页
-- 首页类 Dashboard / Portal 页面
-- 需要以卡片模块组织入口、待办、报表、快捷功能的页面
 
 ## 何时不用
 
