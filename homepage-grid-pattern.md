@@ -1,6 +1,23 @@
-# 工作台首页卡片布局 / Workbench 3-Column Card Grid Layout
+# Homepage 3-Column Adaptive Card Grid Pattern
 
-该布局用于 Web 端工作台首页 Content Area，不属于 Global Shell 或 App Shell，而属于首页内容区布局 Pattern。
+本 Pattern 用于描述 Web 端首页类 Content Area 中的三等分自适应卡片布局。它是 Shell 的扩展层，不属于 Global Shell / App Shell 本身，但用于约束首页内容区卡片容器的排列、跨度和响应式宽度计算。
+
+## 何时使用
+
+- 工作台首页
+- 业务应用首页
+- 首页类 Dashboard / Portal 页面
+- 需要以卡片模块组织入口、待办、报表、快捷功能的页面
+
+## 何时不用
+
+- 普通表格页
+- 表单页
+- 详情页
+- 流程页
+- 画布 / 编辑器类页面
+
+> 不用时 → 使用 Shell 原有的 `page-content-container`（白色圆角大容器）。
 
 ## 布局规则
 
@@ -16,7 +33,7 @@
 ## 结构示意
 
 ```
-workbench-grid（3 等分栅格）
+home-grid（3 等分栅格）
 ├── row 1
 │   ├── main_area   span-2 (占 2/3)
 │   └── side_area   span-1 (占 1/3)
@@ -28,19 +45,11 @@ workbench-grid（3 等分栅格）
     └── full_width_area  span-3 (全宽)
 ```
 
-## 生成约束
-
-- 不得将该布局简化为普通双栏布局。
-- 不得将该布局简化为等宽卡片列表。
-- 不得在右侧辅助列生成 2/3 或 3/3 卡片。
-- 不得随意改变卡片跨度。
-- 如果无法判断卡片宽度，应标记为需确认，不得自行推导。
-
 ## 与 Shell 的关系
 
 - 3 列栅格与 Shell 中的 `page-content-container`（白色圆角大容器）**平级**。
-- **首页**（工作台首页 / 应用内首页）→ 使用 3 列栅格替代 `page-content-container`，插入 `micro-wrapper` 内。
-- **非首页**（表格页、表单页、详情页等）→ 使用原有的 `page-content-container` 白色容器。
+- **首页** → 使用 3 列栅格替代 `page-content-container`，插入 `micro-wrapper` 内。
+- **非首页** → 使用原有的 `page-content-container` 白色容器。
 
 ```
 page-content
@@ -48,6 +57,14 @@ page-content
     ├── [HomePage]  home-grid (3列栅格)
     └── [非HomePage] page-content-container (白色圆角大容器)
 ```
+
+## 生成约束
+
+- 不得将该布局简化为普通双栏布局。
+- 不得将该布局简化为等宽卡片列表。
+- 不得在右侧辅助列生成 2/3 或 3/3 卡片。
+- 不得随意改变卡片跨度。
+- 如果无法判断卡片宽度，应标记为需确认，不得自行推导。
 
 ## 响应式宽度
 
@@ -88,7 +105,12 @@ page-content
 - 若无法判断页面是否存在 sidebar，标记为需确认。
 - 若无法确认屏幕宽度，使用 span-1/span-2/span-3 表达跨度，不推导像素值。
 
-## 适用范围
+## 检查清单
 
-- 工作台首页（场景一，无 Sidebar）
-- 业务应用首页（场景二，有 188px Sidebar）
+- [ ] 是否判断页面为工作台首页或业务应用首页？
+- [ ] 是否确认是否存在 188px App Shell？
+- [ ] 是否使用 3 等分栅格？
+- [ ] 是否正确区分 1/3、2/3、3/3 卡片？
+- [ ] 是否保留 16px 页面边距和 16px 卡片间距？
+- [ ] 是否正确应用最小 / 最大宽度规则？
+- [ ] 是否避免将卡片内部业务内容识别为 Shell？
