@@ -39,6 +39,7 @@
         sans-serif;
       font-size: 14px;
       line-height: 22px;
+      overflow: hidden;
     }
 
     button,
@@ -48,10 +49,27 @@
       font: inherit;
     }
 
+    button.nav-app,
+    button.nav-tool,
+    button.user-avatar-wrap,
+    button.global-search,
+    button.side-nav-item,
+    button.side-nav-group-title,
+    button.xft-tab-item,
+    button.prev-page,
+    button.next-page,
+    button.slice {
+      border: 0;
+      background: transparent;
+      appearance: none;
+    }
+
     .app-shell {
-      min-height: 100vh;
+      width: 100%;
+      height: 100vh;
       background: var(--color-layout-bg-neutral-gray);
       position: relative;
+      padding-top: var(--top-nav-height);
     }
 
     .top-nav {
@@ -60,8 +78,10 @@
       align-items: center;
       padding: 0;
       background: linear-gradient(117.84deg, var(--color-nav-gradient-start), var(--color-nav-gradient-end));
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 20;
     }
 
@@ -389,8 +409,10 @@
 
     .main-frame {
       display: flex;
-      min-height: calc(100vh - var(--top-nav-height));
+      width: 100%;
+      height: calc(100vh - var(--top-nav-height));
       background: #ffffff;
+      overflow: hidden;
     }
 
     .side-nav {
@@ -401,6 +423,8 @@
       padding: 8px 2px 0 8px;
       overflow-y: auto;
       overflow-x: hidden;
+      height: 100%;
+      align-self: stretch;
     }
 
     .side-nav-group-title,
@@ -411,34 +435,46 @@
       align-items: center;
       padding: 8px 4px 8px 8px;
       border-radius: 6px;
-      color: rgba(19, 34, 64, 0.95);
+      color: var(--color-text-neutral-gray40, rgba(19, 34, 64, 0.85));
       cursor: pointer;
       font-size: 14px;
       font-weight: 400;
       line-height: 24px;
       margin-bottom: 8px;
       transition: background 0.15s ease;
+      text-align: left;
     }
 
     .side-nav-group-title:hover,
     .side-nav-item:not(.is-active):hover {
-      background: #f3f4f6;
+      background: var(--color-container-bg-neutral-bright-hover, rgba(19, 34, 64, 0.05));
+      color: var(--color-text-neutral-gray50, rgba(19, 34, 64, 0.95));
+    }
+
+    .side-nav-group-title:hover .nav-icon,
+    .side-nav-group-title:hover .nav-arrow,
+    .side-nav-item:hover .nav-icon {
+      color: var(--color-text-neutral-gray50, rgba(19, 34, 64, 0.95));
     }
 
     /* Open group with active child: title text + icons turn blue */
     .side-nav-group-title.is-selected {
-      color: #1966ff;
+      color: var(--color-text-accent-regular, #1966ff);
     }
 
     .side-nav-group-title.is-selected .nav-icon,
     .side-nav-group-title.is-selected .nav-arrow {
-      color: #1966ff;
+      color: var(--color-text-accent-regular, #1966ff);
     }
 
     .side-nav-item.is-active {
-      color: #1966ff;
-      background: #ebf3ff;
+      color: var(--color-text-accent-regular, #1966ff);
+      background: var(--color-bg-accent-light, #ebf3ff);
       font-weight: 500;
+    }
+
+    .side-nav-item.is-active .nav-icon {
+      color: var(--color-text-accent-regular, #1966ff);
     }
 
     .side-nav-item.level-2 {
@@ -450,7 +486,7 @@
       width: 24px;
       height: 24px;
       flex: 0 0 24px;
-      color: rgba(19, 34, 64, 0.65);
+      color: var(--color-text-neutral-gray30, rgba(19, 34, 64, 0.65));
       margin-right: 4px;
     }
 
@@ -467,7 +503,7 @@
     .nav-arrow {
       width: 16px;
       height: 16px;
-      color: rgba(19, 34, 64, 0.65);
+      color: var(--color-text-neutral-gray30, rgba(19, 34, 64, 0.65));
       flex: 0 0 16px;
       margin: 0 4px 0 0;
       transition: transform 0.2s ease;
@@ -479,10 +515,25 @@
 
     .work-area {
       flex: 1;
+      width: 100%;
       min-width: 0;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       background: #ffffff;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .context-nav-shell {
+      flex: 0 0 auto;
+      padding: 0;
+      background: var(--color-layout-bg-neutral-gray);
+      border-bottom: 1px solid var(--color-divider-neutral);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      width: 100%;
     }
 
     /* ── Tab bar (xft-tab-header) ── */
@@ -494,6 +545,7 @@
       font-weight: 400;
       height: 32px;
       flex: 0 0 32px;
+      width: 100%;
     }
 
     .xft-tab-slider {
@@ -667,20 +719,31 @@
 
     .page-content {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 0;
       min-width: 0;
       overflow: auto;
       background: #f3f4f6;
+      padding: 0;
     }
 
     .micro-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       min-height: 100%;
-      padding: 16px 0;
+      width: 100%;
+      padding: 16px;
       background: #f3f4f6;
     }
 
     .page-content-container {
-      min-height: calc(100vh - var(--top-nav-height) - 32px);
-      margin: 0 16px;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      margin: 0;
       padding: 16px;
       background: #ffffff;
       border-radius: 14px;
@@ -973,73 +1036,73 @@
 <body>
   <div class="app-shell">
     <header class="top-nav">
-      <!-- Left: title + enterprise + nav -->
       <div class="nav-left">
         <div class="nav-left-content">
           <div class="product-title">产品名称</div>
           <div class="nav-item-wrap with-padding">
             <div class="enterprise-box">
               <span class="enterprise-icon">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M12.05 13.14H8.85V5.93q0-.03.027-.044q.028-.014.053.005l2.791 2.171q.328.255.328.67v4.41ZM13.35 13.14v-4.41q0-1.051-.83-1.697L9.73 4.87q-.421-.328-.881-.3V2.92q0-.817-.723-1.196q-.723-.38-1.395.086L4.475 4.067q-.926.641-.926 1.768v7.308H2.699q-.35 0-.65.291q-.3.291-.3.65q0 .359.3.65q.3.291.65.291H14.3q.35 0 .65-.291q.3-.291.3-.65q0-.359-.3-.65q-.3-.291-.65-.291H13.35ZM7.549 5.9V2.92q0-.03-.027-.044q-.027-.014-.052.004L4.215 5.136q-.366.253-.366.699v7.308H7.548V5.93q0-.014.001-.03Z" fill-rule="evenodd"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+                  <path d="M5 19.5c1.4-2.5 3.7-3.8 7-3.8s5.6 1.3 7 3.8" />
+                  <path d="M5.5 10.5A2.5 2.5 0 1 1 7 6" />
+                  <path d="M18.5 10.5A2.5 2.5 0 1 0 17 6" />
                 </svg>
               </span>
               <span class="enterprise-name">演示企业名称</span>
               <span class="nav-caret">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M4 6l4 4 4-4"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
                 </svg>
               </span>
             </div>
           </div>
         </div>
 
-        <!-- App navigation (after divider) -->
         <div class="nav-app-wrap">
           <div class="nav-divider-pseudo"></div>
-          <div class="xft-app-nav">
+          <div class="xft-app-nav" data-tabs-root>
             <nav class="app-nav" aria-label="一级业务导航">
-              <div class="nav-app">
-                <div class="nav-app-content"><span>工作台</span></div>
-                <div class="nav-app-active"></div>
-              </div>
-              <div class="nav-app">
-                <div class="nav-app-content"><span>模块二</span></div>
-                <div class="nav-app-active"></div>
-              </div>
-              <div class="nav-app is-active">
-                <div class="nav-app-content"><span>模块三</span></div>
-                <div class="nav-app-active"></div>
-              </div>
-              <div class="nav-app">
-                <div class="nav-app-content"><span>模块四</span></div>
-                <div class="nav-app-active"></div>
-              </div>
-              <div class="nav-app">
-                <div class="nav-app-content"><span>模块五</span></div>
-                <div class="nav-app-active"></div>
-              </div>
-              <div class="nav-app">
-                <div class="nav-app-content"><span>系统设置</span></div>
-                <div class="nav-app-active"></div>
-              </div>
+              <button class="nav-app" type="button" data-tab-trigger aria-selected="false">
+                <span class="nav-app-content">工作台</span>
+                <span class="nav-app-active"></span>
+              </button>
+              <button class="nav-app" type="button" data-tab-trigger aria-selected="false">
+                <span class="nav-app-content">组织管理</span>
+                <span class="nav-app-active"></span>
+              </button>
+              <button class="nav-app is-active" type="button" data-tab-trigger aria-selected="true">
+                <span class="nav-app-content">员工台账</span>
+                <span class="nav-app-active"></span>
+              </button>
+              <button class="nav-app" type="button" data-tab-trigger aria-selected="false">
+                <span class="nav-app-content">审批中心</span>
+                <span class="nav-app-active"></span>
+              </button>
+              <button class="nav-app" type="button" data-tab-trigger aria-selected="false">
+                <span class="nav-app-content">系统设置</span>
+                <span class="nav-app-active"></span>
+              </button>
             </nav>
             <div class="top-menu-overflow" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 6.5h11" />
+                <path d="M8 12h11" />
+                <path d="M8 17.5h11" />
+                <circle cx="4.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="12" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="17.5" r=".8" fill="currentColor" stroke="none" />
               </svg>
             </div>
           </div>
-
-          <!-- All-app entry -->
           <div class="nav-divider-pseudo"></div>
           <div class="nav-item-wrap all-app-entry">
             <div class="all-app-container">
-              <svg class="all-app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-                <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-                <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-                <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              <svg class="all-app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="4" width="6" height="6" rx="1.5" />
+                <rect x="14" y="4" width="6" height="6" rx="1.5" />
+                <rect x="4" y="14" width="6" height="6" rx="1.5" />
+                <rect x="14" y="14" width="6" height="6" rx="1.5" />
               </svg>
               <span>全部应用</span>
             </div>
@@ -1049,197 +1112,226 @@
 
       <div class="nav-center"></div>
 
-      <!-- Right: search + tools + user -->
       <div class="nav-right">
         <div class="nav-right-content">
-          <!-- Global search -->
           <div class="nav-item-wrap nav-item-wrap-search">
-            <div class="global-search" aria-label="全局搜索">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 4l1.8 4.2L18 10l-4.2 1.8L12 16l-1.8-4.2L6 10l4.2-1.8L12 4Z"/>
-              </svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="11" cy="11" r="6.5"/>
-                <path d="M16 16l4 4"/>
+            <button class="global-search" type="button" aria-label="全局搜索">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="5.5" />
+                <path d="m16 16 3.5 3.5" />
               </svg>
               <span>输入关键字、问题</span>
-            </div>
+            </button>
           </div>
 
-          <!-- Tool icons -->
-          <div class="nav-tool">
-            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M12 5v10"/><path d="M8 9l4-4 4 4"/><path d="M5 18h14"/>
+          <button class="nav-tool" type="button" aria-label="导出">
+            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4.5v10" />
+              <path d="m8 11.5 4 4 4-4" />
+              <path d="M5 19h14" />
             </svg>
-          </div>
-          <div class="nav-tool">
-            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="5" y="4" width="14" height="16" rx="2"/>
-              <path d="M8 8h8M8 12h8M8 16h6"/>
+          </button>
+          <button class="nav-tool" type="button" aria-label="消息中心">
+            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 17h8" />
+              <path d="M9 17c-1.4-.8-2.5-2.6-2.5-4.8V10a5.5 5.5 0 1 1 11 0v2.2c0 2.2-1.1 4-2.5 4.8" />
+              <path d="M10.2 19a2 2 0 0 0 3.6 0" />
             </svg>
-          </div>
-          <div class="nav-tool">
-            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="8"/>
-              <path d="M12 8v4"/><path d="M12 16h.01"/>
+          </button>
+          <button class="nav-tool" type="button" aria-label="帮助中心">
+            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="M12 10.5v5" />
+              <circle cx="12" cy="7.8" r=".8" fill="currentColor" stroke="none" />
             </svg>
-          </div>
-          <div class="nav-tool">
-            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M12 19c3.2-2.1 5-5 5-8.2V8.4L12 5 7 8.4v2.4c0 3.2 1.8 6.1 5 8.2Z"/>
-              <path d="M10 12.2l1.3 1.3 2.7-2.8"/>
+          </button>
+          <button class="nav-tool" type="button" aria-label="安全中心">
+            <svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="m8.5 12.3 2.4 2.4 4.7-5" />
             </svg>
-          </div>
+          </button>
 
           <div class="nav-divider-vertical"></div>
 
-          <!-- User avatar -->
-          <div class="nav-item-wrap nav-item-wrap-user">
-            <div class="user-avatar-wrap">
-              <div class="user-logo-box">
-                <div class="user-logo">用</div>
-              </div>
-              <span class="user-name">用户名</span>
-              <span class="nav-caret">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
-              </span>
+          <button class="nav-item-wrap nav-item-wrap-user user-avatar-wrap" type="button" aria-label="用户菜单">
+            <div class="user-logo-box">
+              <div class="user-logo">用</div>
             </div>
-          </div>
+            <span class="user-name">用户名</span>
+            <span class="nav-caret">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </span>
+          </button>
         </div>
       </div>
     </header>
 
     <div class="main-frame">
       <aside class="side-nav" aria-label="左侧导航">
-        <!-- level-1 leaf item -->
-        <div class="side-nav-item">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <rect x="3" y="3" width="8" height="8" rx="1.5" />
-            <rect x="13" y="3" width="8" height="8" rx="1.5" />
-            <rect x="3" y="13" width="8" height="8" rx="1.5" />
-            <rect x="13" y="13" width="8" height="8" rx="1.5" />
-          </svg>
-          <span class="nav-label">工作台</span>
-        </div>
-        <div class="side-nav-item">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="12" cy="8" r="3.5" />
-            <path d="M4 20a8 8 0 0116 0" />
-          </svg>
-          <span class="nav-label">菜单项</span>
-        </div>
+        <div data-menu-root aria-label="左侧导航">
+          <button class="side-nav-item" type="button" data-menu-item aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="4" width="6" height="6" rx="1.5" />
+              <rect x="14" y="4" width="6" height="6" rx="1.5" />
+              <rect x="4" y="14" width="6" height="6" rx="1.5" />
+              <rect x="14" y="14" width="6" height="6" rx="1.5" />
+            </svg>
+            <span class="nav-label">工作台</span>
+          </button>
 
-        <!-- submenu open + has active child: is-selected -->
-        <div class="side-nav-group-title is-selected">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-          </svg>
-          <span class="nav-label">菜单组 A</span>
-          <!-- always caret-up; open = no rotation, closed = .contract rotates 180deg -->
-          <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
-        </div>
-        <div class="side-nav-item level-2 is-active">
-          <span class="nav-label">子菜单 A-1</span>
-        </div>
-        <div class="side-nav-item level-2">
-          <span class="nav-label">子菜单 A-2</span>
-        </div>
-        <div class="side-nav-item level-2">
-          <span class="nav-label">子菜单 A-3</span>
-        </div>
+          <button class="side-nav-item" type="button" data-menu-item aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+              <path d="M5 19.5c1.4-2.5 3.7-3.8 7-3.8s5.6 1.3 7 3.8" />
+              <path d="M5.5 10.5A2.5 2.5 0 1 1 7 6" />
+              <path d="M18.5 10.5A2.5 2.5 0 1 0 17 6" />
+            </svg>
+            <span class="nav-label">成员总览</span>
+          </button>
 
-        <!-- submenu closed: .contract on arrow -->
-        <div class="side-nav-group-title">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-          </svg>
-          <span class="nav-label">菜单组 B</span>
-          <svg class="nav-arrow contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
-        </div>
-        <div class="side-nav-group-title">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-          </svg>
-          <span class="nav-label">菜单组 C</span>
-          <svg class="nav-arrow contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
+          <section data-menu-group>
+            <button class="side-nav-group-title is-selected" type="button" data-menu-toggle aria-expanded="true">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 6.5h11" />
+                <path d="M8 12h11" />
+                <path d="M8 17.5h11" />
+                <circle cx="4.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="12" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="17.5" r=".8" fill="currentColor" stroke="none" />
+              </svg>
+              <span class="nav-label">员工台账</span>
+              <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+            </button>
+            <div data-menu-panel>
+              <button class="side-nav-item level-2 is-active" type="button" data-menu-item aria-current="page">
+                <span class="nav-label">员工台账列表</span>
+              </button>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">成员分组</span>
+              </button>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">导入记录</span>
+              </button>
+            </div>
+          </section>
+
+          <section data-menu-group>
+            <button class="side-nav-group-title" type="button" data-menu-toggle aria-expanded="false">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 6.5h11" />
+                <path d="M8 12h11" />
+                <path d="M8 17.5h11" />
+                <circle cx="4.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="12" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="17.5" r=".8" fill="currentColor" stroke="none" />
+              </svg>
+              <span class="nav-label">审批中心</span>
+              <svg class="nav-arrow contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+            </button>
+            <div data-menu-panel hidden>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">待我审批</span>
+              </button>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">我发起的申请</span>
+              </button>
+            </div>
+          </section>
+
+          <section data-menu-group>
+            <button class="side-nav-group-title" type="button" data-menu-toggle aria-expanded="false">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 6.5h11" />
+                <path d="M8 12h11" />
+                <path d="M8 17.5h11" />
+                <circle cx="4.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="12" r=".8" fill="currentColor" stroke="none" />
+                <circle cx="4.5" cy="17.5" r=".8" fill="currentColor" stroke="none" />
+              </svg>
+              <span class="nav-label">系统设置</span>
+              <svg class="nav-arrow contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+            </button>
+            <div data-menu-panel hidden>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">字段配置</span>
+              </button>
+              <button class="side-nav-item level-2" type="button" data-menu-item aria-current="false">
+                <span class="nav-label">权限规则</span>
+              </button>
+            </div>
+          </section>
         </div>
       </aside>
 
       <main class="work-area">
-        <!-- CONTEXT_NAV_SLOT: WebTabs -->
-        <div class="xft-tab-header">
-          <div class="xft-tab-slider" id="xft-tab-slider">
-            <div class="xft-tab-slide-content" id="xft-tab-slide-content">
-
-              <!-- 首页：无关闭按钮 -->
-              <span class="xft-tab-item">
-                <span class="tab-name">首页</span>
-                <span class="left-corner"></span>
-                <span class="right-corner"></span>
-              </span>
-
-              <span class="xft-tab-item">
-                <span class="tab-name">页面标签</span>
-                <span class="tab-close">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
-                  </svg>
-                </span>
-                <span class="left-corner"></span>
-                <span class="right-corner"></span>
-              </span>
-
-              <!-- 激活页签 -->
-              <span class="xft-tab-item active">
-                <span class="tab-name">当前页面</span>
-                <span class="tab-close active">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
-                  </svg>
-                </span>
-                <span class="left-corner"></span>
-                <span class="right-corner"></span>
-              </span>
-
-              <span class="xft-tab-item">
-                <span class="tab-name">页面标签 B</span>
-                <span class="tab-close">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
-                  </svg>
-                </span>
-                <span class="left-corner"></span>
-                <span class="right-corner"></span>
-              </span>
-
+        <div class="context-nav-shell">
+          <div class="xft-tab-header" data-tabs-root>
+            <div class="xft-tab-slider" id="xft-tab-slider">
+              <div class="xft-tab-slide-content" id="xft-tab-slide-content">
+                <button class="xft-tab-item" type="button" data-tab-trigger aria-selected="false">
+                  <span class="tab-name">首页</span>
+                  <span class="left-corner"></span>
+                  <span class="right-corner"></span>
+                </button>
+                <button class="xft-tab-item" type="button" data-tab-trigger aria-selected="false">
+                  <span class="tab-name">组织管理</span>
+                  <span class="tab-close" data-tab-close aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
+                    </svg>
+                  </span>
+                  <span class="left-corner"></span>
+                  <span class="right-corner"></span>
+                </button>
+                <button class="xft-tab-item active" type="button" data-tab-trigger aria-selected="true">
+                  <span class="tab-name">员工台账列表</span>
+                  <span class="tab-close" data-tab-close aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
+                    </svg>
+                  </span>
+                  <span class="left-corner"></span>
+                  <span class="right-corner"></span>
+                </button>
+                <button class="xft-tab-item" type="button" data-tab-trigger aria-selected="false">
+                  <span class="tab-name">成员详情</span>
+                  <span class="tab-close" data-tab-close aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M3.71 3.71a1 1 0 011.41 0L8 6.59l2.88-2.88a1 1 0 111.41 1.41L9.41 8l2.88 2.88a1 1 0 01-1.41 1.41L8 9.41l-2.88 2.88a1 1 0 01-1.41-1.41L6.59 8 3.71 5.12a1 1 0 010-1.41z"/>
+                    </svg>
+                  </span>
+                  <span class="left-corner"></span>
+                  <span class="right-corner"></span>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <!-- 右侧操作区 -->
-          <div class="right-opr-area show-right-opr">
-            <span class="prev-page" aria-label="上一页">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M15 18l-6-6 6-6"/>
-              </svg>
-            </span>
-            <span class="next-page" aria-label="下一页">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-            </span>
-            <span class="slice" aria-label="更多页签">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>
-              </svg>
-            </span>
+            <div class="right-opr-area show-right-opr">
+              <button class="prev-page" type="button" aria-label="上一页">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="next-page" type="button" aria-label="下一页">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+              <button class="slice" type="button" aria-label="更多页签">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1257,5 +1349,213 @@
       <!-- OVERLAY_SLOT -->
     </div>
   </div>
+  <script>
+    (function () {
+      function setHidden(el, hidden) {
+        if (!el) {
+          return;
+        }
+        el.hidden = hidden;
+        el.setAttribute("aria-hidden", hidden ? "true" : "false");
+      }
+
+      function activateTabs(root, trigger) {
+        var triggers = Array.from(root.querySelectorAll("[data-tab-trigger]"));
+        triggers.forEach(function (item) {
+          var active = item === trigger;
+          item.classList.toggle("active", active);
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-selected", active ? "true" : "false");
+        });
+      }
+
+      function bindTabs(root) {
+        root.addEventListener("click", function (event) {
+          var close = event.target.closest("[data-tab-close]");
+          if (close) {
+            event.stopPropagation();
+            return;
+          }
+          var trigger = event.target.closest("[data-tab-trigger]");
+          if (!trigger || !root.contains(trigger)) {
+            return;
+          }
+          activateTabs(root, trigger);
+        });
+      }
+
+      function setExpanded(toggle, panel, expanded) {
+        toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        toggle.classList.toggle("is-selected", expanded);
+        var arrow = toggle.querySelector(".nav-arrow");
+        if (arrow) {
+          arrow.classList.toggle("contract", !expanded);
+        }
+        if (panel) {
+          panel.hidden = !expanded;
+        }
+      }
+
+      function bindMenu(root) {
+        root.addEventListener("click", function (event) {
+          var item = event.target.closest("[data-menu-item]");
+          if (item && root.contains(item)) {
+            root.querySelectorAll("[data-menu-item]").forEach(function (candidate) {
+              var active = candidate === item;
+              candidate.classList.toggle("is-active", active);
+              candidate.setAttribute("aria-current", active ? "page" : "false");
+            });
+          }
+
+          var toggle = event.target.closest("[data-menu-toggle]");
+          if (!toggle || !root.contains(toggle)) {
+            return;
+          }
+          var group = toggle.closest("[data-menu-group]");
+          var panel = group ? group.querySelector("[data-menu-panel]") : null;
+          var expanded = toggle.getAttribute("aria-expanded") === "true";
+          setExpanded(toggle, panel, !expanded);
+        });
+      }
+
+      function bindCollapse(root) {
+        root.addEventListener("click", function (event) {
+          var toggle = event.target.closest("[data-collapse-toggle]");
+          if (!toggle || !root.contains(toggle)) {
+            return;
+          }
+          var panelId = toggle.getAttribute("data-collapse-toggle");
+          var panel = document.getElementById(panelId);
+          if (!panel) {
+            return;
+          }
+          var expanded = toggle.getAttribute("aria-expanded") === "true";
+          toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+          panel.hidden = expanded;
+        });
+      }
+
+      function bindSwitches(root) {
+        root.addEventListener("click", function (event) {
+          var toggle = event.target.closest("[data-switch]");
+          if (!toggle || !root.contains(toggle)) {
+            return;
+          }
+          var checked = toggle.getAttribute("aria-checked") === "true";
+          toggle.setAttribute("aria-checked", checked ? "false" : "true");
+          toggle.classList.toggle("is-active", !checked);
+        });
+      }
+
+      function bindOverlayDismiss() {
+        document.addEventListener("click", function (event) {
+          var close = event.target.closest("[data-overlay-close]");
+          if (!close) {
+            return;
+          }
+          var overlay = close.closest("[data-overlay]");
+          if (overlay) {
+            setHidden(overlay, true);
+          }
+        });
+      }
+
+      function bindOverlayOpen() {
+        document.addEventListener("click", function (event) {
+          var trigger = event.target.closest("[data-overlay-open]");
+          if (!trigger) {
+            return;
+          }
+          var targetId = trigger.getAttribute("data-overlay-open");
+          if (!targetId) {
+            return;
+          }
+          var overlay = document.getElementById(targetId);
+          if (overlay) {
+            setHidden(overlay, false);
+          }
+        });
+      }
+
+      function bindAnchors(root) {
+        root.addEventListener("click", function (event) {
+          var trigger = event.target.closest("[data-anchor-target]");
+          if (!trigger || !root.contains(trigger)) {
+            return;
+          }
+          var targetId = trigger.getAttribute("data-anchor-target");
+          if (!targetId) {
+            return;
+          }
+          root.querySelectorAll("[data-anchor-target]").forEach(function (candidate) {
+            var active = candidate === trigger;
+            candidate.classList.toggle("is-active", active);
+            candidate.setAttribute("aria-current", active ? "true" : "false");
+          });
+          var panel = document.getElementById(targetId);
+          if (panel && typeof panel.scrollIntoView === "function") {
+            panel.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+
+      function closeDisclosures(exceptionTrigger, exceptionPanel) {
+        document.querySelectorAll("[data-disclosure-panel]").forEach(function (panel) {
+          if (panel === exceptionPanel) {
+            return;
+          }
+          setHidden(panel, true);
+          var triggerId = panel.getAttribute("data-disclosure-owned-by");
+          if (!triggerId) {
+            return;
+          }
+          var trigger = document.querySelector('[data-disclosure-id="' + triggerId + '"]');
+          if (trigger && trigger !== exceptionTrigger) {
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.classList.remove("is-active");
+          }
+        });
+      }
+
+      function bindDisclosures() {
+        document.addEventListener("click", function (event) {
+          var trigger = event.target.closest("[data-disclosure-trigger]");
+          if (trigger) {
+            var disclosureId = trigger.getAttribute("data-disclosure-id");
+            var panel = disclosureId
+              ? document.querySelector('[data-disclosure-panel="' + disclosureId + '"]')
+              : null;
+            if (!panel) {
+              return;
+            }
+            var expanded = trigger.getAttribute("aria-expanded") === "true";
+            closeDisclosures(trigger, expanded ? null : panel);
+            trigger.setAttribute("aria-expanded", expanded ? "false" : "true");
+            trigger.classList.toggle("is-active", !expanded);
+            setHidden(panel, expanded);
+            panel.setAttribute("data-disclosure-owned-by", disclosureId);
+            return;
+          }
+
+          if (
+            event.target.closest("[data-disclosure-panel]") ||
+            event.target.closest("[data-disclosure-trigger]")
+          ) {
+            return;
+          }
+          closeDisclosures(null, null);
+        });
+      }
+
+      document.querySelectorAll("[data-tabs-root]").forEach(bindTabs);
+      document.querySelectorAll("[data-menu-root]").forEach(bindMenu);
+      document.querySelectorAll("[data-collapse-root]").forEach(bindCollapse);
+      document.querySelectorAll("[data-switch-root]").forEach(bindSwitches);
+      document.querySelectorAll("[data-anchor-root]").forEach(bindAnchors);
+      bindOverlayDismiss();
+      bindOverlayOpen();
+      bindDisclosures();
+    })();
+  </script>
 </body>
 </html>

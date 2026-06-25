@@ -261,31 +261,6 @@ Excel,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.
 大屏,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
 全屏编辑,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
 全屏工作区模块,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,0.6,step5
-失败,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
-错误,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
-操作失败,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
-FB_MESSAGE_ERROR,FB_MESSAGE_ERROR,feedback,message,All,0.6,step6
-成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
-保存成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
-提交成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
-删除成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
-FB_MESSAGE_SUCCESS,FB_MESSAGE_SUCCESS,feedback,message,All,0.6,step6
-通知,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
-提醒,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
-异步完成,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
-后台任务,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
-FB_NOTIFICATION_BASIC,FB_NOTIFICATION_BASIC,feedback,notification,All,0.6,step6
-提示,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
-警告,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
-说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
-状态说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
-限制说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
-FB_ALERT_BASIC,FB_ALERT_BASIC,feedback,alert,All,0.6,step6
-风险提示,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
-配置影响,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
-注意,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
-警告,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
-FB_ALERT_WARNING,FB_ALERT_WARNING,feedback,alert,All,0.6,step6
 加载中,ST_LOADING_SPIN,state,loading,All,1.0,step6
 等待,ST_LOADING_SPIN,state,loading,All,1.0,step6
 处理中,ST_LOADING_SPIN,state,loading,All,1.0,step6
@@ -311,10 +286,6 @@ ST_RESULT_ERROR,ST_RESULT_ERROR,state,result,ResultPage | FullPage | Overlay,0.6
 提交成功,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,1.0,step6
 完成,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,1.0,step6
 ST_RESULT_SUCCESS,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,0.6,step6
-气泡确认,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
-轻量确认,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
-行内删除,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
-OV_POPCONFIRM_BASIC,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,0.6,step6
 抽屉,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
 右侧详情,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
 复杂配置,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
@@ -332,51 +303,23 @@ OV_MODAL_CONFIRM,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page
 新增,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
 信息补充,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
 OV_MODAL_FUNCTIONAL,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,0.6,step6
-内容区 body 局部操作 保存 配置 操作面板,combo-body-action-panel,component_combo,component_combo,All,1.0,step7
-内容区局部操作面板,combo-body-action-panel,component_combo,component_combo,All,0.6,step7
-底部 footer 提交 保存 取消 表单操作,combo-footer-actions,component_combo,component_combo,CreatePage | EditPage | SettingsPage,1.0,step7
-页面底部提交按钮组,combo-footer-actions,component_combo,component_combo,CreatePage | EditPage | SettingsPage,0.6,step7
-头部操作 header action 主操作 新建 导出 返回,combo-header-actions,component_combo,component_combo,All,1.0,step7
-页面头部操作按钮组,combo-header-actions,component_combo,component_combo,All,0.6,step7
-开关 switch 启用 禁用 设置项,combo-switch-setting,component_combo,component_combo,SettingsPage,1.0,step7
-开关设置项,combo-switch-setting,component_combo,component_combo,SettingsPage,0.6,step7
-工具栏 toolbar 批量操作 新建 列设置 刷新,combo-toolbar-actions,component_combo,component_combo,TablePage,1.0,step7
-表格工具栏操作按钮组,combo-toolbar-actions,component_combo,component_combo,TablePage,0.6,step7
-地区 层级 级联 多级,combo-cascader-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-Cascader 级联选择,combo-cascader-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-多选 checkbox 勾选 复选,combo-checkbox-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,1.0,step7
-多选项组合,combo-checkbox-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,0.6,step7
-日期 时间 开始时间 结束时间,combo-date-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-DatePicker 日期选择,combo-date-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-文本输入 关键字 搜索 名称 编号,combo-input-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-Input 输入框,combo-input-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-数字 金额 次数 数量 比例,combo-input-number-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-InputNumber 数字输入框,combo-input-number-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-单选 radio 二选一 选项,combo-radio-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,1.0,step7
-单选项组合,combo-radio-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,0.6,step7
-选择 状态 类型 下拉 单选,combo-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-Select 选择器,combo-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-分栏目录 sidebar contents 左侧目录 锚点 分组,combo-sidebar-contents,component_combo,component_combo,SettingsPage | FormPage | DetailPage,1.0,step7
-分栏目录内容组合,combo-sidebar-contents,component_combo,component_combo,SettingsPage | FormPage | DetailPage,0.6,step7
-时间 时分 秒 时间点,combo-time-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-TimePicker 时间选择,combo-time-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-组织 部门 树选择 层级,combo-tree-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
-TreeSelect 树选择,combo-tree-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
-上传 upload 附件 文件 拖拽,combo-upload-field,component_combo,component_combo,FormPage | DetailPage | Overlay,1.0,step7
-上传字段组合,combo-upload-field,component_combo,component_combo,FormPage | DetailPage | Overlay,0.6,step7
-徽标 badge 未读 数量 红点 待办,combo-badge,component_combo,display_component_combo,All,1.0,step7
-徽标提示组合,combo-badge,component_combo,display_component_combo,All,0.6,step7
-carousel 走马灯 轮播 公告 活动,combo-carousel,component_combo,display_component_combo,HomePage | DashboardPage,1.0,step7
-走马灯内容组合,combo-carousel,component_combo,display_component_combo,HomePage | DashboardPage,0.6,step7
-图片 image 缩略图 预览 列表,combo-image-list,component_combo,display_component_combo,DetailPage | FormPage | Overlay,1.0,step7
-图片缩略图组合,combo-image-list,component_combo,display_component_combo,DetailPage | FormPage | Overlay,0.6,step7
-popover 气泡卡片 轻量浮层 补充信息,combo-popover-card,component_combo,display_component_combo,All,1.0,step7
-气泡卡片组合,combo-popover-card,component_combo,display_component_combo,All,0.6,step7
-分段 segmented 切换 视图 状态筛选,combo-segmented,component_combo,display_component_combo,TablePage | DashboardPage,1.0,step7
-分段控制器组合,combo-segmented,component_combo,display_component_combo,TablePage | DashboardPage,0.6,step7
-标签 tag 状态 结果 标识,combo-tag-status,component_combo,display_component_combo,All,1.0,step7
-状态标签组合,combo-tag-status,component_combo,display_component_combo,All,0.6,step7
-tooltip 文字提示 说明 解释,combo-tooltip,component_combo,display_component_combo,All,1.0,step7
-文字提示组合,combo-tooltip,component_combo,display_component_combo,All,0.6,step7
-tour 引导 新手引导 功能介绍,combo-tour-card,component_combo,display_component_combo,All,1.0,step7
-漫游引导卡片,combo-tour-card,component_combo,display_component_combo,All,0.6,step7
+摘要,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+填写说明,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+生效范围,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+提交校验,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+动态字段,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
+动态明细,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
+批量录入,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
+增减行,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
+基础标签,module-tab-panel-basic,module,display_module,DetailPage|SettingsPage,1.0,recipe-gap
+tab面板,module-tab-panel-basic,module,display_module,DetailPage|SettingsPage,1.0,recipe-gap
+标签内容,module-tab-panel-basic,module,display_module,DetailPage|SettingsPage,1.0,recipe-gap
+详情标签,module-tab-panel-detail,module,business_module,DetailPage,1.0,recipe-gap
+详细说明,module-tab-panel-detail,module,business_module,DetailPage,1.0,recipe-gap
+补充信息,module-tab-panel-detail,module,business_module,DetailPage,1.0,recipe-gap
+日志标签,module-tab-panel-log,module,business_module,DetailPage|ApprovalPage,1.0,recipe-gap
+操作记录,module-tab-panel-log,module,business_module,DetailPage|ApprovalPage,1.0,recipe-gap
+流转记录,module-tab-panel-log,module,business_module,DetailPage|ApprovalPage,1.0,recipe-gap
+表格标签,module-tab-panel-table,module,business_module,DetailPage|TablePage,1.0,recipe-gap
+关联表,module-tab-panel-table,module,business_module,DetailPage|TablePage,1.0,recipe-gap
+明细表,module-tab-panel-table,module,business_module,DetailPage|TablePage,1.0,recipe-gap

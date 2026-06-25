@@ -133,6 +133,17 @@ def extract_content_asset_decision(html: str) -> Dict[str, object]:
         return {"_invalid_json": body}
 
 
+def extract_icon_decision(html: str) -> Dict[str, object]:
+    match = re.search(r"<!--\s*ICON_DECISION(?P<body>.*?)-->", html, flags=re.S)
+    if not match:
+        return {}
+    body = match.group("body").strip()
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        return {"_invalid_json": body}
+
+
 def main() -> int:
     args = sys.argv[1:]
     check_style_rgba = "--check-style-rgba" in args
@@ -158,6 +169,7 @@ def main() -> int:
     route = extract_route(html)
     html_without_route = strip_route(html)
     decision = extract_content_asset_decision(html)
+    icon_decision = extract_icon_decision(html)
 
     errors: List[str] = []
     warnings: List[str] = []
@@ -168,6 +180,8 @@ def main() -> int:
         errors.append("[P0] missing CONTENT_ASSET_DECISION")
     elif "_invalid_json" in decision:
         errors.append("[P0] CONTENT_ASSET_DECISION is not valid JSON")
+    if icon_decision and "_invalid_json" in icon_decision:
+        errors.append("[P0] ICON_DECISION is not valid JSON")
 
     normalized_path = html_path.as_posix()
     if "output/archive/" in normalized_path:
@@ -189,11 +203,14 @@ def main() -> int:
     if "../components.css" in html:
         errors.append("[P0] found ../components.css reference")
 
-    if re.search(r"<!--\s*(PAGE_CONTENT_SLOT|CONTENT_SLOT|OVERLAY_SLOT)\s*-->", html_without_route):
+    if re.search(r"<!--\s*(TOP_NAV_SLOT|SIDER_SLOT|CONTEXT_NAV_SLOT|PAGE_CONTENT_SLOT|CONTENT_SLOT|OVERLAY_SLOT)\s*-->", html_without_route):
         errors.append("[P0] unresolved shell slot comment remains")
 
-    if "PAGE_CONTENT_SLOT" in html_without_route or "CONTENT_SLOT" in html_without_route:
+    if "TOP_NAV_SLOT" in html_without_route or "SIDER_SLOT" in html_without_route or "CONTEXT_NAV_SLOT" in html_without_route or "PAGE_CONTENT_SLOT" in html_without_route or "CONTENT_SLOT" in html_without_route:
         errors.append("[P0] unresolved content slot marker remains")
+
+    if "BASIC_INTERACTION_RUNTIME" in html_without_route:
+        errors.append("[P0] basic interaction runtime placeholder remains")
 
     for text in PLACEHOLDER_TEXTS:
         if text in html_without_route:
@@ -273,6 +290,18 @@ def main() -> int:
                 html_ref = item.get("html_path")
                 if isinstance(html_ref, str) and html_ref and not (root / html_ref).exists():
                     errors.append(f"[P0] read_order html_path not found: {html_ref}")
+
+    if icon_decision and "_invalid_json" not in icon_decision:
+        root = BUNDLED_SKILL_ROOT
+        icons = icon_decision.get("icons", [])
+        if isinstance(icons, list):
+            for item in icons:
+                if not isinstance(item, dict):
+                    continue
+                svg_path = item.get("svg_path")
+                if isinstance(svg_path, str) and svg_path:
+                    if not (root / svg_path).exists():
+                        errors.append(f"[P0] ICON_DECISION svg_path not found: {svg_path}")
 
     if errors:
         print("FAIL: check_skill_output")

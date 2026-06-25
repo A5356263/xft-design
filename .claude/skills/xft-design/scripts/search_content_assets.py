@@ -195,6 +195,8 @@ def explicit_page_type(query: str) -> str | None:
             return "TablePage"
     if any(k in q for k in ["详情页", "单据详情页", "查看页"]):
         return "DetailPage"
+    if any(k in q for k in ["标签内表格", "表格详情", "关联表详情", "多标签详情", "tab详情", "分tab查看", "多tab详情"]):
+        return "DetailPage"
     if any(k in q for k in ["表单页", "新建页", "创建页", "申请页", "提单"]):
         return "CreatePage"
     if any(k in q for k in ["编辑页", "修改页", "维护页"]):
@@ -231,6 +233,8 @@ def select_page_route(query: str, data: Dict[str, List[Dict[str, str]]]) -> Dict
 def explicit_recipe_id(query: str, page_type: str) -> str | None:
     q = normalize(query)
     if page_type == "TablePage":
+        if any(k in q for k in ["crud", "增删改查", "页内闭环", "不跳转新页面", "页面内闭环"]):
+            return "recipe.table.crud"
         if any(k in q for k in ["卡片表格", "卡片列表", "图文列表"]):
             return "recipe.table.card"
         if any(k in q for k in ["可编辑表格", "行内编辑", "批量录入", "明细维护"]):
@@ -243,8 +247,14 @@ def explicit_recipe_id(query: str, page_type: str) -> str | None:
             return "recipe.table.multi-column"
         if any(k in q for k in ["列表页", "表格页", "花名册", "台账", "数据管理"]):
             return "recipe.table.basic"
+    if page_type == "CreatePage" and any(k in q for k in ["高级表单", "多分组", "动态字段", "明细录入", "批量录入"]):
+        return "recipe.form.advanced"
     if page_type == "CreatePage" and any(k in q for k in ["分步", "步骤", "多步骤"]):
         return "recipe.form.step"
+    if page_type == "DetailPage" and any(k in q for k in ["表格详情", "关联表详情", "多tab表格", "标签内表格"]):
+        return "recipe.detail.table-tabs"
+    if page_type == "DetailPage" and any(k in q for k in ["多标签详情", "tab详情", "复杂详情", "分tab查看", "多tab详情"]):
+        return "recipe.detail.tabs"
     if page_type == "SettingsPage" and any(k in q for k in ["公式", "公式配置", "公式编辑"]):
         return "recipe.settings.basic"
     return None

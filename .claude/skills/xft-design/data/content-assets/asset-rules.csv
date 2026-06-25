@@ -116,3 +116,15 @@ validation.combo-segmented,asset_validation,combo-segmented,TablePage | Dashboar
 validation.combo-tag-status,asset_validation,combo-tag-status,All,状态标签组合 校验规则,状态色必须有语义；不要把标签当按钮,,标签 tag 状态 结果 标识,P2,60,M082,step7,data/component-combo-assets.csv
 validation.combo-tooltip,asset_validation,combo-tooltip,All,文字提示组合 校验规则,只放短文本；不可承载关键操作,,tooltip 文字提示 说明 解释,P2,60,M087,step7,data/component-combo-assets.csv
 validation.combo-tour-card,asset_validation,combo-tour-card,All,漫游引导卡片 校验规则,必须有跳过路径；每步只说明一个目标,,tour 引导 新手引导 功能介绍,P2,60,M083,step7,data/component-combo-assets.csv
+composition.form-summary-card,asset_composition,region.form-summary-card.basic,CreatePage | EditPage | SettingsPage,表单摘要卡 组合规则,用于表单顶部说明、生效范围和提交前提示，适合高级表单和复杂设置页,,摘要 说明 生效范围 提交校验,P1,88,recipe-gap,data/manual
+validation.form-summary-card,asset_validation,region.form-summary-card.basic,CreatePage | EditPage | SettingsPage,表单摘要卡 校验规则,必须包含至少两类信息：范围/角色/校验；不得只放一句空泛说明,,摘要 说明 生效范围 校验,P1,88,recipe-gap,data/manual
+composition.dynamic-form-list,asset_composition,module-dynamic-form-list-basic,CreatePage | EditPage | Modal,动态表单明细模块 组合规则,用于可重复条目录入，支持新增、删除和行内编辑,,动态字段 动态明细 批量录入 增减行,P1,90,recipe-gap,data/manual
+validation.dynamic-form-list,asset_validation,module-dynamic-form-list-basic,CreatePage | EditPage | Modal,动态表单明细模块 校验规则,必须包含新增入口和行级删除动作；至少保留一行示例数据,,动态字段 动态明细 增减行 明细录入,P1,90,recipe-gap,data/manual
+composition.tab-panel-basic,asset_composition,module-tab-panel-basic,DetailPage | SettingsPage,基础标签面板 组合规则,用于标签页中的概览内容区，承载核心字段和当前状态,,标签面板 tab 概览 基础信息,P1,86,recipe-gap,data/manual
+validation.tab-panel-basic,asset_validation,module-tab-panel-basic,DetailPage | SettingsPage,基础标签面板 校验规则,必须作为 tabs 的内容区域之一；不得脱离 tabs 独立使用,,标签面板 tab 概览,P1,86,recipe-gap,data/manual
+composition.tab-panel-detail,asset_composition,module-tab-panel-detail,DetailPage,详情标签面板 组合规则,用于标签页中的详细说明、影响范围和补充信息,,详情标签 详细说明 补充信息,P1,86,recipe-gap,data/manual
+validation.tab-panel-detail,asset_validation,module-tab-panel-detail,DetailPage,详情标签面板 校验规则,必须包含至少一个详情分组；不要退化成纯文本长段落,,详情标签 详细说明,P1,86,recipe-gap,data/manual
+composition.tab-panel-log,asset_composition,module-tab-panel-log,DetailPage | ApprovalPage,日志标签面板 组合规则,用于标签页中的操作记录或流转轨迹,,日志标签 操作记录 流转记录,P1,86,recipe-gap,data/manual
+validation.tab-panel-log,asset_validation,module-tab-panel-log,DetailPage | ApprovalPage,日志标签面板 校验规则,必须体现时间、操作者和动作；不要只有结果状态,,日志标签 操作记录 流转记录,P1,86,recipe-gap,data/manual
+composition.tab-panel-table,asset_composition,module-tab-panel-table,DetailPage | TablePage,表格标签面板 组合规则,用于标签页中的关联表或子表明细,,表格标签 关联表 明细表,P1,88,recipe-gap,data/manual
+validation.tab-panel-table,asset_validation,module-tab-panel-table,DetailPage | TablePage,表格标签面板 校验规则,必须包含表头和至少一行数据；表格标题要明确,,表格标签 关联表 明细表,P1,88,recipe-gap,data/manual

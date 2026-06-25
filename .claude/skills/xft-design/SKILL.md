@@ -42,6 +42,8 @@ Requirement Structuring
 → ROUTE_DECISION
 → Run search_content_assets.py
 → CONTENT_ASSET_DECISION
+→ Run search_icons.py
+→ ICON_DECISION
 → Conditional Reads
 → Copy Shell as template
 → Inject tokens.css
@@ -143,7 +145,8 @@ output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 7. 当前 shell
 8. `CONTENT_ASSET_DECISION.support_css` 里列出的 support CSS
 9. `CONTENT_ASSET_DECISION.read_order` 里列出的 HTML 资产
-10. 必要时读取校验脚本和清单
+10. 如页面需要 icon，先读取 `data/icons.csv`，再按 `ICON_DECISION` 读取 `assets/icons/`
+11. 必要时读取校验脚本和清单
 
 禁止读取：
 
@@ -161,12 +164,13 @@ output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 2. 在第一个 `<style>` 前插入 `tokens.css` 原文。
 3. 保留 shell 原有 `<style>` 原文。
 4. 在 shell 样式后插入 `components.html` 的组件 CSS。
-5. 再插入 `CONTENT_ASSET_DECISION.support_css` 中列出的 support CSS。
-6. 按 `read_order.order` 升序读取 HTML 片段。
-7. 将片段插入 `PAGE_CONTENT_SLOT`、`CONTENT_SLOT` 或 `OVERLAY_SLOT`。
-8. 只替换业务文案和数据，不改结构层级。
-9. 不得新增未知 class。
-10. 不得新增 inline style，除非资产本身已有。
+5. shell 内建的顶部导航、侧边菜单、上下文页签和基础 runtime 保持不变，不得替换其结构。
+6. 再插入 `CONTENT_ASSET_DECISION.support_css` 中列出的 support CSS。
+7. 按 `read_order.order` 升序读取 HTML 片段。
+8. 将片段插入 `PAGE_CONTENT_SLOT`、`CONTENT_SLOT` 或 `OVERLAY_SLOT`。
+9. 只替换业务文案和数据，不改结构层级。
+10. 不得新增未知 class。
+11. 不得新增 inline style，除非资产本身已有。
 
 插槽规则：
 
@@ -175,6 +179,65 @@ output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 - 页面内状态：插入对应区域内部，不替代壳子
 - `Page Overlay` 只生成覆盖层，不扩写完整页面
 - `Component State` 默认使用 `blank-shell`
+
+## Basic Interaction Contract
+
+基础交互统一来自 `assets/runtime/basic-interactions.js`，不允许为单个页面临时自由写 JS。
+
+允许的基础交互：
+- menu 分组展开/收起、当前项高亮
+- tabs 激活态切换
+- modal / drawer / confirm 的关闭
+- collapse 展开/收起
+- switch 开关切换
+- anchor 高亮与定位
+- dropdown / popover 基础开关
+
+实现约束：
+- 组件只声明既有 class 和 `data-*` 属性
+- 交互状态优先通过 `aria-*`、`hidden`、`is-active`、`is-selected`、`contract` 表达
+- 不允许引入异步请求、复杂状态管理、拖拽、虚拟滚动、公式计算等复杂交互
+- 如现有 runtime 不支持，先补运行时规则，再允许页面使用；不得在页面里内联自定义脚本
+
+页面级联动说明：
+- 页面级局部联动不属于 skill 基础 runtime
+- 如需求需要，可由 AI 编写轻量、纯前端、局部胶水逻辑
+- 这类胶水逻辑不得反向沉淀为新的通用组件协议，除非后续单独立项
+
+### Formal Icon Decision
+
+`ICON_DECISION` is a formal retrieval stage for icons. It does not belong to `CONTENT_ASSET_DECISION`, but it must follow the same engineering pattern:
+
+- structured data source
+- script-based matching
+- local resource validation
+- deterministic decision output
+
+Required sources:
+- `scripts/search_icons.py`
+- `data/icons.csv`
+- `assets/icons/`
+
+Minimum output shape:
+```json
+{
+  "decision_type": "ICON_DECISION",
+  "icons": [
+    {
+      "icon_name": "search",
+      "svg_path": "assets/icons/search.svg"
+    }
+  ],
+  "unsupported": []
+}
+```
+
+Hard rules:
+- icons must come from `data/icons.csv`
+- icon SVG files must come from local `assets/icons/`
+- do not default to network icon resources
+- do not invent icons that are not registered
+- icon selection is no longer a free-form `SKILL.md` hint; it is a formal retrieval stage before assembly
 
 ## Output Contract
 
@@ -229,7 +292,7 @@ overlay_type: ...
 - 改写 `assets/shells/` 结构来适配内容区
 - 删除旧 `assets/page-blocks.html`
 
-旧 `assets/page-blocks.html` 只作为 fallback 参考，不再作为主生成路径。
+页面主体结构已迁移至 `assets/content-assets/regions/`，覆盖层已迁移至 `assets/content-assets/overlays/`。
 
 ## Fallback Rules
 
