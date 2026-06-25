@@ -36,7 +36,59 @@ workbench-grid（3 等分栅格）
 - 不得随意改变卡片跨度。
 - 如果无法判断卡片宽度，应标记为需确认，不得自行推导。
 
+## 与 Shell 的关系
+
+- 3 列栅格与 Shell 中的 `page-content-container`（白色圆角大容器）**平级**。
+- **首页**（工作台首页 / 应用内首页）→ 使用 3 列栅格替代 `page-content-container`，插入 `micro-wrapper` 内。
+- **非首页**（表格页、表单页、详情页等）→ 使用原有的 `page-content-container` 白色容器。
+
+```
+page-content
+└── micro-wrapper
+    ├── [HomePage]  home-grid (3列栅格)
+    └── [非HomePage] page-content-container (白色圆角大容器)
+```
+
+## 响应式宽度
+
+屏幕宽度记为 W。基础变量：左右边距 16px×2，卡片间距 16px，栅格内 2 个间距 16px×2。
+
+### 场景一：工作台首页（无 Sidebar）
+
+`content_width = clamp(1248px, W - 32px, 1580px)`
+
+- W < 1280 → 1248px（横向溢出）
+- 1280 ≤ W ≤ 1612 → W - 32px
+- W > 1612 → 1580px
+
+### 场景二：业务应用首页（有 188px Sidebar）
+
+`content_width = clamp(1060px, W - 188px - 32px, 1580px)`
+
+- W < 1280 → 1060px（横向溢出）
+- 1280 ≤ W ≤ 1800 → W - 188px - 32px
+- W > 1800 → 1580px
+
+### 卡片宽度
+
+- 1/3 = (content_width - 32px) / 3
+- 2/3 = 1/3 × 2 + 16px
+- 3/3 = content_width
+
+### CSS 实现
+
+两种场景共用 `margin: 0 var(--spacing-4)` 产生左右 16px 自然留白，裁切时由 `page-content` 的 `overflow: auto` 产生滚动条，留白不被压缩。场景二额外扣除 188px sidebar（通过 `work-area` 的 `flex: 1` 自动处理）。
+
+### 生成约束
+
+- 不得将卡片宽度写成固定像素值。
+- 不得在最小断点以下压缩卡片，不得在最大断点以上拉伸卡片。
+- 生成业务应用首页时，必须先扣除 188px sidebar，再计算栅格宽度。
+- 不得将业务应用首页按工作台首页规则计算，不得将卡片跨入 Sidebar 区域。
+- 若无法判断页面是否存在 sidebar，标记为需确认。
+- 若无法确认屏幕宽度，使用 span-1/span-2/span-3 表达跨度，不推导像素值。
+
 ## 适用范围
 
-- 工作台首页
-- 所有应用内首页
+- 工作台首页（场景一，无 Sidebar）
+- 业务应用首页（场景二，有 188px Sidebar）

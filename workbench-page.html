@@ -1,154 +1,313 @@
 <!DOCTYPE html>
+<!-- XFT_ROUTE
+scope: Full Page
+page_type: HomePage
+overlay_type: None
+shell: admin-side-shell
+page_block: None
+token_source: design-systems/tokens.css
+content_slot: PAGE_CONTENT_SLOT
+overlay_slot: None
+-->
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>工作台首页</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; font-family: "PingFang SC","Microsoft YaHei",sans-serif; font-size: 14px; color: #17181a; }
-
-/* ── Global Shell ── */
-.global-shell {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: 48px;
-  background: linear-gradient(135deg, #3C8AFF 0%, #4255FF 100%);
-  display: flex; align-items: center; justify-content: flex-start;
-  padding: 0 24px; color: #fff;
+/* ══ 1. Design Tokens ══ */
+:root {
+  --color-bg-accent-regular: #1966ff;
+  --color-bg-accent-regular-hover: #4086ff;
+  --color-bg-accent-regular-active: #0b50d9;
+  --color-bg-accent-light: #EBF3FF;
+  --color-bg-accent-light-hover: #D4E5FF;
+  --color-bg-accent-light-active: #99C2FF;
+  --color-bg-accent-subtle: #F5F8FF;
+  --color-border-accent-regular: #1966ff;
+  --color-text-accent-regular: #1966ff;
+  --color-text-accent-regular-hover: #4086ff;
+  --color-text-accent-regular-active: #0b50d9;
+  --color-bg-error-regular: #fa4332;
+  --color-bg-error-light: #fff3f2;
+  --color-text-error-regular: #fa4332;
+  --color-bg-warning-regular: #ff9326;
+  --color-bg-warning-light: #fff7e8;
+  --color-text-warning-regular: #e57717;
+  --color-bg-success-regular: #0ac767;
+  --color-bg-success-light: #edfaf4;
+  --color-text-success-regular: #0ac767;
+  --color-bg-info-regular: #1966ff;
+  --color-bg-info-light: #ebf3ff;
+  --color-container-bg-neutral-bright: #ffffff;
+  --color-container-bg-neutral-bright-hover: rgba(19, 34, 64, 0.05);
+  --color-container-bg-neutral-bright-active: rgba(19, 34, 64, 0.1);
+  --color-container-bg-neutral-gray: rgba(19, 34, 64, 0.05);
+  --color-container-bg-neutral-lightgray: rgba(19, 34, 64, 0.02);
+  --color-container-bg-neutral-inverse: rgba(19, 34, 64, 0.95);
+  --color-layout-bg-neutral-bright: #ffffff;
+  --color-layout-bg-neutral-gray: #f3f4f6;
+  --color-layout-bg-neutral-inverse: #132240;
+  --color-border-neutral: rgba(19, 34, 64, 0.15);
+  --color-divider-neutral: rgba(19, 34, 64, 0.1);
+  --color-text-neutral-gray50: rgba(19, 34, 64, 0.95);
+  --color-text-neutral-gray40: rgba(19, 34, 64, 0.85);
+  --color-text-neutral-gray30: rgba(19, 34, 64, 0.65);
+  --color-text-neutral-gray20: rgba(19, 34, 64, 0.45);
+  --color-text-neutral-gray10: rgba(19, 34, 64, 0.25);
+  --color-text-neutral-inverse50: #ffffff;
+  --color-text-neutral-inverse40: rgba(255, 255, 255, 0.9);
+  --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+  --border-radius-small: 4px;
+  --border-radius-regular: 6px;
+  --border-radius-large: 12px;
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 32px;
+  --spacing-8: 40px;
+  --shadow-regular-bottom: 0 8px 20px 0 rgba(19, 34, 64, 0.16);
+  --shadow-special3-bottom: 0 2px 8px 0 rgba(19, 34, 64, 0.04);
 }
-.global-shell .logo { font-size: 16px; font-weight: 700; margin-right: 32px; }
-.global-shell .nav { display: flex; gap: 24px; font-size: 14px; }
-.global-shell .nav span { opacity: .85; cursor: pointer; padding: 4px 0; border-bottom: 2px solid transparent; transition: .2s; }
-.global-shell .nav span:hover,
-.global-shell .nav span.active { opacity: 1; border-bottom-color: #fff; }
-.global-shell .user-area { margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13px; }
-.global-shell .user-area .avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; font-size: 12px; }
-.global-shell .user-area .icon { font-size: 16px; cursor: pointer; }
-
-/* ── Content Area ── */
-.content-area {
-  padding-top: 68px;
-  padding-left: 24px; padding-right: 24px; padding-bottom: 24px;
-  background: #f3f4f6; min-height: 100vh;
+</style>
+<style>
+/* ══ 2. Shell CSS (admin-side-shell 原文) ══ */
+:root {
+  --color-nav-gradient-start: #3C8AFF;
+  --color-nav-gradient-end: #4255FF;
+  --color-nav-text: #FFFFFF;
+  --top-nav-height: 48px;
+  --top-brand-width: 160px;
+  --side-nav-width: 188px;
+  --side-nav-item-width: 172px;
+  --side-nav-item-height: 40px;
+  --web-tabs-height: 32px;
+  --web-tab-item-height: 32px;
+  --page-padding: var(--spacing-4);
 }
 
-/* ── 3-Column Grid ── */
-.workbench-grid {
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--color-text-neutral-gray50);
+  background: var(--color-layout-bg-neutral-gray);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+button, input, select, textarea { font: inherit; }
+
+.app-shell { min-height: 100vh; background: var(--color-layout-bg-neutral-gray); position: relative; }
+
+.top-nav {
+  height: var(--top-nav-height);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: linear-gradient(117.84deg, var(--color-nav-gradient-start), var(--color-nav-gradient-end));
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav-left { display: flex; align-items: center; flex: 1 1; padding-left: 14px; width: 0; min-width: 0; overflow: hidden; }
+.nav-left-content { display: flex; align-items: center; flex: 0 0 auto; }
+.nav-center { height: 100%; padding-right: 48px; flex: 0 0 auto; }
+.nav-right { display: flex; align-items: center; flex-shrink: 0; height: 100%; padding-right: 12px; }
+.nav-right-content { display: flex; align-items: center; }
+
+.product-title {
+  flex: 0 0 auto; padding: 0 16px 0 6px;
+  color: rgba(249, 249, 250, 0.98); font-size: 22px; line-height: 26px;
+  font-family: 'Alimama_ShuHeiTi_Bold', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 400; white-space: nowrap;
+}
+
+.nav-item-wrap { cursor: pointer; padding: 4px; border-radius: 6px; }
+.nav-item-wrap:hover { background: rgba(249, 249, 250, 0.1); }
+.nav-item-wrap.with-padding { padding: 4px 8px 4px 6px; }
+.nav-item-wrap-search { padding: 0 4px; }
+.nav-item-wrap-user { padding: 2px 8px; }
+
+.enterprise-box { display: flex; align-items: center; }
+.enterprise-icon { color: #fff; padding: 0 4px 0 2px; display: flex; align-items: center; }
+.enterprise-name { color: rgba(249, 249, 250, 0.98); font-size: 14px; height: 22px; max-width: 222px; padding-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-caret { color: #fff; margin-left: 4px; display: flex; align-items: center; flex: 0 0 auto; }
+
+.nav-app-wrap { display: flex; align-items: center; flex: 1 1; overflow: hidden; width: 0; }
+.nav-divider-pseudo { background: rgba(255, 255, 255, 0.2); height: 18px; width: 1px; flex: 0 0 1px; margin-left: 8px; }
+.xft-app-nav { display: flex; align-items: center; height: 48px; padding: 4px; }
+.app-nav { display: flex; align-items: center; }
+
+.nav-app {
+  display: inline-flex; align-items: center; justify-content: center; flex-direction: column;
+  color: rgba(255, 255, 255, 0.9); cursor: pointer; font-size: 14px; height: 40px;
+  padding: 0 12px; position: relative; transition: all 0.15s ease;
+  flex: 0 0 auto; white-space: nowrap; line-height: 22px;
+}
+.nav-app-content { display: flex; align-items: center; justify-content: center; }
+.nav-app-active { background: #fff; height: 0; left: 0; margin: 0 12px; position: absolute; top: 38px; width: calc(100% - 24px); }
+.nav-app.is-active { font-weight: 600; }
+.nav-app.is-active .nav-app-active { height: 2px; }
+
+.all-app-entry { display: flex; align-items: center; padding: 0 10px 0 8px; }
+.all-app-container { display: flex; align-items: center; color: rgba(249, 249, 250, 0.98); font-size: 14px; gap: 4px; }
+.all-app-icon { color: rgba(249, 249, 250, 0.98); width: 24px; height: 24px; flex: 0 0 24px; }
+
+.global-search { width: 240px; height: 32px; display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.5); border: none; flex: 0 0 auto; }
+.global-search:hover { background: rgba(255, 255, 255, 0.4); }
+.global-search svg { width: 16px; height: 16px; flex: 0 0 16px; }
+
+.nav-tool { cursor: pointer; padding: 4px; border-radius: 6px; }
+.nav-tool:hover { background: rgba(249, 249, 250, 0.1); }
+.top-nav-icon { width: 24px; height: 24px; color: rgba(249, 249, 250, 0.98); display: block; }
+.nav-divider-vertical { background: rgba(249, 249, 250, 0.14); border-radius: 1px; height: 16px; width: 1px; flex: 0 0 1px; margin: 0 4px; }
+
+.user-avatar-wrap { display: flex; align-items: center; cursor: pointer; }
+.user-logo-box { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; height: 28px; width: 28px; position: relative; overflow: hidden; flex: 0 0 28px; }
+.user-logo { width: 100%; height: 100%; border-radius: 50%; background: #1966ff; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; }
+.user-name { color: rgba(249, 249, 250, 0.98); font-size: 14px; line-height: 24px; margin: 0 4px 0 8px; max-width: 112px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.top-menu-icon { width: 16px; height: 16px; flex: 0 0 16px; color: currentColor; }
+.top-menu-overflow { display: none; width: 24px; height: 24px; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.88); flex: 0 0 24px; cursor: pointer; }
+
+.main-frame { display: flex; min-height: calc(100vh - var(--top-nav-height)); background: #ffffff; }
+
+.side-nav { width: var(--side-nav-width); flex: 0 0 var(--side-nav-width); background: var(--color-container-bg-neutral-bright); border-right: 1px solid var(--color-divider-neutral); padding: 8px 2px 0 8px; overflow-y: auto; overflow-x: hidden; }
+/* 工作台首页：无侧边栏 */
+.side-nav { display: none; }
+
+.side-nav-group-title, .side-nav-item { width: 100%; height: var(--side-nav-item-height); display: flex; align-items: center; padding: 8px 4px 8px 8px; border-radius: 6px; color: rgba(19, 34, 64, 0.95); cursor: pointer; font-size: 14px; font-weight: 400; line-height: 24px; margin-bottom: 8px; transition: background 0.15s ease; }
+.side-nav-group-title:hover, .side-nav-item:not(.is-active):hover { background: #f3f4f6; }
+.side-nav-group-title.is-selected { color: #1966ff; }
+.side-nav-item.is-active { color: #1966ff; background: #ebf3ff; font-weight: 500; }
+.side-nav-item.level-2 { padding: 0 4px 0 36px; line-height: var(--side-nav-item-height); }
+.nav-icon { width: 24px; height: 24px; flex: 0 0 24px; color: rgba(19, 34, 64, 0.65); margin-right: 4px; }
+.nav-label { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 4px; }
+.nav-arrow { width: 16px; height: 16px; color: rgba(19, 34, 64, 0.65); flex: 0 0 16px; margin: 0 4px 0 0; transition: transform 0.2s ease; }
+.nav-arrow.contract { transform: rotate(-180deg); }
+.nav-badge { display: inline-flex; align-items: center; height: 18px; padding: 0 6px; border-radius: 999px; background: #fff1e8; color: #f97316; font-size: 12px; line-height: 18px; white-space: nowrap; }
+
+.work-area { flex: 1; min-width: 0; display: flex; flex-direction: column; background: #ffffff; }
+
+.page-content { flex: 1; min-width: 0; overflow: auto; background: #f3f4f6; }
+.micro-wrapper { min-height: 100%; padding: 16px 0; background: #f3f4f6; }
+.page-content-container { min-height: calc(100vh - var(--top-nav-height) - 32px); margin: 0 16px; padding: 16px; background: #ffffff; border-radius: 14px; }
+</style>
+<style>
+/* ══ 3. HomePage 3-Column Grid (场景一：工作台首页，无 Sidebar) ══ */
+/* content_width = clamp(1248px, W - 32px, 1580px) */
+
+.home-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 1400px;
+  gap: var(--spacing-4);
+  width: calc(100% - 32px);
+  min-width: 1248px;
+  max-width: 1580px;
+  margin: 0 var(--spacing-4);
 }
-.card {
-  background: #fff; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.06);
-  padding: 16px 20px; min-height: 160px;
-}
-.card .card-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
-.card .card-content { font-size: 13px; color: #595959; line-height: 1.8; }
-.card.span-1 { grid-column: span 1; }
-.card.span-2 { grid-column: span 2; }
-.card.span-3 { grid-column: span 3; }
 
-/* ── card placeholder ── */
-.stat-row { display: flex; gap: 24px; margin-top: 8px; }
-.stat-item { text-align: center; }
-.stat-item .num { font-size: 28px; font-weight: 700; color: #4255FF; }
-.stat-item .label { font-size: 12px; color: #999; margin-top: 4px; }
-.item-list { display: flex; flex-direction: column; gap: 10px; }
-.item-list .item { display: flex; justify-content: space-between; padding: 8px 12px; background: #fafafa; border-radius: 6px; font-size: 13px; }
-.item-list .item .tag { font-size: 11px; padding: 1px 6px; border-radius: 3px; }
-.item-list .item .tag.blue { background: #eef0ff; color: #4255FF; }
-.item-list .item .tag.orange { background: #fff7e6; color: #fa8c16; }
+.home-grid .card {
+  background: var(--color-container-bg-neutral-bright);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-special3-bottom);
+  padding: var(--spacing-4) var(--spacing-5);
+  min-height: 160px;
+}
+
+.home-grid .card.span-1 { grid-column: span 1; }
+.home-grid .card.span-2 { grid-column: span 2; }
+.home-grid .card.span-3 { grid-column: span 3; }
 </style>
 </head>
 <body>
+<div class="app-shell">
+  <header class="top-nav">
+    <div class="nav-left">
+      <div class="nav-left-content">
+        <div class="product-title">CMB 工作平台</div>
+        <div class="nav-item-wrap with-padding">
+          <div class="enterprise-box">
+            <span class="enterprise-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.05 13.14H8.85V5.93q0-.03.027-.044q.028-.014.053.005l2.791 2.171q.328.255.328.67v4.41ZM13.35 13.14v-4.41q0-1.051-.83-1.697L9.73 4.87q-.421-.328-.881-.3V2.92q0-.817-.723-1.196q-.723-.38-1.395.086L4.475 4.067q-.926.641-.926 1.768v7.308H2.699q-.35 0-.65.291q-.3.291-.3.65q0 .359.3.65q.3.291.65.291H14.3q.35 0 .65-.291q.3-.291.3-.65q0-.359-.3-.65q-.3-.291-.65-.291H13.35ZM7.549 5.9V2.92q0-.03-.027-.044q-.027-.014-.052.004L4.215 5.136q-.366.253-.366.699v7.308H7.548V5.93q0-.014.001-.03Z" fill-rule="evenodd"/></svg></span>
+            <span class="enterprise-name">演示企业名称</span>
+            <span class="nav-caret"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-app-wrap">
+        <div class="nav-divider-pseudo"></div>
+        <div class="xft-app-nav">
+          <nav class="app-nav" aria-label="一级业务导航">
+            <div class="nav-app is-active"><div class="nav-app-content"><span>工作台</span></div><div class="nav-app-active"></div></div>
+            <div class="nav-app"><div class="nav-app-content"><span>模块二</span></div><div class="nav-app-active"></div></div>
+            <div class="nav-app"><div class="nav-app-content"><span>模块三</span></div><div class="nav-app-active"></div></div>
+            <div class="nav-app"><div class="nav-app-content"><span>模块四</span></div><div class="nav-app-active"></div></div>
+            <div class="nav-app"><div class="nav-app-content"><span>模块五</span></div><div class="nav-app-active"></div></div>
+            <div class="nav-app"><div class="nav-app-content"><span>系统设置</span></div><div class="nav-app-active"></div></div>
+          </nav>
+          <div class="top-menu-overflow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></div>
+        </div>
+        <div class="nav-divider-pseudo"></div>
+        <div class="nav-item-wrap all-app-entry">
+          <div class="all-app-container">
+            <svg class="all-app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>全部应用</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-center"></div>
+    <div class="nav-right">
+      <div class="nav-right-content">
+        <div class="nav-item-wrap nav-item-wrap-search"><div class="global-search" aria-label="全局搜索"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4l1.8 4.2L18 10l-4.2 1.8L12 16l-1.8-4.2L6 10l4.2-1.8L12 4Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><span>输入关键字、问题</span></div></div>
+        <div class="nav-tool"><svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v10"/><path d="M8 9l4-4 4 4"/><path d="M5 18h14"/></svg></div>
+        <div class="nav-tool"><svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h6"/></svg></div>
+        <div class="nav-tool"><svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+        <div class="nav-tool"><svg class="top-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19c3.2-2.1 5-5 5-8.2V8.4L12 5 7 8.4v2.4c0 3.2 1.8 6.1 5 8.2Z"/><path d="M10 12.2l1.3 1.3 2.7-2.8"/></svg></div>
+        <div class="nav-divider-vertical"></div>
+        <div class="nav-item-wrap nav-item-wrap-user">
+          <div class="user-avatar-wrap">
+            <div class="user-logo-box"><div class="user-logo">用</div></div>
+            <span class="user-name">用户名</span>
+            <span class="nav-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- Global Shell -->
-<div class="global-shell">
-  <div class="logo">CMB 工作平台</div>
-  <div class="nav">
-    <span class="active">工作台</span>
-    <span>全部应用</span>
+  <div class="main-frame">
+    <aside class="side-nav" aria-label="左侧导航"></aside>
+
+    <main class="work-area">
+      <section class="page-content">
+        <div class="micro-wrapper">
+          <!-- HomePage: 3列栅格替代 page-content-container -->
+          <div class="home-grid">
+            <div class="card span-2"></div>
+            <div class="card span-1"></div>
+
+            <div class="card span-1"></div>
+            <div class="card span-1"></div>
+            <div class="card span-1"></div>
+
+            <div class="card span-3"></div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-  <div class="user-area">
-    <span class="icon">🔔</span>
-    <span class="avatar">U</span>
-    <span>用户名</span>
-  </div>
+
+  <div id="overlay-root"></div>
 </div>
-
-<!-- Content Area -->
-<div class="content-area">
-  <div class="workbench-grid">
-
-    <!-- Row 1: span-2 + span-1 -->
-    <div class="card span-2">
-      <div class="card-title">待办事项</div>
-      <div class="card-content">
-        <div class="item-list">
-          <div class="item"><span>项目 A 需求评审</span><span class="tag blue">待处理</span></div>
-          <div class="item"><span>季度报告提交</span><span class="tag orange">即将到期</span></div>
-          <div class="item"><span>新员工入职审批</span><span class="tag blue">待处理</span></div>
-          <div class="item"><span>系统升级确认</span><span class="tag blue">待处理</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="card span-1">
-      <div class="card-title">快捷入口</div>
-      <div class="card-content">
-        <div class="item-list">
-          <div class="item"><span>审批中心</span></div>
-          <div class="item"><span>任务管理</span></div>
-          <div class="item"><span>日程安排</span></div>
-          <div class="item"><span>文档库</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2: span-1 + span-1 + span-1 -->
-    <div class="card span-1">
-      <div class="card-title">数据概览</div>
-      <div class="card-content">
-        <div class="stat-row">
-          <div class="stat-item"><div class="num">128</div><div class="label">项目数</div></div>
-          <div class="stat-item"><div class="num">36</div><div class="label">进行中</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card span-1">
-      <div class="card-title">团队动态</div>
-      <div class="card-content">
-        <div class="item-list">
-          <div class="item"><span>张同学 提交了代码</span></div>
-          <div class="item"><span>李同学 完成了任务</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="card span-1">
-      <div class="card-title">公告通知</div>
-      <div class="card-content">
-        <div class="item-list">
-          <div class="item"><span>系统维护通知</span></div>
-          <div class="item"><span>新版本发布说明</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 3: span-3 full width -->
-    <div class="card span-3">
-      <div class="card-title">项目进度一览</div>
-      <div class="card-content">
-        <div class="item-list">
-          <div class="item"><span>项目 Alpha</span><span>开发阶段 · 完成 75%</span></div>
-          <div class="item"><span>项目 Beta</span><span>测试阶段 · 完成 50%</span></div>
-          <div class="item"><span>项目 Gamma</span><span>需求阶段 · 完成 30%</span></div>
-          <div class="item"><span>项目 Delta</span><span>上线阶段 · 完成 90%</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 </body>
 </html>
