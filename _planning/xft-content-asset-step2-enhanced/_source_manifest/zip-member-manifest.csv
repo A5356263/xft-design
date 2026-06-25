@@ -1,0 +1,114 @@
+﻿zip_member,type,included_in_inventory
+场景/,directory,False
+场景/典型页面 2/,directory,False
+场景/典型页面 2/提单/,directory,False
+场景/典型页面 2/提单/.DS_Store,system_file,False
+场景/典型页面 2/提单/分步表单.png,asset_file,True
+场景/典型页面 2/提单/基础表单-上下布局.png,asset_file,True
+场景/典型页面 2/提单/基础表单-左右表单.png,asset_file,True
+场景/典型页面 2/表格页/,directory,False
+场景/典型页面 2/表格页/.DS_Store,system_file,False
+场景/典型页面 2/表格页/卡片表格.png,asset_file,True
+场景/典型页面 2/表格页/可编辑表格页.png,asset_file,True
+场景/典型页面 2/表格页/基础表格.png,asset_file,True
+场景/典型页面 2/表格页/多栏表格.png,asset_file,True
+场景/典型页面 2/表格页/报表.png,asset_file,True
+场景/典型页面 2/表格页/汇总信息.png,asset_file,True
+场景/典型页面 2/表格页/父子.png,asset_file,True
+场景/典型页面 2/详情/,directory,False
+场景/典型页面 2/详情/.DS_Store,system_file,False
+场景/典型页面 2/详情/编辑页.png,asset_file,True
+场景/典型页面 2/详情/详情页-上下布局.png,asset_file,True
+场景/典型页面 2/详情/详情页-基础样式-左右布局.png,asset_file,True
+场景/典型页面 2/详情/详情页-表格样式-左右布局.png,asset_file,True
+场景/典型页面 2/配置页面/,directory,False
+场景/典型页面 2/配置页面/设置页 (1).png,asset_file,True
+场景/典型页面 2/首页/,directory,False
+场景/典型页面 2/首页/.DS_Store,system_file,False
+场景/典型页面 2/首页/业务首页.png,asset_file,True
+场景/典型页面 2/首页/首页.png,asset_file,True
+场景/反馈/,directory,False
+场景/反馈/.DS_Store,system_file,False
+场景/反馈/Alert 警告提示.png,asset_file,True
+场景/反馈/Message 全局提示.png,asset_file,True
+场景/反馈/Popconfirm 气泡确认框.png,asset_file,True
+场景/反馈/Progress 进度条.png,asset_file,True
+场景/反馈/Skeleton 骨架屏.png,asset_file,True
+场景/反馈/Spin 加载中.png,asset_file,True
+场景/反馈/功能类对话框 Modal.png,asset_file,True
+场景/反馈/抽屉 Drawer.png,asset_file,True
+场景/反馈/确认类对话框 Modal.png,asset_file,True
+场景/反馈/结果 Result.png,asset_file,True
+场景/反馈/通知提醒框 Notification.png,asset_file,True
+场景/场景/,directory,False
+场景/场景/上传下载.png,asset_file,True
+场景/场景/上传文件.png,asset_file,True
+场景/场景/全屏.png,asset_file,True
+场景/场景/公式编辑器/,directory,False
+场景/场景/公式编辑器/1、功能区域.png,asset_file,True
+场景/场景/公式编辑器/2、公式编辑区域+说明引导.png,asset_file,True
+场景/场景/公式编辑器/3、智能小助手+模板.png,asset_file,True
+场景/场景/公式编辑器/公式编辑器设计模式.png,asset_file,True
+场景/场景/图片裁剪.png,asset_file,True
+场景/场景/审批流与审批模式 (1).png,asset_file,True
+场景/场景/审批流与审批模式.png,asset_file,True
+场景/场景/异步处理.png,asset_file,True
+场景/场景/拖拽排序.png,asset_file,True
+场景/场景/筛选项配置.png,asset_file,True
+场景/场景/表头设置.png,asset_file,True
+场景/审批流.png,asset_file,True
+场景/导航/,directory,False
+场景/导航/.DS_Store,system_file,False
+场景/导航/web端-多页签.png,asset_file,True
+场景/导航/下拉菜单 Dropdown.png,asset_file,True
+场景/导航/侧边导航.png,asset_file,True
+场景/导航/分页 Pagination.png,asset_file,True
+场景/导航/标签页 Tabs.png,asset_file,True
+场景/导航/步骤条 Steps.png,asset_file,True
+场景/导航/胶囊选项卡 CapsuleTabs .png,asset_file,True
+场景/导航/返回按钮 ReturnButton .png,asset_file,True
+场景/导航/锚点 Anchor.png,asset_file,True
+场景/导航/顶部导航 AppNav.png,asset_file,True
+场景/按钮规则/,directory,False
+场景/按钮规则/Body 内容区按钮位置.png,asset_file,True
+场景/按钮规则/Button 按钮.png,asset_file,True
+场景/按钮规则/Footer 页面底部区按钮位置.png,asset_file,True
+场景/按钮规则/Header页面头部区域按钮位置.png,asset_file,True
+场景/按钮规则/Toolbar 操作工具区按钮位置.png,asset_file,True
+场景/按钮规则/勾选和开关按钮的使用规则.png,asset_file,True
+场景/按钮规则/按钮使用原则.png,asset_file,True
+场景/按钮规则/禁用态探索.png,asset_file,True
+场景/按钮规则/禁用按钮使用规则.png,asset_file,True
+场景/按钮规则/链接按钮使用规则.png,asset_file,True
+场景/数据 录入/,directory,False
+场景/数据 录入/.DS_Store,system_file,False
+场景/数据 录入/Input 输入框.png,asset_file,True
+场景/数据 录入/InputNumber 数字输入框.png,asset_file,True
+场景/数据 录入/Radio 单选框.png,asset_file,True
+场景/数据 录入/Select 选择器.png,asset_file,True
+场景/数据 录入/Sidebar Contents 分栏目录.png,asset_file,True
+场景/数据 录入/上传 Upload.png,asset_file,True
+场景/数据 录入/多选 Checkbox (1).png,asset_file,True
+场景/数据 录入/开关 Switch.png,asset_file,True
+场景/数据 录入/日期时间选择器 DatePicker.png,asset_file,True
+场景/数据 录入/日期时间选择器 TimePicker.png,asset_file,True
+场景/数据 录入/树选择 TreeSelect.png,asset_file,True
+场景/数据 录入/级联选择 Cascader (1).png,asset_file,True
+场景/数据 录入/表单 Form.png,asset_file,True
+场景/数据展示/,directory,False
+场景/数据展示/.DS_Store,system_file,False
+场景/数据展示/Badge 徽标.png,asset_file,True
+场景/数据展示/Empty 空状态.png,asset_file,True
+场景/数据展示/FilePreview 文件预览.png,asset_file,True
+场景/数据展示/Image 图片.png,asset_file,True
+场景/数据展示/Segmented 分段控制器.png,asset_file,True
+场景/数据展示/Tag 标签.png,asset_file,True
+场景/数据展示/Tour 漫游式引导.png,asset_file,True
+场景/数据展示/Tree 树形控件.png,asset_file,True
+场景/数据展示/折叠面板 Collapse.png,asset_file,True
+场景/数据展示/描述列表 Descriptions.png,asset_file,True
+场景/数据展示/文字提示 Tooltip.png,asset_file,True
+场景/数据展示/气泡卡片  Popover.png,asset_file,True
+场景/数据展示/表格 Table.png,asset_file,True
+场景/数据展示/表格-表头筛选.png,asset_file,True
+场景/数据展示/走马灯 Carousel.png,asset_file,True

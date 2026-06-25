@@ -1,0 +1,63 @@
+{
+  "decision_type": "CONTENT_ASSET_DECISION",
+  "page_type": "TablePage",
+  "recipe_id": "recipe_table_basic",
+  "shell": "admin-side-shell",
+  "selected_assets": [
+    {
+      "asset_id": "region_page_header_basic",
+      "asset_type": "region",
+      "html_path": "assets/regions/page-header/basic.html",
+      "insert_slot": "PAGE_CONTENT_SLOT",
+      "order": 10,
+      "required": true,
+      "reason": "列表页需要明确标题、说明和主操作"
+    },
+    {
+      "asset_id": "region_filter_bar_basic",
+      "asset_type": "region",
+      "html_path": "assets/regions/filter-bar/basic.html",
+      "insert_slot": "PAGE_CONTENT_SLOT",
+      "order": 20,
+      "required": true,
+      "reason": "需求包含查询和筛选"
+    },
+    {
+      "asset_id": "region_table_toolbar_basic",
+      "asset_type": "region",
+      "html_path": "assets/regions/table-toolbar/basic.html",
+      "insert_slot": "PAGE_CONTENT_SLOT",
+      "order": 30,
+      "required": true,
+      "reason": "列表页需要表格上方操作区"
+    },
+    {
+      "asset_id": "region_table_basic",
+      "asset_type": "region",
+      "html_path": "assets/regions/table-region/basic.html",
+      "insert_slot": "PAGE_CONTENT_SLOT",
+      "order": 40,
+      "required": true,
+      "reason": "主数据展示区"
+    },
+    {
+      "asset_id": "region_pagination_basic",
+      "asset_type": "region",
+      "html_path": "assets/regions/pagination/basic.html",
+      "insert_slot": "PAGE_CONTENT_SLOT",
+      "order": 50,
+      "required": true,
+      "reason": "列表页分页"
+    }
+  ],
+  "support_css": [
+    "assets/regions/_region-support.css"
+  ],
+  "unsupported": [],
+  "validation_targets": [
+    "route_matches_recipe",
+    "all_required_assets_present",
+    "no_unknown_classes",
+    "no_unplanned_layout"
+  ]
+}

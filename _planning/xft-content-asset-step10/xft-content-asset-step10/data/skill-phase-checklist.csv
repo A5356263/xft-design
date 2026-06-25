@@ -1,0 +1,8 @@
+phase_id,phase_name,input,output,required,fail_action
+P1,Requirement Structuring,用户需求,结构化页面意图,true,无法判断时使用最近的页面类型并记录假设
+P2,ROUTE_DECISION,结构化页面意图,路由决策,true,缺失则停止
+P3,Asset Search,ROUTE_DECISION,候选资产与页面配方,true,检索失败则回退通用配方
+P4,CONTENT_ASSET_DECISION,候选资产,最终资产清单,true,缺失则停止
+P5,Conditional Reads,资产清单,必要文件内容,true,读取缺失则标记 unsupported
+P6,HTML Assembly,文件内容,单文件 HTML,true,装配失败则回退资产决策
+P7,Final Check,HTML,校验结果,true,失败不得声称完成

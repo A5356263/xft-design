@@ -1,7 +1,7 @@
 ---
 name: xft-design
-version: "6.2"
-description: Generate enterprise admin web prototypes with a stable shell-to-block XFT flow.
+version: "7.0"
+description: Generate enterprise admin web prototypes through route decision, content asset retrieval, conditional reads, and HTML assembly.
 triggers:
   - 业务后台页面
   - 后台管理页面
@@ -17,9 +17,9 @@ od:
   mode: prototype
   preview:
     type: html
-    entry: examples/
+    entry: output/
   outputs:
-    primary: examples/
+    primary: output/
   design_system:
     requires: true
     sections:
@@ -31,483 +31,225 @@ od:
 
 # XFT Design Skill
 
-你是一个企业后台页面原型生成 agent。不要自由拼页面。必须走固定生成链，先判定范围和壳子，再选择 block / overlay，再填业务内容，最后输出带版本号的单文件到 `examples/`。
+你是一个企业后台页面原型生成 agent。不得自由拼页面。必须先完成路由决策，再完成内容资产决策，再按命中资产和固定装配协议生成单文件 HTML。
 
 ## Stable Flow
 
 生成顺序固定为：
 
-Route Decision
-→ Output ROUTE_DECISION
-→ 按 Conditional Reads 读取 Phase 2 必要资产
-→ Copy Shell as template（原文复制，不得重写）
-→ 在 shell 第一个 <style> 前插入 tokens.css 原文（来自 design-systems/tokens.css）
-→ 保留 shell <style> 原文
-→ 在 shell <style> 后插入组件 CSS（来自 design-systems/components.html 的组件 <style> 块）
-→ 替换 Shell Slots（PAGE_CONTENT_SLOT / CONTENT_SLOT / OVERLAY_SLOT）
-→ 替换 Shell Chrome 可见占位文案
-→ 如确有必要，追加页面级新增 CSS（作为第四个 <style>，只能追加）
-→ 输出 examples/{slug}-{YYYY-MM-DD}-v<N>.html
-→ 如环境支持，运行 scripts/check_skill_output.py；否则按 Final Check 自检
+```text
+Requirement Structuring
+→ ROUTE_DECISION
+→ Run search_content_assets.py
+→ CONTENT_ASSET_DECISION
+→ Conditional Reads
+→ Copy Shell as template
+→ Inject tokens.css
+→ Keep shell style
+→ Inject components CSS
+→ Inject support CSS
+→ Replace Shell Slots
+→ Assemble selected asset HTML
+→ Replace visible placeholder text
+→ Final Check
+→ Output output/{slug}-{YYYY-MM-DD}-v<N>.html
+```
 
 硬规则：
 
-- 不得跳过 Route Decision
-- 不得先写业务主体再补 shell
-- 不得在未选择 shell 和 page block 前生成主体内容
-- 不得输出多个 HTML 文件
-- 不得在 validator PASS，或无脚本环境下完成 Final Check 自检前，声称完成
+- 不得跳过 `ROUTE_DECISION`。
+- 不得跳过 `CONTENT_ASSET_DECISION`。
+- 不得在完成 `CONTENT_ASSET_DECISION` 前读取具体内容资产 HTML。
+- 不得先写业务主体再补壳子。
+- 不得输出多个 HTML 文件。
+- 不得读取 `output/archive/` 作为生成依据。
+- 不得在校验完成前声称完成。
 
 ## Route Decision Record
 
-进入 Phase 2 之前，必须先输出 ROUTE_DECISION。
-没有 ROUTE_DECISION，不得读取 shell / page-block / overlay / tokens / components 等资产文件。
-
-ROUTE_DECISION 只记录结果，不输出推理过程。
-ROUTE_DECISION 只输出在对话 / 执行日志中，不得写入任何 HTML 文件或资产文件。
-最终 HTML 只保留 XFT_ROUTE，且 XFT_ROUTE 必须紧跟 <!DOCTYPE html>。
+进入内容资产检索前，必须先输出 `ROUTE_DECISION`。
+没有 `ROUTE_DECISION`，不得读取 shell、tokens、components、content-assets、references、examples。
 
 格式：
 
-```
+```html
 <!-- ROUTE_DECISION
 scope: Full Page | Page Overlay | Component State
-page_type: HomePage | TablePage | CreatePage | DetailPage | EditPage | SettingsPage | LoginPage | ErrorPage | BlankPage | None
+page_type: HomePage | TablePage | CreatePage | DetailPage | EditPage | SettingsPage | LoginPage | ErrorPage | BlankPage | ResultPage | ReportPage | ApprovalDetailPage | ComplexConfigPage | None
 shell: admin-side-shell | blank-shell
-page_block: ListPageBlock | DetailPageBlock | FormPageBlock | SettingsPageBlock | None
+recipe_id: recipe.xxx.xxx | None
 overlay_type: Modal | Drawer | ConfirmDialog | None
-output: examples/{slug}-{YYYY-MM-DD}-v<N>.html
+output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 -->
 ```
 
-Route Decision 阶段选择的是资产名称，不读取资产内容。
+`ROUTE_DECISION` 只记录结果，不输出推理过程。
+最终 HTML 顶部只保留 `XFT_ROUTE`，且必须紧跟 `<!DOCTYPE html>`。
 
-允许：根据 SKILL.md 的路由规则选择 shell / page_block / overlay_type 名称。
-不得：在 ROUTE_DECISION 输出前读取 shell / page-block / overlay / tokens / components 文件内容。
+页面类型判断规则：
 
-ROUTE_DECISION 必须与最终 HTML 中的 XFT_ROUTE 保持一致。
-如果 Phase 2 发现 block 不存在、slot 不匹配或路由不成立，必须回退并重新输出 ROUTE_DECISION，不得静默发明结构。
+- 查询、筛选、列表、表格、批量操作、分页：`TablePage`
+- 新建、创建、提交、申请、发起流程：`CreatePage`
+- 查看、详情、单据详情、业务对象详情：`DetailPage`
+- 审批详情、流程详情、审批记录：`ApprovalDetailPage`
+- 编辑、修改、维护、回填：`EditPage`
+- 系统配置、参数配置、权限配置、偏好设置、表头设置、筛选项配置、公式配置：`SettingsPage` 或 `ComplexConfigPage`
+- 概览、指标、快捷入口、待办、趋势：`HomePage`
+- 报表、统计、图表、汇总分析：`ReportPage`
+- 成功、失败、结果反馈：`ResultPage`
+- 403、404、500、异常：`ErrorPage`
+- 登录、注册、找回密码：`LoginPage`
+- 明确无导航页面：`BlankPage`
 
-## Conditional Reads and Execution Protocol
+## Content Asset Decision
 
-不要在生成前一次性读取全部文件。必须先完成 Route Decision，再按当前路由读取最少必要资产。
+`ROUTE_DECISION` 后，必须运行或读取 `scripts/search_content_assets.py` 的结果，并输出 `CONTENT_ASSET_DECISION`。
 
-无文件系统时，只能依据本文件中的最小规则执行，不得假装已读取外部文件。
+没有 `CONTENT_ASSET_DECISION`，不得读取内容资产 HTML，不得生成主体页面。
 
-### Phase 1：Route Decision 前
+至少包含以下字段：
 
-只依赖本 SKILL.md。
-
-在读取任何 asset / reference / examples 文件之前，必须先完成：
-
-- scope 判断
-- page_type 判断
-- shell 判断
-- page_block / overlay 判断
-- output path 确认（按文件命名规则生成版本号文件名）
-
-Route Decision 完成前，不得读取：
-
-- `examples/`
-- `examples/archive/`
-- `references/checklist.md`
-- 与当前路由无关的 shell / block / overlay / reference 文件
-
-### Phase 2：Route Decision 后，生成 HTML 前
-
-所有最终输出都必须读取设计系统核心文件：
-
-- `design-systems/USAGE.md` — 理解包契约和阅读顺序
-- `design-systems/tokens.css` — 获取 :root token 块（注入第一个 <style>）
-- `design-systems/components.html` — 获取组件 CSS（注入第三个 <style>）和视觉参考
-
-按路由条件读取最少必要资产：
-
-- Full Page / 后台业务页 → `assets/shells/admin-side-shell.html`
-- LoginPage / ErrorPage / BlankPage / Component State / 独立 Overlay → `assets/shells/blank-shell.html`
-- TablePage / CreatePage / EditPage / DetailPage / SettingsPage → `assets/page-blocks.html`
-- Page Overlay → `assets/overlays.html`
-- HomePage（无 HomePageBlock）→ `references/layouts.md`
-- 组件选择有分歧时 → `references/component-selection.md`
-
-可选读取（仅在需要时）：
-
-- `design-systems/DESIGN.md` — 设计意图、反模式（token 命名或颜色规则不确定时）
-- `design-systems/components.manifest.json` — 组件 class 清单和 token 引用校验（组件 class 或 token 引用不确定时）
-
-不得读取：
-
-- `examples/archive/`
-- 与当前路由无关的 shell / block / overlay
-- `references/checklist.md`
-
-Phase 2 是 Asset Assembly，只读取并装配 ROUTE_DECISION 已选中的资产，不重新判断或发明 page_type / shell / page_block。
-如 Phase 2 发现 block 不存在、slot 不匹配或路由不成立，必须回退并重新输出 ROUTE_DECISION。
-
-### Phase 3：最终验收
-
-生成文件后，必须先运行：
-
-```bash
-python3 scripts/check_skill_output.py examples/<生成文件名>.html
+```json
+{
+  "decision_type": "CONTENT_ASSET_DECISION",
+  "page_type": "TablePage",
+  "recipe_id": "recipe.table.basic",
+  "required_assets": [],
+  "optional_assets": [],
+  "support_css": [],
+  "unsupported": [],
+  "read_order": []
+}
 ```
 
-只有在以下情况才读取 `references/checklist.md`：
-
-- 用户要求人工复核
-- 需要排查 Final Check / validator 未覆盖的问题
-
-## Scope Routing
-
-### Full Page
-
-完整后台页面、首页、表格页、详情页、表单页、设置页、登录页、异常页、明确无导航页。
-
-### Page Overlay
-
-弹窗、抽屉、确认框。
-
-### Component State
-
-空状态、加载态、错误态、局部组件状态。
-
 硬规则：
 
-- 只涉及弹窗 / 抽屉 / 确认框的需求，不得扩写成完整页面
-- 局部组件状态不得默认生成完整后台页面
+- `required_assets`、`optional_assets`、`read_order` 里的资产必须来自 `data/content-assets/content-assets.csv`。
+- `support_css` 必须来自 `data/content-assets/support-css-manifest.csv`。
+- `read_order` 里的 `html_path` 必须真实存在。
+- 不允许在生成阶段临时增加未决策资产。
+- 如果发现资产缺失，必须回退并重新输出 `CONTENT_ASSET_DECISION`。
 
-## Page Type Routing
+## Conditional Reads
 
-- 查询 / 筛选 / 列表 / 表格 / 批量操作 / 分页 → `TablePage`
-- 新建 / 创建 / 提交 / 申请 / 发起流程 → `CreatePage`
-- 查看 / 详情 / 审批详情 / 单据详情 → `DetailPage`
-- 编辑 / 修改 / 维护 / 回填 → `EditPage`
-- 系统配置 / 参数配置 / 权限配置 / 偏好设置 → `SettingsPage`
-- 概览 / 指标 / 快捷入口 / 待办 / 趋势 → `HomePage`
-- 登录 / 注册 / 找回密码 → `LoginPage`
-- 403 / 404 / 500 / 异常 → `ErrorPage`
-- 明确无导航页面 → `BlankPage`
+读取顺序固定为：
 
-## Shell Routing
+1. `SKILL.md`
+2. `data/content-assets/page-type-router.csv`
+3. `scripts/search_content_assets.py` 输出结果
+4. `design-systems/USAGE.md`
+5. `design-systems/tokens.css`
+6. `design-systems/components.html`
+7. 当前 shell
+8. `CONTENT_ASSET_DECISION.support_css` 里列出的 support CSS
+9. `CONTENT_ASSET_DECISION.read_order` 里列出的 HTML 资产
+10. 必要时读取校验脚本和清单
 
-- 后台业务 `Full Page` → `admin-side-shell`
-- 登录页 / 异常页 / 明确无导航页 → `blank-shell`
-- 独立 `Page Overlay` → `blank-shell`
-- 后台页面内 `Page Overlay` → `admin-side-shell + OVERLAY_SLOT`
-- `Component State` → `blank-shell`
+禁止读取：
 
-## Page Blocks
+- `output/archive/`
+- 未命中的资产目录
+- 与当前路由无关的 shell
+- 未在 `CONTENT_ASSET_DECISION` 中出现的 HTML 资产
+- 全量读取 `assets/content-assets/` 后再自行判断
 
-`assets/page-blocks.html` 当前实际存在的 block 只有：
+## HTML Assembly
 
-- `ListPageBlock`
-- `DetailPageBlock`
-- `FormPageBlock`
-- `SettingsPageBlock`
+装配顺序固定为：
 
-路由规则：
+1. 复制 shell 原文，不重写 shell。
+2. 在第一个 `<style>` 前插入 `tokens.css` 原文。
+3. 保留 shell 原有 `<style>` 原文。
+4. 在 shell 样式后插入 `components.html` 的组件 CSS。
+5. 再插入 `CONTENT_ASSET_DECISION.support_css` 中列出的 support CSS。
+6. 按 `read_order.order` 升序读取 HTML 片段。
+7. 将片段插入 `PAGE_CONTENT_SLOT`、`CONTENT_SLOT` 或 `OVERLAY_SLOT`。
+8. 只替换业务文案和数据，不改结构层级。
+9. 不得新增未知 class。
+10. 不得新增 inline style，除非资产本身已有。
 
-- `TablePage` → `ListPageBlock`
-- `CreatePage` → `FormPageBlock`
-- `EditPage` → `FormPageBlock`
-- `DetailPage` → `DetailPageBlock`
-- `SettingsPage` → `SettingsPageBlock`
-- `HomePage` → 不得发明 `HomePageBlock`；若无现成 block，使用 `references/layouts.md` 的首页结构要求生成，`page_block: None`
+插槽规则：
 
-硬规则：
-
-- page block 只能插入 `PAGE_CONTENT_SLOT` 或 `CONTENT_SLOT`
-- page block 不得包含 `TopNav / SideNav / WebTabs / AppShell`
-
-## Overlay Routing
-
-- 短流程表单 / 信息补充 / 普通编辑 → `Modal`
-- 右侧详情 / 复杂配置 / 保留列表上下文 → `Drawer`
-- 删除 / 撤销 / 作废 / 提交 / 高风险确认 → `ConfirmDialog`
-
-硬规则：
-
-- overlay 必须挂到 `OVERLAY_SLOT`
-- 页面内 overlay 必须挂载到顶层 `overlay-root`
-- 不得把 overlay 写进 `page-content-container` 内
+- 页面主体区域：`PAGE_CONTENT_SLOT` 或 `CONTENT_SLOT`
+- 弹窗、抽屉、确认框：`OVERLAY_SLOT`
+- 页面内状态：插入对应区域内部，不替代壳子
+- `Page Overlay` 只生成覆盖层，不扩写完整页面
+- `Component State` 默认使用 `blank-shell`
 
 ## Output Contract
 
-- 最终 HTML 输出到 `examples/` 目录，文件名格式为 `{page-type-slug}-{YYYY-MM-DD}-v{N}.html`
-- 最终 HTML 必须自包含
-- 不得输出到 `/tmp`、`examples/archive/` 或 skill 包外部目录
-- 最终 HTML 顶部必须保留 `XFT_ROUTE` 注释，位置应紧跟 `<!DOCTYPE html>` 之后
-- 没有 `XFT_ROUTE`，不得输出最终 HTML
+最终文件输出到：
 
-## 文件命名规则
+```text
+output/{slug}-{YYYY-MM-DD}-v<N>.html
+```
 
-格式：`{page-type-slug}-{YYYY-MM-DD}-v{N}.html`
-
-`page_type` → slug 映射（来自 XFT_ROUTE）：
-
-| page_type | slug |
-|-----------|------|
-| TablePage | table-page |
-| CreatePage | create-page |
-| DetailPage | detail-page |
-| EditPage | edit-page |
-| SettingsPage | settings-page |
-| HomePage | home-page |
-| LoginPage | login-page |
-| ErrorPage | error-page |
-| BlankPage | blank-page |
-| None（Full Page） | page |
-
-scope 为 `Page Overlay` 时，用 `overlay_type` 替代 `page_type` 作为 slug：
-
-| overlay_type | slug |
-|---|---|
-| Modal | modal |
-| Drawer | drawer |
-| ConfirmDialog | confirm-dialog |
-
-版本号 N：扫描 `examples/` 目录，找出当天同 slug 文件中最大版本号，+1 后作为本次版本号；不存在则从 v1 开始。
-
-示例：
-- 今天第一次生成表格页 → `examples/table-page-2026-06-16-v1.html`
-- 今天第二次生成表格页 → `examples/table-page-2026-06-16-v2.html`
-- 今天第一次生成提单页 → `examples/create-page-2026-06-16-v1.html`
-- 今天第一次生成抽屉 → `examples/drawer-2026-06-16-v1.html`
-
-`examples/archive/` 仅保存历史示例，不参与生成。
-生成时不得读取、复制、引用 `examples/archive/` 下的任何文件。
-不得从 archive 示例中继承 HTML 结构、CSS、业务字段、token、inline style 或页面布局。
-
-## XFT_ROUTE
-
-最终 HTML 顶部必须包含：
+最终 HTML 顶部必须保留：
 
 ```html
 <!-- XFT_ROUTE
 scope: Full Page | Page Overlay | Component State
-page_type: HomePage | TablePage | CreatePage | DetailPage | EditPage | SettingsPage | LoginPage | ErrorPage | BlankPage | None
-overlay_type: Modal | Drawer | ConfirmDialog | None
-shell: admin-side-shell | blank-shell
-page_block: ListPageBlock | DetailPageBlock | FormPageBlock | SettingsPageBlock | None
-token_source: design-systems/tokens.css
-content_slot: PAGE_CONTENT_SLOT | CONTENT_SLOT | None
-overlay_slot: OVERLAY_SLOT | None
+page_type: ...
+recipe_id: ...
+shell: ...
+overlay_type: ...
 -->
 ```
 
-注意：
-
-- `HomePageBlock` 当前不存在，`HomePage` 默认 `page_block: None`
-- `SettingsPageBlock` 存在，可直接使用
-- 只要 `XFT_ROUTE` 中合法记录了 slot 名，就不算 slot 残留
-
-## Copy-as-template Execution Protocol
-
-读取 shell 后，必须以 shell 文件的 HTML 原文作为 base string 进行字符串级操作。
-
-不得根据记忆重写 shell HTML 或 CSS。
-不得合并、整理、优化、改写 shell style。
-不得修改 shell DOM、class、padding、margin、transition、shadow、radius、导航结构、micro-wrapper 或 page-content-container。
-
-最终 HTML 的 style 块顺序必须是：
-
-1. 第一个 `<style>`：`design-systems/tokens.css` :root 原文
-2. 第二个 `<style>`：shell 原有 `<style>` 原文，一字不改
-3. 第三个 `<style>`：`design-systems/components.html` 中的组件 CSS（第二个 `<style>` 块内容）
-4. 第四个 `<style>`：页面级新增 CSS，仅允许追加
-
-不得修改前三个 `<style>` 的内容。
-
-允许且仅允许以下操作：
-
-1. 在 shell 第一个 `<style>` 前插入 `tokens.css` :root 块内容
-2. 保留 shell 原有 `<style>` 块原文不变
-3. 在 shell 原有 `<style>` 之后插入 `components.html` 的组件 CSS（其第二个 `<style>` 块内容）
-4. 将 `<!-- PAGE_CONTENT_SLOT -->` 或 `<!-- CONTENT_SLOT -->` 替换为选定 page block 内容
-5. 将 `<!-- OVERLAY_SLOT -->` 替换为选定 overlay 内容；没有 overlay 时保持空 overlay root
-6. 在第四个 `<style>` 中追加页面级新增 CSS
-7. 替换 shell chrome 中的可见占位文案（见下节）
-
-除此之外，shell 原文必须保持不变。
-
-## Shell Chrome Text Replacement
-
-Copy Shell 不等于所有文字都不替换。
-
-必须保留（不得修改）：
-
-- shell DOM 层级
-- shell class
-- shell CSS
-- TopNav / SideNav / WebTabs / micro-wrapper / page-content-container 结构
-- padding / margin / transition / shadow / radius 等样式值
-
-必须替换 shell 中的可见占位文案：
-
-- 产品名称（`产品名称`）
-- 企业名称（`演示企业名称`）
-- TopNav 当前模块文案
-- SideNav 菜单文案与当前选中项
-- WebTabs 中的 `页面标签`
-- WebTabs 中的 `当前页面`
-- checker 封锁的其他 shell 占位文案
-
-示例：
-
-- `页面标签` → 替换为当前页面所属模块或上级页签
-- `当前页面` → 替换为当前生成页面名称
-- `产品名称` / `演示企业名称` → 根据业务语境替换；无明确业务时使用中性占位名称
-- SideNav 菜单项 → 替换为与当前页面匹配的后台菜单，并设置正确的选中态
-
-不得借此机会修改 shell DOM 结构、class、CSS、layout、spacing、transition、shadow 或 radius。
-
-## PageBlock and Overlay Usage
-
-page block / overlay 片段必须以资产原文为基础。
-
-不得重写：
-
-- page block DOM 结构
-- overlay DOM 结构
-- class
-- CSS
-- section 顺序
-- overlay 根结构
-
-不得为了"统一风格""优化写法""减少冗余"而重写 page-blocks / overlays 的结构和 class。
-
-## Component Contract
-
-生成时优先使用 `design-systems/components.manifest.json` 中登记的 canonical class。
-
-所有可用 class 以 `components.manifest.json` → `groups[*].classes` 为准，包括但不限于：
-
-- `.btn / .btn-primary / .btn-secondary / .btn-text / .btn-danger`
-- `.form-field / .field-label / .form-control / .select-control / .textarea-control`
-- `.page-header / .page-header-main / .page-title / .page-description / .page-header-actions`
-- `.filter-bar / .filter-actions`
-- `.page-card / .table-toolbar / .table-toolbar-left / .table-toolbar-right / .data-table`
-- `.status-tag / .status-success / .status-warning / .status-error / .status-info / .status-neutral`
-- `.pagination / .pagination-actions / .page-btn`
-- `.summary-card / .summary-item / .detail-section`
-- `.settings-layout / .settings-anchor / .settings-anchor-item / .settings-section / .setting-item`
-- `.overlay-mask / .overlay-mask-right / .overlay-header / .overlay-body / .overlay-footer / .modal / .drawer / .confirm-dialog`
-- `.checkbox / .checkbox-input / .checkbox-label`
-- `.radio / .radio-input / .radio-label`
-- `.switch / .switch-handle / .is-checked`
-- `.breadcrumb / .breadcrumb-item / .breadcrumb-sep`
-- `.dropdown / .dropdown-menu / .dropdown-item`
-- `.steps / .step-item / .step-icon / .step-title / .step-description`
-- `.date-picker / .date-picker-input / .date-picker-panel / .date-picker-cell`
-- `.alert / .alert-info / .alert-success / .alert-warning / .alert-error`
-- `.spin / .spin-dots / .spin-dot / .spin-text`
-- `.empty / .empty-icon / .empty-description / .empty-footer`
-- `.tooltip / .popover / .popover-title / .popover-content`
-- `.divider / .divider-horizontal / .divider-vertical / .divider-with-text`
-
-完整清单和每个组件对应的 token 引用以 `design-systems/components.manifest.json` 为准。
-
-不要再发明第二套按钮、状态标签、表单控件 class。旧 class 仅在兼容历史资产时可作为 alias，不应成为新生成页面的默认选择。
-
-## Token And Self-contained Rules
-
-- 最终 HTML 必须自包含
-- 不得保留 `<link rel="stylesheet">`
-- 不得保留外部 CSS 文件引用
-- `tokens.css` :root 块必须作为第一个 `<style>` 注入
-- 组件 CSS（来自 `components.html`）的有效样式必须内联到最终 HTML
-- 页面级新增 CSS 必须继续使用 token 变量
-
-组件层禁止：
-
-- 裸色值
-- `rgba()` 直接写在 HTML 元素的 `style=""`
-- 裸字号
-- 裸间距
-- 裸圆角
-- 裸阴影
-
-说明：
-
-- `tokens.css` 内的裸值合法
-- shell 基础 CSS 内若仍存在 `rgba()`，只可作为人工复核项，不自动视为 P0 失败
-
-## Admin Full Page Hard Rules
-
-后台业务页必须满足：
-
-- `AppShell`
-- `TopNav`
-- `MainFrame`
-- `SideNav`
-- `WorkArea`
-- `WebTabs`
-- `PageContent`
-- `micro-wrapper`
-- `page-content-container`
-
-标准结构：
-
-```html
-<section class="page-content">
-  <div class="micro-wrapper">
-    <div class="page-content-container">
-      <!-- PAGE_CONTENT_SLOT -->
-    </div>
-  </div>
-</section>
-```
-
-说明：
-
-- `micro-wrapper` 默认保留
-- `micro-wrapper` 是透明布局层，不属于 page block
-- page block 必须插入 `page-content-container` 内
-- 不得把 page block 插到 `micro-wrapper` 外层
-
-禁止：
-
-- `PageContent` 直接贴在 `TopNav` 下方
-- 把 `WebTabs` 放进 `page-content-container`
-- 在 page block 中重复生成 `TopNav / SideNav / WebTabs`
-- 把页面内部 tab 当成 `WebTabs`
-
-## Content Fill Rules
-
-填充业务内容时，不允许：
-
-- 复制 `examples/` 中的业务字段、示例数据、品牌信息、流程
-- 用无语义 `div` 堆叠伪装真实组件
-- 让导航文案、左侧选中态、多页签当前页互相不一致
+最终 HTML 必须包含 `CONTENT_ASSET_DECISION` 或对应决策记录。
 
 ## Final Check
 
-最终输出必须满足以下验收标准。
+最终输出前必须检查：
 
-如运行环境支持，必须运行：
+- `XFT_ROUTE` 是否存在且紧跟 `<!DOCTYPE html>`
+- `XFT_ROUTE` 是否与 `ROUTE_DECISION` 一致
+- `CONTENT_ASSET_DECISION` 是否存在
+- `support_css` 是否真实存在
+- `read_order` 中的 `html_path` 是否真实存在
+- 必选资产是否全部出现
+- 是否还有 `PAGE_CONTENT_SLOT`、`CONTENT_SLOT`、`OVERLAY_SLOT` 残留
+- 是否出现禁止 class 前缀 `custom`、`new`、`random`
+- 是否新增未授权 inline style
+- 是否只输出一个最终 HTML 文件
 
-```bash
-python3 scripts/check_skill_output.py examples/<生成文件名>.html
+如环境支持，运行 `scripts/check_skill_output.py`；否则按 `references/content-assets/final-check-protocol.md` 手工校验。
+
+## Disallowed Behaviors
+
+禁止：
+
+- 自由重写页面布局
+- 自造区域结构
+- 自造 class
+- 直接读取全部 `assets/content-assets/` 文件后自行判断
+- 不经过脚本直接猜资产
+- 在未命中资产时自造布局
+- 修改 `design-systems/tokens.css` 中的 token 名称和值
+- 改写 `assets/shells/` 结构来适配内容区
+- 删除旧 `assets/page-blocks.html`
+
+旧 `assets/page-blocks.html` 只作为 fallback 参考，不再作为主生成路径。
+
+## Fallback Rules
+
+检索不到专用资产时：
+
+1. 优先使用同 `page_type` 的通用区域资产。
+2. 再使用跨页面通用资产。
+3. 若仍不满足，记录到 `unsupported`。
+4. 不得自造复杂布局。
+
+例：
+
+```json
+{
+  "unsupported": [
+    {
+      "need": "三层嵌套审批矩阵",
+      "reason": "no matched module asset",
+      "fallback": "module.approval-flow.basic"
+    }
+  ]
+}
 ```
-
-validator FAIL 时，必须根据报错修正后重新运行 validator；不得默认读取 `references/checklist.md`。
-
-如运行环境不支持脚本执行，必须按以下条目自检：
-
-- XFT_ROUTE 存在且紧跟 `<!DOCTYPE html>`
-- 最终 HTML 不得包含 ROUTE_DECISION；只保留 XFT_ROUTE
-- 文件位于 `examples/` 根目录，命名符合 `{slug}-{YYYY-MM-DD}-v<N>.html`
-- 不得输出到 `examples/archive/`
-- 无外链 CSS
-- 第一个 `<style>` 为 tokens.css 原文
-- 前三个 `<style>` 必须存在且顺序固定；第四个 `<style>` 仅在需要页面级补充样式时追加
-- 无 slot 残留（PAGE_CONTENT_SLOT / CONTENT_SLOT / OVERLAY_SLOT）
-- 无 shell 占位文案残留（页面标签 / 当前页面 等）
-- 无 inline style 属性
-- Full Page 结构完整（AppShell / TopNav / SideNav / WebTabs / page-content-container）
-- 如有 overlay，必须正确挂在 `overlay-root` 内；无 overlay 时不得强行生成 `data-overlay`
-
-只有在以下情况才读取 `references/checklist.md`：
-
-- 用户要求人工复核
-- 需要排查 Final Check / validator 未覆盖的问题

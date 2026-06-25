@@ -1,0 +1,14 @@
+field,scope,weight,description
+match_keywords,page_type_router,10,页面类型路由关键词权重最高
+negative_keywords,page_type_router,-100,命中负向关键词则强降权
+keywords,recipe_rules,8,页面配方关键词
+recipe_name,recipe_rules,5,页面配方名称
+required_regions,recipe_rules,4,页面配方必选区域
+optional_modules,recipe_rules,3,页面配方可选模块
+keywords,content_assets,8,资产关键词
+asset_name,content_assets,6,资产名称
+conditions,content_assets,5,资产使用条件
+validation,content_assets,3,资产校验描述
+forbidden_when,content_assets,-80,命中禁用条件则强降权
+keywords,asset_rules,6,规则关键词
+rule,asset_rules,5,规则正文

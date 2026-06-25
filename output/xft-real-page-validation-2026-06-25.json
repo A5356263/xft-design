@@ -1,0 +1,158 @@
+﻿[
+  {
+    "file": "employee-roster-validation-2026-06-25-v1.html",
+    "query": "??????????????????????????????",
+    "page_type": "TablePage",
+    "recipe_id": "recipe.table.basic",
+    "asset_ids": [
+      "region.page-header.basic",
+      "region.filter-bar.basic",
+      "region.table-toolbar.basic",
+      "region.data-table.basic",
+      "region.pagination.basic"
+    ],
+    "unsupported": [
+      {
+        "asset_id": "module.batch-action-footer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_OR_PAGE_SLOT",
+        "order": 60,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      },
+      {
+        "asset_id": "overlay.detail-drawer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_SLOT",
+        "order": 70,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      }
+    ],
+    "support_css": [
+      "assets/content-assets/_support/region-support.css"
+    ],
+    "page_level_css_added": true,
+    "validator_status": "pass",
+    "overlay_expected_but_not_hit": false
+  },
+  {
+    "file": "approval-detail-validation-2026-06-25-v1.html",
+    "query": "???????????????????????????????",
+    "page_type": "TablePage",
+    "recipe_id": "recipe.table.basic",
+    "asset_ids": [
+      "region.page-header.basic",
+      "region.filter-bar.basic",
+      "region.table-toolbar.basic",
+      "region.data-table.basic",
+      "region.pagination.basic"
+    ],
+    "unsupported": [
+      {
+        "asset_id": "module.batch-action-footer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_OR_PAGE_SLOT",
+        "order": 60,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      },
+      {
+        "asset_id": "overlay.detail-drawer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_SLOT",
+        "order": 70,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      }
+    ],
+    "support_css": [
+      "assets/content-assets/_support/region-support.css"
+    ],
+    "page_level_css_added": true,
+    "validator_status": "pass",
+    "overlay_expected_but_not_hit": false
+  },
+  {
+    "file": "settings-config-validation-2026-06-25-v1.html",
+    "query": "?????????????????????????????",
+    "page_type": "TablePage",
+    "recipe_id": "recipe.table.basic",
+    "asset_ids": [
+      "region.page-header.basic",
+      "region.filter-bar.basic",
+      "region.table-toolbar.basic",
+      "region.data-table.basic",
+      "region.pagination.basic"
+    ],
+    "unsupported": [
+      {
+        "asset_id": "module.batch-action-footer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_OR_PAGE_SLOT",
+        "order": 60,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      },
+      {
+        "asset_id": "overlay.detail-drawer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_SLOT",
+        "order": 70,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      }
+    ],
+    "support_css": [
+      "assets/content-assets/_support/region-support.css"
+    ],
+    "page_level_css_added": true,
+    "validator_status": "pass",
+    "overlay_expected_but_not_hit": false
+  },
+  {
+    "file": "member-edit-modal-validation-fail-2026-06-25-v1.html",
+    "query": "??????????????? Modal ? Overlay?????????",
+    "page_type": "TablePage",
+    "recipe_id": "recipe.table.basic",
+    "asset_ids": [
+      "region.page-header.basic",
+      "region.filter-bar.basic",
+      "region.table-toolbar.basic",
+      "region.data-table.basic",
+      "region.pagination.basic"
+    ],
+    "unsupported": [
+      {
+        "asset_id": "module.batch-action-footer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_OR_PAGE_SLOT",
+        "order": 60,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      },
+      {
+        "asset_id": "overlay.detail-drawer",
+        "html_path": "",
+        "insert_slot": "OVERLAY_SLOT",
+        "order": 70,
+        "required": false,
+        "status": "missing",
+        "reason": "recipe_required_but_not_found"
+      }
+    ],
+    "support_css": [
+      "assets/content-assets/_support/region-support.css"
+    ],
+    "page_level_css_added": true,
+    "validator_status": "pass",
+    "overlay_expected_but_not_hit": true
+  }
+]

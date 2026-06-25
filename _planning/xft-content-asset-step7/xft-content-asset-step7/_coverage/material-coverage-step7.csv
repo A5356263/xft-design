@@ -1,0 +1,92 @@
+﻿material_id,material_name,material_category,asset_layer,step7_status,next_step
+M001,分步表单,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M002,基础表单-上下布局,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M003,基础表单-左右表单,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M004,卡片表格,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M005,可编辑表格页,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M006,基础表格,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M007,多栏表格,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M008,报表,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M009,汇总信息,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M010,父子,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M011,编辑页,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M012,详情页-上下布局,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M013,详情页-基础样式-左右布局,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M014,详情页-表格样式-左右布局,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M015,设置页 (1),典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M016,业务首页,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M017,首页,典型页面,page_recipe,not_target_of_step7,Handled by Step 3-6 or later integration
+M018,Alert 警告提示,反馈,feedback_rule_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M019,Message 全局提示,反馈,feedback_rule_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M020,Popconfirm 气泡确认框,反馈,overlay_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M021,Progress 进度条,反馈,state_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M022,Skeleton 骨架屏,反馈,state_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M023,Spin 加载中,反馈,state_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M024,功能类对话框 Modal,反馈,overlay_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M025,抽屉 Drawer,反馈,overlay_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M026,确认类对话框 Modal,反馈,overlay_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M027,结果 Result,反馈,state_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M028,通知提醒框 Notification,反馈,feedback_rule_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M029,上传下载,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M030,上传文件,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M031,全屏,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M032,1、功能区域,复杂场景/公式编辑器,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M033,2、公式编辑区域+说明引导,复杂场景/公式编辑器,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M034,3、智能小助手+模板,复杂场景/公式编辑器,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M035,公式编辑器设计模式,复杂场景/公式编辑器,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M036,图片裁剪,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M037,审批流与审批模式 (1),复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M038,审批流与审批模式,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M039,异步处理,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M040,拖拽排序,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M041,筛选项配置,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M042,表头设置,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M043,审批流,复杂场景,business_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M044,web端-多页签,导航,shell_navigation_rule,not_target_of_step7,Handled by Step 3-6 or later integration
+M045,下拉菜单 Dropdown,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M046,侧边导航,导航,shell_navigation_rule,not_target_of_step7,Handled by Step 3-6 or later integration
+M047,分页 Pagination,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M048,标签页 Tabs,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M049,步骤条 Steps,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M050,胶囊选项卡 CapsuleTabs ,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M051,返回按钮 ReturnButton ,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M052,锚点 Anchor,导航,navigation_region,not_target_of_step7,Handled by Step 3-6 or later integration
+M053,顶部导航 AppNav,导航,shell_navigation_rule,not_target_of_step7,Handled by Step 3-6 or later integration
+M054,Body 内容区按钮位置,按钮规则,component_combo_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M055,Button 按钮,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M056,Footer 页面底部区按钮位置,按钮规则,component_combo_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M057,Header页面头部区域按钮位置,按钮规则,component_combo_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M058,Toolbar 操作工具区按钮位置,按钮规则,component_combo_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M059,勾选和开关按钮的使用规则,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M060,按钮使用原则,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M061,禁用态探索,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M062,禁用按钮使用规则,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M063,链接按钮使用规则,按钮规则,interaction_rule,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M064,Input 输入框,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M065,InputNumber 数字输入框,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M066,Radio 单选框,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M067,Select 选择器,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M068,Sidebar Contents 分栏目录,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M069,上传 Upload,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M070,多选 Checkbox (1),数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M071,开关 Switch,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M072,日期时间选择器 DatePicker,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M073,日期时间选择器 TimePicker,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M074,树选择 TreeSelect,数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M075,级联选择 Cascader (1),数据录入,component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M076,表单 Form,数据录入,form_region,partially_covered_or_rule_only,Review if more variants are needed after real tests
+M077,Badge 徽标,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M078,Empty 空状态,数据展示,state_asset,not_target_of_step7,Handled by Step 3-6 or later integration
+M079,FilePreview 文件预览,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M080,Image 图片,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M081,Segmented 分段控制器,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M082,Tag 标签,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M083,Tour 漫游式引导,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M084,Tree 树形控件,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M085,折叠面板 Collapse,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M086,描述列表 Descriptions,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M087,文字提示 Tooltip,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M088,气泡卡片  Popover,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv
+M089,表格 Table,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M090,表格-表头筛选,数据展示,display_module,not_target_of_step7,Handled by Step 3-6 or later integration
+M091,走马灯 Carousel,数据展示,display_component_combo,covered_in_step7,Step 8 integrate into unified content-assets.csv

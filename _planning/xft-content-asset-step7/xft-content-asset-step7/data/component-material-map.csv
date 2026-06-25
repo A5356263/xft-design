@@ -1,0 +1,37 @@
+﻿material_id,asset_id,asset_name,html_path,coverage_note
+M057,combo-header-actions,页面头部操作按钮组,assets/component-combos/button-placement/header-actions.html,converted_to_component_combo_html
+M058,combo-toolbar-actions,表格工具栏操作按钮组,assets/component-combos/button-placement/toolbar-actions.html,converted_to_component_combo_html
+M054,combo-body-action-panel,内容区局部操作面板,assets/component-combos/button-placement/body-action-panel.html,converted_to_component_combo_html
+M056,combo-footer-actions,页面底部提交按钮组,assets/component-combos/button-placement/footer-actions.html,converted_to_component_combo_html
+M064,combo-input-field,Input 输入框,assets/component-combos/form-controls/input.html,converted_to_component_combo_html
+M065,combo-input-number-field,InputNumber 数字输入框,assets/component-combos/form-controls/input-number.html,converted_to_component_combo_html
+M067,combo-select-field,Select 选择器,assets/component-combos/form-controls/select.html,converted_to_component_combo_html
+M072,combo-date-picker-field,DatePicker 日期选择,assets/component-combos/form-controls/date-picker.html,converted_to_component_combo_html
+M073,combo-time-picker-field,TimePicker 时间选择,assets/component-combos/form-controls/time-picker.html,converted_to_component_combo_html
+M074,combo-tree-select-field,TreeSelect 树选择,assets/component-combos/form-controls/tree-select.html,converted_to_component_combo_html
+M075,combo-cascader-field,Cascader 级联选择,assets/component-combos/form-controls/cascader.html,converted_to_component_combo_html
+M066,combo-radio-group,单选项组合,assets/component-combos/form-controls/radio-group.html,converted_to_component_combo_html
+M070,combo-checkbox-group,多选项组合,assets/component-combos/form-controls/checkbox-group.html,converted_to_component_combo_html
+M071,combo-switch-setting,开关设置项,assets/component-combos/form-controls/switch-setting.html,converted_to_component_combo_html
+M059,combo-switch-setting,开关设置项,assets/component-combos/form-controls/switch-setting.html,converted_to_component_combo_html
+M069,combo-upload-field,上传字段组合,assets/component-combos/form-controls/upload-field.html,converted_to_component_combo_html
+M068,combo-sidebar-contents,分栏目录内容组合,assets/component-combos/form-controls/sidebar-contents.html,converted_to_component_combo_html
+M082,combo-tag-status,状态标签组合,assets/component-combos/display/tag-status.html,converted_to_component_combo_html
+M077,combo-badge,徽标提示组合,assets/component-combos/display/badge.html,converted_to_component_combo_html
+M080,combo-image-list,图片缩略图组合,assets/component-combos/display/image-list.html,converted_to_component_combo_html
+M081,combo-segmented,分段控制器组合,assets/component-combos/display/segmented.html,converted_to_component_combo_html
+M087,combo-tooltip,文字提示组合,assets/component-combos/display/tooltip.html,converted_to_component_combo_html
+M088,combo-popover-card,气泡卡片组合,assets/component-combos/display/popover-card.html,converted_to_component_combo_html
+M083,combo-tour-card,漫游引导卡片,assets/component-combos/display/tour-card.html,converted_to_component_combo_html
+M091,combo-carousel,走马灯内容组合,assets/component-combos/display/carousel.html,converted_to_component_combo_html
+M060,rule-button-principles,button 按钮 使用原则,data/component-combo-rules.csv,converted_to_rule
+M055,rule-button-basic,button 按钮 类型,data/component-combo-rules.csv,converted_to_rule
+M062,rule-disabled-button,禁用按钮规则,data/component-combo-rules.csv,converted_to_rule
+M061,rule-disabled-state-exploration,禁用态探索,data/component-combo-rules.csv,converted_to_rule
+M063,rule-link-button,链接按钮规则,data/component-combo-rules.csv,converted_to_rule
+M059,rule-checkbox-switch,勾选和开关使用规则,data/component-combo-rules.csv,converted_to_rule
+M064-M076,rule-form-control-field,表单控件组合规则,data/component-combo-rules.csv,converted_to_rule
+M077,rule-display-combo,展示组件组合规则,data/component-combo-rules.csv,converted_to_rule
+M080-M083,rule-display-combo,展示组件组合规则,data/component-combo-rules.csv,converted_to_rule
+M087-M088,rule-display-combo,展示组件组合规则,data/component-combo-rules.csv,converted_to_rule
+M091,rule-display-combo,展示组件组合规则,data/component-combo-rules.csv,converted_to_rule

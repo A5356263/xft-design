@@ -1,0 +1,373 @@
+﻿keyword,asset_id,asset_layer,asset_type,page_type,weight,source_step
+表格,region.data-table.basic,region,region,TablePage,1.0,step4
+数据展示,region.data-table.basic,region,region,TablePage,1.0,step4
+列表,region.data-table.basic,region,region,TablePage,1.0,step4
+行操作,region.data-table.basic,region,region,TablePage,1.0,step4
+基础表格区,region.data-table.basic,region,region,TablePage,0.6,step4
+基础信息,region.detail-info-section.basic,region,region,DetailPage,1.0,step4
+描述列表,region.detail-info-section.basic,region,region,DetailPage,1.0,step4
+详情字段,region.detail-info-section.basic,region,region,DetailPage,1.0,step4
+详情信息区,region.detail-info-section.basic,region,region,DetailPage,0.6,step4
+摘要,region.detail-summary.basic,region,region,DetailPage,1.0,step4
+状态,region.detail-summary.basic,region,region,DetailPage,1.0,step4
+负责人,region.detail-summary.basic,region,region,DetailPage,1.0,step4
+编号,region.detail-summary.basic,region,region,DetailPage,1.0,step4
+关键字段,region.detail-summary.basic,region,region,DetailPage,1.0,step4
+详情摘要区,region.detail-summary.basic,region,region,DetailPage,0.6,step4
+查询,region.filter-bar.basic,region,region,TablePage,1.0,step4
+筛选,region.filter-bar.basic,region,region,TablePage,1.0,step4
+搜索,region.filter-bar.basic,region,region,TablePage,1.0,step4
+状态,region.filter-bar.basic,region,region,TablePage,1.0,step4
+列表筛选,region.filter-bar.basic,region,region,TablePage,1.0,step4
+基础筛选区,region.filter-bar.basic,region,region,TablePage,0.6,step4
+提交,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
+取消,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
+底部按钮,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
+footer,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
+表单底部操作区,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,0.6,step4
+表单,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
+基础信息,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
+字段,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
+录入,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
+基础表单区域,region.form-section.basic,region,region,CreatePage|EditPage,0.6,step4
+页面标题,region.page-header.basic,region,region,All,1.0,step4
+页面说明,region.page-header.basic,region,region,All,1.0,step4
+头部,region.page-header.basic,region,region,All,1.0,step4
+header,region.page-header.basic,region,region,All,1.0,step4
+基础页面头部,region.page-header.basic,region,region,All,0.6,step4
+分页,region.pagination.basic,region,region,TablePage|CardListPage,1.0,step4
+上一页,region.pagination.basic,region,region,TablePage|CardListPage,1.0,step4
+下一页,region.pagination.basic,region,region,TablePage|CardListPage,1.0,step4
+总数,region.pagination.basic,region,region,TablePage|CardListPage,1.0,step4
+分页区,region.pagination.basic,region,region,TablePage|CardListPage,0.6,step4
+设置项,region.setting-section.basic,region,region,SettingsPage,1.0,step4
+开关,region.setting-section.basic,region,region,SettingsPage,1.0,step4
+配置,region.setting-section.basic,region,region,SettingsPage,1.0,step4
+状态,region.setting-section.basic,region,region,SettingsPage,1.0,step4
+设置分组区域,region.setting-section.basic,region,region,SettingsPage,0.6,step4
+设置页,region.settings-layout.anchor,region,region,SettingsPage,1.0,step4
+锚点,region.settings-layout.anchor,region,region,SettingsPage,1.0,step4
+分组导航,region.settings-layout.anchor,region,region,SettingsPage,1.0,step4
+配置,region.settings-layout.anchor,region,region,SettingsPage,1.0,step4
+设置页锚点布局,region.settings-layout.anchor,region,region,SettingsPage,0.6,step4
+表格工具栏,region.table-toolbar.basic,region,region,TablePage,1.0,step4
+新建,region.table-toolbar.basic,region,region,TablePage,1.0,step4
+导出,region.table-toolbar.basic,region,region,TablePage,1.0,step4
+列表标题,region.table-toolbar.basic,region,region,TablePage,1.0,step4
+toolbar,region.table-toolbar.basic,region,region,TablePage,1.0,step4
+基础表格工具栏,region.table-toolbar.basic,region,region,TablePage,0.6,step4
+主操作,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,1.0,step4
+新建,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,1.0,step4
+导出,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,1.0,step4
+头部操作,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,1.0,step4
+header action,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,1.0,step4
+带操作页面头部,region.page-header.with-actions,region,region,TablePage|DetailPage|SettingsPage|HomePage,0.6,step4
+高级表单,region.form-section.multi-section,region,region,CreatePage|EditPage,1.0,step4
+分组表单,region.form-section.multi-section,region,region,CreatePage|EditPage,1.0,step4
+业务信息,region.form-section.multi-section,region,region,CreatePage|EditPage,1.0,step4
+多段表单,region.form-section.multi-section,region,region,CreatePage|EditPage,1.0,step4
+多分组表单区域,region.form-section.multi-section,region,region,CreatePage|EditPage,0.6,step4
+返回,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,1.0,step4
+详情,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,1.0,step4
+编辑,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,1.0,step4
+提交,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,1.0,step4
+取消,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,1.0,step4
+带返回页面头部,region.page-header.with-back,region,region,DetailPage|EditPage|CreatePage,0.6,step4
+首页,region.metric-grid.basic,region,region,HomePage|ReportPage,1.0,step4
+指标,region.metric-grid.basic,region,region,HomePage|ReportPage,1.0,step4
+概览,region.metric-grid.basic,region,region,HomePage|ReportPage,1.0,step4
+汇总,region.metric-grid.basic,region,region,HomePage|ReportPage,1.0,step4
+数据看板,region.metric-grid.basic,region,region,HomePage|ReportPage,1.0,step4
+指标卡片区,region.metric-grid.basic,region,region,HomePage|ReportPage,0.6,step4
+列设置,region.table-toolbar.with-column-settings,region,region,TablePage,1.0,step4
+表头设置,region.table-toolbar.with-column-settings,region,region,TablePage,1.0,step4
+批量操作,region.table-toolbar.with-column-settings,region,region,TablePage,1.0,step4
+表格工具栏,region.table-toolbar.with-column-settings,region,region,TablePage,1.0,step4
+带列设置工具栏,region.table-toolbar.with-column-settings,region,region,TablePage,0.6,step4
+多选,region.data-table.with-selection-summary,region,region,TablePage,1.0,step4
+批量操作,region.data-table.with-selection-summary,region,region,TablePage,1.0,step4
+选择,region.data-table.with-selection-summary,region,region,TablePage,1.0,step4
+表格,region.data-table.with-selection-summary,region,region,TablePage,1.0,step4
+带选择汇总表格区,region.data-table.with-selection-summary,region,region,TablePage,0.6,step4
+高级筛选,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,1.0,step4
+多条件,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,1.0,step4
+展开,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,1.0,step4
+收起,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,1.0,step4
+筛选项配置,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,1.0,step4
+高级展开筛选区,region.filter-bar.advanced-expand,region,region,TablePage|ReportPage,0.6,step4
+报表,region.report-summary-bar.basic,region,region,ReportPage|TablePage,1.0,step4
+汇总,region.report-summary-bar.basic,region,region,ReportPage|TablePage,1.0,step4
+统计,region.report-summary-bar.basic,region,region,ReportPage|TablePage,1.0,step4
+总览,region.report-summary-bar.basic,region,region,ReportPage|TablePage,1.0,step4
+报表汇总区,region.report-summary-bar.basic,region,region,ReportPage|TablePage,0.6,step4
+分步表单,region.step-indicator.basic,region,region,CreatePage|EditPage,1.0,step4
+步骤,region.step-indicator.basic,region,region,CreatePage|EditPage,1.0,step4
+流程,region.step-indicator.basic,region,region,CreatePage|EditPage,1.0,step4
+提交,region.step-indicator.basic,region,region,CreatePage|EditPage,1.0,step4
+步骤条区域,region.step-indicator.basic,region,region,CreatePage|EditPage,0.6,step4
+工作台,region.dashboard-grid.basic,region,region,HomePage,1.0,step4
+趋势,region.dashboard-grid.basic,region,region,HomePage,1.0,step4
+待办,region.dashboard-grid.basic,region,region,HomePage,1.0,step4
+快捷入口,region.dashboard-grid.basic,region,region,HomePage,1.0,step4
+首页,region.dashboard-grid.basic,region,region,HomePage,1.0,step4
+首页内容网格,region.dashboard-grid.basic,region,region,HomePage,0.6,step4
+左右布局,region.detail-side-layout.basic,region,region,DetailPage,1.0,step4
+锚点,region.detail-side-layout.basic,region,region,DetailPage,1.0,step4
+详情,region.detail-side-layout.basic,region,region,DetailPage,1.0,step4
+侧栏,region.detail-side-layout.basic,region,region,DetailPage,1.0,step4
+详情左右布局区,region.detail-side-layout.basic,region,region,DetailPage,0.6,step4
+tabs,region.tabs.basic,region,region,DetailPage|TablePage|SettingsPage,1.0,step4
+标签页,region.tabs.basic,region,region,DetailPage|TablePage|SettingsPage,1.0,step4
+状态切换,region.tabs.basic,region,region,DetailPage|TablePage|SettingsPage,1.0,step4
+分组切换,region.tabs.basic,region,region,DetailPage|TablePage|SettingsPage,1.0,step4
+标签页区域,region.tabs.basic,region,region,DetailPage|TablePage|SettingsPage,0.6,step4
+锚点,region.anchor.basic,region,region,DetailPage|SettingsPage,1.0,step4
+分栏目录,region.anchor.basic,region,region,DetailPage|SettingsPage,1.0,step4
+页内导航,region.anchor.basic,region,region,DetailPage|SettingsPage,1.0,step4
+页内锚点区域,region.anchor.basic,region,region,DetailPage|SettingsPage,0.6,step4
+卡片表格,region.card-grid.basic,region,region,TablePage|HomePage,1.0,step4
+卡片列表,region.card-grid.basic,region,region,TablePage|HomePage,1.0,step4
+对象卡片,region.card-grid.basic,region,region,TablePage|HomePage,1.0,step4
+卡片网格区,region.card-grid.basic,region,region,TablePage|HomePage,0.6,step4
+搜索,region.filter-bar.compact-inline,region,region,TablePage,1.0,step4
+关键词,region.filter-bar.compact-inline,region,region,TablePage,1.0,step4
+简单查询,region.filter-bar.compact-inline,region,region,TablePage,1.0,step4
+单条件,region.filter-bar.compact-inline,region,region,TablePage,1.0,step4
+紧凑搜索筛选区,region.filter-bar.compact-inline,region,region,TablePage,0.6,step4
+父子表格,region.split-layout.master-detail,region,region,TablePage|DetailPage,1.0,step4
+主从结构,region.split-layout.master-detail,region,region,TablePage|DetailPage,1.0,step4
+左树右表,region.split-layout.master-detail,region,region,TablePage|DetailPage,1.0,step4
+分栏,region.split-layout.master-detail,region,region,TablePage|DetailPage,1.0,step4
+主从分栏区域,region.split-layout.master-detail,region,region,TablePage|DetailPage,0.6,step4
+异常,region.result.exception,region,region,ErrorPage,1.0,step4
+403,region.result.exception,region,region,ErrorPage,1.0,step4
+404,region.result.exception,region,region,ErrorPage,1.0,step4
+500,region.result.exception,region,region,ErrorPage,1.0,step4
+错误页,region.result.exception,region,region,ErrorPage,1.0,step4
+异常结果区,region.result.exception,region,region,ErrorPage,0.6,step4
+成功,region.result.success,region,region,ResultPage,1.0,step4
+结果页,region.result.success,region,region,ResultPage,1.0,step4
+提交成功,region.result.success,region,region,ResultPage,1.0,step4
+下一步,region.result.success,region,region,ResultPage,1.0,step4
+成功结果区,region.result.success,region,region,ResultPage,0.6,step4
+审批,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+审批流,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+流程,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+流转,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+节点,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+处理人,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,1.0,step5
+审批流程模块,module-approval-flow-basic,module,business_module,DetailPage|ApprovalPage|CreatePage,0.6,step5
+公式,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+公式编辑器,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+函数,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+表达式,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+字段映射,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+公式编辑器基础模块,module-formula-editor-basic,module,business_module,SettingsPage|CreatePage|EditPage,0.6,step5
+异步,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,1.0,step5
+处理中,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,1.0,step5
+进度,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,1.0,step5
+任务,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,1.0,step5
+导入结果,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,1.0,step5
+异步处理进度模块,module-async-processing-status-panel,module,business_module,TablePage|DetailPage|Modal|Drawer,0.6,step5
+表头设置,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,1.0,step5
+列设置,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,1.0,step5
+显示列,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,1.0,step5
+固定列,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,1.0,step5
+列排序,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,1.0,step5
+表头设置模块,module-table-header-settings-panel,module,business_module,TablePage|Drawer|Modal,0.6,step5
+上传下载,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,1.0,step5
+导入,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,1.0,step5
+导出,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,1.0,step5
+模板,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,1.0,step5
+批量导入,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,1.0,step5
+上传下载模块,module-upload-download-basic,module,business_module,TablePage|CreatePage|SettingsPage,0.6,step5
+上传,module-upload-file-basic,module,business_module,CreatePage|EditPage|DetailPage,1.0,step5
+附件,module-upload-file-basic,module,business_module,CreatePage|EditPage|DetailPage,1.0,step5
+文件上传,module-upload-file-basic,module,business_module,CreatePage|EditPage|DetailPage,1.0,step5
+拖拽上传,module-upload-file-basic,module,business_module,CreatePage|EditPage|DetailPage,1.0,step5
+上传文件模块,module-upload-file-basic,module,business_module,CreatePage|EditPage|DetailPage,0.6,step5
+审批模式,module-approval-flow-mode-selector,module,business_module,SettingsPage|ApprovalPage|CreatePage,1.0,step5
+逐级审批,module-approval-flow-mode-selector,module,business_module,SettingsPage|ApprovalPage|CreatePage,1.0,step5
+指定审批人,module-approval-flow-mode-selector,module,business_module,SettingsPage|ApprovalPage|CreatePage,1.0,step5
+条件分支,module-approval-flow-mode-selector,module,business_module,SettingsPage|ApprovalPage|CreatePage,1.0,step5
+审批模式选择模块,module-approval-flow-mode-selector,module,business_module,SettingsPage|ApprovalPage|CreatePage,0.6,step5
+筛选项配置,module-filter-config-panel,module,business_module,SettingsPage|Drawer|Modal,1.0,step5
+高级筛选,module-filter-config-panel,module,business_module,SettingsPage|Drawer|Modal,1.0,step5
+默认筛选,module-filter-config-panel,module,business_module,SettingsPage|Drawer|Modal,1.0,step5
+字段配置,module-filter-config-panel,module,business_module,SettingsPage|Drawer|Modal,1.0,step5
+筛选项配置模块,module-filter-config-panel,module,business_module,SettingsPage|Drawer|Modal,0.6,step5
+描述列表,module-descriptions-basic,module,display_module,DetailPage|Drawer,1.0,step5
+详情字段,module-descriptions-basic,module,display_module,DetailPage|Drawer,1.0,step5
+只读信息,module-descriptions-basic,module,display_module,DetailPage|Drawer,1.0,step5
+基础信息,module-descriptions-basic,module,display_module,DetailPage|Drawer,1.0,step5
+描述列表模块,module-descriptions-basic,module,display_module,DetailPage|Drawer,0.6,step5
+拖拽,module-drag-sort-list,module,business_module,SettingsPage|Modal|Drawer,1.0,step5
+排序,module-drag-sort-list,module,business_module,SettingsPage|Modal|Drawer,1.0,step5
+字段排序,module-drag-sort-list,module,business_module,SettingsPage|Modal|Drawer,1.0,step5
+节点排序,module-drag-sort-list,module,business_module,SettingsPage|Modal|Drawer,1.0,step5
+拖拽排序模块,module-drag-sort-list,module,business_module,SettingsPage|Modal|Drawer,0.6,step5
+关联表,module-related-table-basic,module,business_module,DetailPage|ApprovalPage,1.0,step5
+关联数据,module-related-table-basic,module,business_module,DetailPage|ApprovalPage,1.0,step5
+关联单据,module-related-table-basic,module,business_module,DetailPage|ApprovalPage,1.0,step5
+明细表,module-related-table-basic,module,business_module,DetailPage|ApprovalPage,1.0,step5
+关联表模块,module-related-table-basic,module,business_module,DetailPage|ApprovalPage,0.6,step5
+智能助手,module-formula-editor-with-assistant,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+公式模板,module-formula-editor-with-assistant,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+模板推荐,module-formula-editor-with-assistant,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+自然语言公式,module-formula-editor-with-assistant,module,business_module,SettingsPage|CreatePage|EditPage,1.0,step5
+智能公式助手模块,module-formula-editor-with-assistant,module,business_module,SettingsPage|CreatePage|EditPage,0.6,step5
+表头筛选,module-table-header-filter-dropdown,module,display_module,TablePage,1.0,step5
+列筛选,module-table-header-filter-dropdown,module,display_module,TablePage,1.0,step5
+表格筛选,module-table-header-filter-dropdown,module,display_module,TablePage,1.0,step5
+表头筛选模块,module-table-header-filter-dropdown,module,display_module,TablePage,0.6,step5
+文件预览,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+预览,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+附件,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+PDF,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+图片,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+Excel,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,1.0,step5
+文件预览模块,module-file-preview-basic,module,display_module,DetailPage|Drawer|Modal,0.6,step5
+图片裁剪,module-image-crop-panel,module,business_module,Modal|Drawer|CreatePage|EditPage,1.0,step5
+头像,module-image-crop-panel,module,business_module,Modal|Drawer|CreatePage|EditPage,1.0,step5
+图片处理,module-image-crop-panel,module,business_module,Modal|Drawer|CreatePage|EditPage,1.0,step5
+裁切,module-image-crop-panel,module,business_module,Modal|Drawer|CreatePage|EditPage,1.0,step5
+图片裁剪模块,module-image-crop-panel,module,business_module,Modal|Drawer|CreatePage|EditPage,0.6,step5
+操作记录,module-operation-log-basic,module,business_module,DetailPage|ApprovalPage|Drawer,1.0,step5
+流转记录,module-operation-log-basic,module,business_module,DetailPage|ApprovalPage|Drawer,1.0,step5
+日志,module-operation-log-basic,module,business_module,DetailPage|ApprovalPage|Drawer,1.0,step5
+历史记录,module-operation-log-basic,module,business_module,DetailPage|ApprovalPage|Drawer,1.0,step5
+操作记录模块,module-operation-log-basic,module,business_module,DetailPage|ApprovalPage|Drawer,0.6,step5
+树,module-tree-basic,module,display_module,SettingsPage|TablePage|Drawer,1.0,step5
+树形控件,module-tree-basic,module,display_module,SettingsPage|TablePage|Drawer,1.0,step5
+组织树,module-tree-basic,module,display_module,SettingsPage|TablePage|Drawer,1.0,step5
+目录树,module-tree-basic,module,display_module,SettingsPage|TablePage|Drawer,1.0,step5
+树形结构模块,module-tree-basic,module,display_module,SettingsPage|TablePage|Drawer,0.6,step5
+折叠面板,module-collapse-basic,module,display_module,DetailPage|SettingsPage|CreatePage,1.0,step5
+收起,module-collapse-basic,module,display_module,DetailPage|SettingsPage|CreatePage,1.0,step5
+展开,module-collapse-basic,module,display_module,DetailPage|SettingsPage|CreatePage,1.0,step5
+分组信息,module-collapse-basic,module,display_module,DetailPage|SettingsPage|CreatePage,1.0,step5
+折叠面板模块,module-collapse-basic,module,display_module,DetailPage|SettingsPage|CreatePage,0.6,step5
+全屏,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
+沉浸,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
+大屏,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
+全屏编辑,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,1.0,step5
+全屏工作区模块,module-fullscreen-entry,module,business_module,TablePage|SettingsPage|ReportPage,0.6,step5
+失败,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
+错误,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
+操作失败,FB_MESSAGE_ERROR,feedback,message,All,1.0,step6
+FB_MESSAGE_ERROR,FB_MESSAGE_ERROR,feedback,message,All,0.6,step6
+成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
+保存成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
+提交成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
+删除成功,FB_MESSAGE_SUCCESS,feedback,message,All,1.0,step6
+FB_MESSAGE_SUCCESS,FB_MESSAGE_SUCCESS,feedback,message,All,0.6,step6
+通知,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
+提醒,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
+异步完成,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
+后台任务,FB_NOTIFICATION_BASIC,feedback,notification,All,1.0,step6
+FB_NOTIFICATION_BASIC,FB_NOTIFICATION_BASIC,feedback,notification,All,0.6,step6
+提示,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
+警告,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
+说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
+状态说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
+限制说明,FB_ALERT_BASIC,feedback,alert,All,1.0,step6
+FB_ALERT_BASIC,FB_ALERT_BASIC,feedback,alert,All,0.6,step6
+风险提示,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
+配置影响,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
+注意,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
+警告,FB_ALERT_WARNING,feedback,alert,All,1.0,step6
+FB_ALERT_WARNING,FB_ALERT_WARNING,feedback,alert,All,0.6,step6
+加载中,ST_LOADING_SPIN,state,loading,All,1.0,step6
+等待,ST_LOADING_SPIN,state,loading,All,1.0,step6
+处理中,ST_LOADING_SPIN,state,loading,All,1.0,step6
+ST_LOADING_SPIN,ST_LOADING_SPIN,state,loading,All,0.6,step6
+空状态,ST_EMPTY_BASIC,state,empty,TablePage | DetailPage | FormPage | SettingsPage,1.0,step6
+暂无数据,ST_EMPTY_BASIC,state,empty,TablePage | DetailPage | FormPage | SettingsPage,1.0,step6
+没有结果,ST_EMPTY_BASIC,state,empty,TablePage | DetailPage | FormPage | SettingsPage,1.0,step6
+ST_EMPTY_BASIC,ST_EMPTY_BASIC,state,empty,TablePage | DetailPage | FormPage | SettingsPage,0.6,step6
+骨架屏,ST_LOADING_SKELETON,state,loading,TablePage | DetailPage | FormPage,1.0,step6
+加载占位,ST_LOADING_SKELETON,state,loading,TablePage | DetailPage | FormPage,1.0,step6
+首屏加载,ST_LOADING_SKELETON,state,loading,TablePage | DetailPage | FormPage,1.0,step6
+ST_LOADING_SKELETON,ST_LOADING_SKELETON,state,loading,TablePage | DetailPage | FormPage,0.6,step6
+进度,ST_PROGRESS_BASIC,state,progress,All,1.0,step6
+上传进度,ST_PROGRESS_BASIC,state,progress,All,1.0,step6
+处理进度,ST_PROGRESS_BASIC,state,progress,All,1.0,step6
+任务进度,ST_PROGRESS_BASIC,state,progress,All,1.0,step6
+ST_PROGRESS_BASIC,ST_PROGRESS_BASIC,state,progress,All,0.6,step6
+失败结果,ST_RESULT_ERROR,state,result,ResultPage | FullPage | Overlay,1.0,step6
+提交失败,ST_RESULT_ERROR,state,result,ResultPage | FullPage | Overlay,1.0,step6
+错误页,ST_RESULT_ERROR,state,result,ResultPage | FullPage | Overlay,1.0,step6
+ST_RESULT_ERROR,ST_RESULT_ERROR,state,result,ResultPage | FullPage | Overlay,0.6,step6
+成功结果,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,1.0,step6
+提交成功,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,1.0,step6
+完成,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,1.0,step6
+ST_RESULT_SUCCESS,ST_RESULT_SUCCESS,state,result,ResultPage | FullPage | Overlay,0.6,step6
+气泡确认,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
+轻量确认,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
+行内删除,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,1.0,step6
+OV_POPCONFIRM_BASIC,OV_POPCONFIRM_BASIC,overlay,popconfirm,All,0.6,step6
+抽屉,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
+右侧详情,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
+复杂配置,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
+保留上下文,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,1.0,step6
+OV_DRAWER_BASIC,OV_DRAWER_BASIC,overlay,drawer,Page Overlay | Full Page,0.6,step6
+确认,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,1.0,step6
+删除,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,1.0,step6
+撤销,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,1.0,step6
+作废,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,1.0,step6
+高风险,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,1.0,step6
+OV_MODAL_CONFIRM,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page,0.6,step6
+弹窗,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
+短流程,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
+编辑,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
+新增,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
+信息补充,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
+OV_MODAL_FUNCTIONAL,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,0.6,step6
+内容区 body 局部操作 保存 配置 操作面板,combo-body-action-panel,component_combo,component_combo,All,1.0,step7
+内容区局部操作面板,combo-body-action-panel,component_combo,component_combo,All,0.6,step7
+底部 footer 提交 保存 取消 表单操作,combo-footer-actions,component_combo,component_combo,CreatePage | EditPage | SettingsPage,1.0,step7
+页面底部提交按钮组,combo-footer-actions,component_combo,component_combo,CreatePage | EditPage | SettingsPage,0.6,step7
+头部操作 header action 主操作 新建 导出 返回,combo-header-actions,component_combo,component_combo,All,1.0,step7
+页面头部操作按钮组,combo-header-actions,component_combo,component_combo,All,0.6,step7
+开关 switch 启用 禁用 设置项,combo-switch-setting,component_combo,component_combo,SettingsPage,1.0,step7
+开关设置项,combo-switch-setting,component_combo,component_combo,SettingsPage,0.6,step7
+工具栏 toolbar 批量操作 新建 列设置 刷新,combo-toolbar-actions,component_combo,component_combo,TablePage,1.0,step7
+表格工具栏操作按钮组,combo-toolbar-actions,component_combo,component_combo,TablePage,0.6,step7
+地区 层级 级联 多级,combo-cascader-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+Cascader 级联选择,combo-cascader-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+多选 checkbox 勾选 复选,combo-checkbox-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,1.0,step7
+多选项组合,combo-checkbox-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,0.6,step7
+日期 时间 开始时间 结束时间,combo-date-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+DatePicker 日期选择,combo-date-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+文本输入 关键字 搜索 名称 编号,combo-input-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+Input 输入框,combo-input-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+数字 金额 次数 数量 比例,combo-input-number-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+InputNumber 数字输入框,combo-input-number-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+单选 radio 二选一 选项,combo-radio-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,1.0,step7
+单选项组合,combo-radio-group,component_combo,component_combo,FormPage | Overlay | SettingsPage,0.6,step7
+选择 状态 类型 下拉 单选,combo-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+Select 选择器,combo-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+分栏目录 sidebar contents 左侧目录 锚点 分组,combo-sidebar-contents,component_combo,component_combo,SettingsPage | FormPage | DetailPage,1.0,step7
+分栏目录内容组合,combo-sidebar-contents,component_combo,component_combo,SettingsPage | FormPage | DetailPage,0.6,step7
+时间 时分 秒 时间点,combo-time-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+TimePicker 时间选择,combo-time-picker-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+组织 部门 树选择 层级,combo-tree-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,1.0,step7
+TreeSelect 树选择,combo-tree-select-field,component_combo,component_combo,FormPage | FilterBar | Overlay,0.6,step7
+上传 upload 附件 文件 拖拽,combo-upload-field,component_combo,component_combo,FormPage | DetailPage | Overlay,1.0,step7
+上传字段组合,combo-upload-field,component_combo,component_combo,FormPage | DetailPage | Overlay,0.6,step7
+徽标 badge 未读 数量 红点 待办,combo-badge,component_combo,display_component_combo,All,1.0,step7
+徽标提示组合,combo-badge,component_combo,display_component_combo,All,0.6,step7
+carousel 走马灯 轮播 公告 活动,combo-carousel,component_combo,display_component_combo,HomePage | DashboardPage,1.0,step7
+走马灯内容组合,combo-carousel,component_combo,display_component_combo,HomePage | DashboardPage,0.6,step7
+图片 image 缩略图 预览 列表,combo-image-list,component_combo,display_component_combo,DetailPage | FormPage | Overlay,1.0,step7
+图片缩略图组合,combo-image-list,component_combo,display_component_combo,DetailPage | FormPage | Overlay,0.6,step7
+popover 气泡卡片 轻量浮层 补充信息,combo-popover-card,component_combo,display_component_combo,All,1.0,step7
+气泡卡片组合,combo-popover-card,component_combo,display_component_combo,All,0.6,step7
+分段 segmented 切换 视图 状态筛选,combo-segmented,component_combo,display_component_combo,TablePage | DashboardPage,1.0,step7
+分段控制器组合,combo-segmented,component_combo,display_component_combo,TablePage | DashboardPage,0.6,step7
+标签 tag 状态 结果 标识,combo-tag-status,component_combo,display_component_combo,All,1.0,step7
+状态标签组合,combo-tag-status,component_combo,display_component_combo,All,0.6,step7
+tooltip 文字提示 说明 解释,combo-tooltip,component_combo,display_component_combo,All,1.0,step7
+文字提示组合,combo-tooltip,component_combo,display_component_combo,All,0.6,step7
+tour 引导 新手引导 功能介绍,combo-tour-card,component_combo,display_component_combo,All,1.0,step7
+漫游引导卡片,combo-tour-card,component_combo,display_component_combo,All,0.6,step7

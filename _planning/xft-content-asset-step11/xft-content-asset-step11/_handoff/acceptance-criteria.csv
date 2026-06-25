@@ -1,0 +1,7 @@
+area,criteria,required
+directory,assets/content-assets 六类目录存在,yes
+data,content-assets.csv 等统一数据存在,yes
+script,search_content_assets.py 可运行,yes
+skill,SKILL.md 包含 CONTENT_ASSET_DECISION,yes
+test,三条检索测试通过,yes
+safety,不改 tokens.css，不改 shell 结构,yes

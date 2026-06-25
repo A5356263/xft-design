@@ -1,0 +1,163 @@
+{
+  "skill_dir": "E:\\AI设计\\xft-design\\.claude\\skills\\xft-design",
+  "status": "pass",
+  "checks": {
+    "required_dirs": [
+      {
+        "path": "assets/content-assets/regions",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      },
+      {
+        "path": "assets/content-assets/modules",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      },
+      {
+        "path": "assets/content-assets/feedback",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      },
+      {
+        "path": "assets/content-assets/states",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      },
+      {
+        "path": "assets/content-assets/overlays",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      },
+      {
+        "path": "assets/content-assets/component-combos",
+        "exists": true,
+        "is_dir": true,
+        "is_file": false
+      }
+    ],
+    "required_data": [
+      {
+        "path": "data/content-assets/content-assets.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      },
+      {
+        "path": "data/content-assets/asset-keywords.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      },
+      {
+        "path": "data/content-assets/asset-rules.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      },
+      {
+        "path": "data/content-assets/recipe-rules.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      },
+      {
+        "path": "data/content-assets/recipe-asset-map.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      },
+      {
+        "path": "data/content-assets/page-type-router.csv",
+        "exists": true,
+        "is_dir": false,
+        "is_file": true
+      }
+    ],
+    "skill_markers": {
+      "ROUTE_DECISION": true,
+      "CONTENT_ASSET_DECISION": true,
+      "content asset": true
+    }
+  },
+  "test_results": [
+    {
+      "case_id": "TC001",
+      "case_name": "员工花名册列表页",
+      "ok": true,
+      "page_type": "TablePage",
+      "recipe_id": "recipe.table.basic",
+      "read_order_count": 13,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC002",
+      "case_name": "审批详情页",
+      "ok": true,
+      "page_type": "DetailPage",
+      "recipe_id": "recipe.workflow.detail",
+      "read_order_count": 13,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC003",
+      "case_name": "新建申请表单页",
+      "ok": true,
+      "page_type": "CreatePage",
+      "recipe_id": "recipe.form.basic.horizontal",
+      "read_order_count": 9,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC004",
+      "case_name": "参数设置页",
+      "ok": true,
+      "page_type": "SettingsPage",
+      "recipe_id": "recipe.settings.basic",
+      "read_order_count": 11,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC005",
+      "case_name": "公式编辑器配置页",
+      "ok": true,
+      "page_type": "SettingsPage",
+      "recipe_id": "recipe.settings.basic",
+      "read_order_count": 11,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC006",
+      "case_name": "异步处理结果页",
+      "ok": true,
+      "page_type": "ResultPage",
+      "recipe_id": "recipe.result.fail",
+      "read_order_count": 2,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC007",
+      "case_name": "空列表状态",
+      "ok": true,
+      "page_type": "TablePage",
+      "recipe_id": "recipe.table.basic",
+      "read_order_count": 13,
+      "missing_read_order_paths": []
+    },
+    {
+      "case_id": "TC008",
+      "case_name": "弹窗编辑",
+      "ok": true,
+      "page_type": "CreatePage",
+      "recipe_id": "recipe.form.basic.horizontal",
+      "read_order_count": 9,
+      "missing_read_order_paths": []
+    }
+  ],
+  "blocking_issues": [],
+  "non_blocking_issues": []
+}

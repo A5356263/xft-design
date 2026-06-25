@@ -1,0 +1,9 @@
+case_id,case_name,user_query,expected_page_type,expected_assets,expected_modules,expected_output_notes
+TC001,员工花名册列表页,"生成员工花名册列表页，支持按组织、岗位、状态筛选，支持批量导出和查看详情",TablePage,"page-header,filter-bar,table-toolbar,table-region,pagination","detail-drawer,batch-action","必须命中列表页配方，包含筛选、表格、分页和批量操作"
+TC002,审批详情页,"生成审批详情页，包含基础信息、审批流、附件、操作记录和当前状态",DetailPage,"page-header,detail-summary,detail-info","approval-flow,attachment-list,operation-log","必须命中详情页配方，审批流为模块资产而不是自由写"
+TC003,新建申请表单页,"生成新建申请表单页，包含基础信息、业务信息、上传附件和底部提交操作",CreatePage,"page-header,form-section,form-footer","attachment-upload","必须命中表单页配方，底部操作固定"
+TC004,参数设置页,"生成系统参数设置页，左侧为设置分组，右侧为配置项，包含启用状态和配置操作",SettingsPage,"settings-layout,settings-anchor,settings-section","setting-item","必须命中设置页配方，设置项右侧固定状态/操作"
+TC005,公式编辑器配置页,"生成公式编辑器配置页，包含公式编辑区、字段选择、智能公式助手和预览结果",SettingsPage,"settings-layout,form-section","formula-editor,formula-assistant","必须命中公式编辑模块，不允许自由拼编辑器"
+TC006,异步处理结果页,"生成批量导入异步处理页面，包含上传入口、处理进度、结果反馈和失败明细",ResultPage,"result-region,progress-state","upload-download,async-process","必须命中进度/结果/上传下载模块"
+TC007,空列表状态,"生成一个没有数据的成员列表页，保留筛选和表格结构，表格区域展示空状态",TablePage,"filter-bar,table-region,empty-state","","必须在表格区域使用空状态资产"
+TC008,弹窗编辑,"生成成员编辑弹窗，包含基础字段、手机号、角色选择和确认取消操作",None,"modal-overlay,form-section,footer-actions","","只生成弹窗，不扩写成完整页面"

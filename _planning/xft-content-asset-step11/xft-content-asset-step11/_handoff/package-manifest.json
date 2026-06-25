@@ -1,0 +1,16 @@
+{
+  "step": 11,
+  "name": "Codex execution document",
+  "generated_files": [
+    "CODEX-XFT-CONTENT-ASSET-REFACTOR.md",
+    "README.md",
+    "references/file-placement-map.md",
+    "references/execution-risk-notes.md",
+    "prompts/agent-execution-prompt.md",
+    "_handoff/expected-planning-packages.csv",
+    "_handoff/integration-task-list.csv",
+    "_handoff/acceptance-criteria.csv",
+    "checklists/final-acceptance-checklist.md"
+  ],
+  "next_action_for_user": "download and place under _planning/xft-content-asset-step11, then give primary document to Codex agent for execution"
+}

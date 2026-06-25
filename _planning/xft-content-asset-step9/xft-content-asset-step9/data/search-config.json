@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "default_page_type": "TablePage",
+  "default_recipe_by_page_type": {
+    "TablePage": "recipe.table.basic",
+    "CreatePage": "recipe.form.basic.vertical",
+    "EditPage": "recipe.edit.basic",
+    "DetailPage": "recipe.detail.basic.vertical",
+    "SettingsPage": "recipe.settings.basic",
+    "HomePage": "recipe.home.business",
+    "ReportPage": "recipe.table.report",
+    "ResultPage": "recipe.result.success",
+    "ExceptionPage": "recipe.exception.basic",
+    "ComponentState": "recipe.state.basic",
+    "PageOverlay": "recipe.overlay.basic"
+  },
+  "decision_output": "CONTENT_ASSET_DECISION",
+  "hard_rules": [
+    "必须先输出 CONTENT_ASSET_DECISION，再读取资产 HTML。",
+    "必选资产由 recipe-asset-map 决定，不能省略。",
+    "可选资产必须由关键词、规则或用户明确需求命中。",
+    "未命中资产时标记 unsupported，不能现场发明布局。",
+    "生成 HTML 时只能复制命中的资产片段并填充插槽。"
+  ]
+}

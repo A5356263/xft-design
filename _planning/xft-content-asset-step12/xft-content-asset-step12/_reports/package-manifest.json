@@ -1,0 +1,19 @@
+{
+  "step": 12,
+  "name": "Post-execution validation and gap-filling package",
+  "purpose": "Validate the xft-design content asset integration after Codex executes Step 11, then record gaps for targeted fixes.",
+  "generated_files": [
+    "scripts/verify_xft_content_asset_integration.py",
+    "scripts/run_step12_validation.sh",
+    "data/validation-test-cases.csv",
+    "references/step12-validation-and-gap-fill.md",
+    "references/issue-classification.md",
+    "checklists/post-execution-acceptance.md",
+    "prompts/agent-validation-prompt.md",
+    "prompts/agent-gap-fix-prompt.md",
+    "examples/manual-generation-prompts.md",
+    "_reports/gap-backlog-template.csv",
+    "_reports/validation-report-template.md"
+  ],
+  "next_action_for_user": "Use after Codex has executed Step 11. Place under _planning/xft-content-asset-step12 and ask Agent to run validation."
+}

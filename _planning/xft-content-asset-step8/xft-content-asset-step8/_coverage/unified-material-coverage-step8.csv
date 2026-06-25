@@ -1,0 +1,92 @@
+﻿material_id,material_name,material_category,source_path,mapped_asset_or_recipe_ids,coverage_status,next_action
+M001,分步表单,典型页面,场景/典型页面 2/提单/分步表单.png,region.form-section.multi-section|region.step-indicator.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M002,基础表单-上下布局,典型页面,场景/典型页面 2/提单/基础表单-上下布局.png,region.form-footer-actions.sticky|region.form-section.basic|region.form-section.multi-section,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M003,基础表单-左右表单,典型页面,场景/典型页面 2/提单/基础表单-左右表单.png,region.form-footer-actions.sticky|region.form-section.basic|region.form-section.multi-section,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M004,卡片表格,典型页面,场景/典型页面 2/表格页/卡片表格.png,region.card-grid.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M005,可编辑表格页,典型页面,场景/典型页面 2/表格页/可编辑表格页.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M006,基础表格,典型页面,场景/典型页面 2/表格页/基础表格.png,region.data-table.basic|region.data-table.with-selection-summary|region.filter-bar.advanced-expand|region.filter-bar.basic|region.filter-bar.compact-inline|region.page-header.basic|region.page-header.with-actions|region.pagination.basic|region.table-toolbar.basic|region.table-toolbar.with-column-settings,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M007,多栏表格,典型页面,场景/典型页面 2/表格页/多栏表格.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M008,报表,典型页面,场景/典型页面 2/表格页/报表.png,region.dashboard-grid.basic|region.metric-grid.basic|region.report-summary-bar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M009,汇总信息,典型页面,场景/典型页面 2/表格页/汇总信息.png,region.metric-grid.basic|region.report-summary-bar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M010,父子,典型页面,场景/典型页面 2/表格页/父子.png,region.split-layout.master-detail,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M011,编辑页,典型页面,场景/典型页面 2/详情/编辑页.png,region.form-section.multi-section|region.page-header.with-back,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M012,详情页-上下布局,典型页面,场景/典型页面 2/详情/详情页-上下布局.png,module-related-table-basic|region.detail-info-section.basic|region.detail-summary.basic|region.page-header.basic|region.page-header.with-back,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M013,详情页-基础样式-左右布局,典型页面,场景/典型页面 2/详情/详情页-基础样式-左右布局.png,region.detail-info-section.basic|region.detail-side-layout.basic|region.detail-summary.basic|region.split-layout.master-detail,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M014,详情页-表格样式-左右布局,典型页面,场景/典型页面 2/详情/详情页-表格样式-左右布局.png,region.detail-side-layout.basic|region.detail-summary.basic|region.split-layout.master-detail,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M015,设置页 (1),典型页面,场景/典型页面 2/配置页面/设置页 (1).png,module-operation-log-basic|module-related-table-basic|region.anchor.basic|region.page-header.basic|region.setting-section.basic|region.settings-layout.anchor,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M016,业务首页,典型页面,场景/典型页面 2/首页/业务首页.png,region.dashboard-grid.basic|region.metric-grid.basic|region.page-header.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M017,首页,典型页面,场景/典型页面 2/首页/首页.png,region.dashboard-grid.basic|region.metric-grid.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M018,Alert 警告提示,反馈,场景/反馈/Alert 警告提示.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M019,Message 全局提示,反馈,场景/反馈/Message 全局提示.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M020,Popconfirm 气泡确认框,反馈,场景/反馈/Popconfirm 气泡确认框.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M021,Progress 进度条,反馈,场景/反馈/Progress 进度条.png,module-async-processing-status-panel,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M022,Skeleton 骨架屏,反馈,场景/反馈/Skeleton 骨架屏.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M023,Spin 加载中,反馈,场景/反馈/Spin 加载中.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M024,功能类对话框 Modal,反馈,场景/反馈/功能类对话框 Modal.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M025,抽屉 Drawer,反馈,场景/反馈/抽屉 Drawer.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M026,确认类对话框 Modal,反馈,场景/反馈/确认类对话框 Modal.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M027,结果 Result,反馈,场景/反馈/结果 Result.png,region.result.exception|region.result.success,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M028,通知提醒框 Notification,反馈,场景/反馈/通知提醒框 Notification.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M029,上传下载,复杂场景,场景/场景/上传下载.png,module-upload-download-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M030,上传文件,复杂场景,场景/场景/上传文件.png,module-upload-file-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M031,全屏,复杂场景,场景/场景/全屏.png,module-fullscreen-entry,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M032,1、功能区域,复杂场景/公式编辑器,场景/场景/公式编辑器/1、功能区域.png,module-formula-editor-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M033,2、公式编辑区域+说明引导,复杂场景/公式编辑器,场景/场景/公式编辑器/2、公式编辑区域+说明引导.png,module-formula-editor-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M034,3、智能小助手+模板,复杂场景/公式编辑器,场景/场景/公式编辑器/3、智能小助手+模板.png,module-formula-editor-with-assistant,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M035,公式编辑器设计模式,复杂场景/公式编辑器,场景/场景/公式编辑器/公式编辑器设计模式.png,module-formula-editor-basic|module-formula-editor-with-assistant,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M036,图片裁剪,复杂场景,场景/场景/图片裁剪.png,module-image-crop-panel,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M037,审批流与审批模式 (1),复杂场景,场景/场景/审批流与审批模式 (1).png,module-approval-flow-basic|module-approval-flow-mode-selector,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M038,审批流与审批模式,复杂场景,场景/场景/审批流与审批模式.png,module-approval-flow-basic|module-approval-flow-mode-selector,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M039,异步处理,复杂场景,场景/场景/异步处理.png,module-async-processing-status-panel,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M040,拖拽排序,复杂场景,场景/场景/拖拽排序.png,module-drag-sort-list,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M041,筛选项配置,复杂场景,场景/场景/筛选项配置.png,module-filter-config-panel|region.filter-bar.advanced-expand|region.filter-bar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M042,表头设置,复杂场景,场景/场景/表头设置.png,module-table-header-settings-panel|region.table-toolbar.with-column-settings,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M043,审批流,复杂场景,场景/审批流.png,module-approval-flow-basic|module-operation-log-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M044,web端-多页签,导航,场景/导航/web端-多页签.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M045,下拉菜单 Dropdown,导航,场景/导航/下拉菜单 Dropdown.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M046,侧边导航,导航,场景/导航/侧边导航.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M047,分页 Pagination,导航,场景/导航/分页 Pagination.png,region.pagination.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M048,标签页 Tabs,导航,场景/导航/标签页 Tabs.png,region.tabs.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M049,步骤条 Steps,导航,场景/导航/步骤条 Steps.png,region.step-indicator.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M050,胶囊选项卡 CapsuleTabs ,导航,场景/导航/胶囊选项卡 CapsuleTabs .png,region.tabs.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M051,返回按钮 ReturnButton ,导航,场景/导航/返回按钮 ReturnButton .png,region.page-header.with-back,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M052,锚点 Anchor,导航,场景/导航/锚点 Anchor.png,region.anchor.basic|region.detail-side-layout.basic|region.settings-layout.anchor,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M053,顶部导航 AppNav,导航,场景/导航/顶部导航 AppNav.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M054,Body 内容区按钮位置,按钮规则,场景/按钮规则/Body 内容区按钮位置.png,combo-body-action-panel|region.page-header.with-actions|region.setting-section.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M055,Button 按钮,按钮规则,场景/按钮规则/Button 按钮.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M056,Footer 页面底部区按钮位置,按钮规则,场景/按钮规则/Footer 页面底部区按钮位置.png,combo-footer-actions|region.form-footer-actions.sticky,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M057,Header页面头部区域按钮位置,按钮规则,场景/按钮规则/Header页面头部区域按钮位置.png,combo-header-actions|region.page-header.basic|region.page-header.with-actions|region.page-header.with-back,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M058,Toolbar 操作工具区按钮位置,按钮规则,场景/按钮规则/Toolbar 操作工具区按钮位置.png,combo-toolbar-actions|region.data-table.with-selection-summary|region.filter-bar.advanced-expand|region.filter-bar.basic|region.filter-bar.compact-inline|region.table-toolbar.basic|region.table-toolbar.with-column-settings,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M059,勾选和开关按钮的使用规则,按钮规则,场景/按钮规则/勾选和开关按钮的使用规则.png,combo-switch-setting,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M060,按钮使用原则,按钮规则,场景/按钮规则/按钮使用原则.png,region.form-footer-actions.sticky|region.page-header.with-actions|region.setting-section.basic|region.table-toolbar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M061,禁用态探索,按钮规则,场景/按钮规则/禁用态探索.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M062,禁用按钮使用规则,按钮规则,场景/按钮规则/禁用按钮使用规则.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M063,链接按钮使用规则,按钮规则,场景/按钮规则/链接按钮使用规则.png,region.table-toolbar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M064,Input 输入框,数据录入,场景/数据 录入/Input 输入框.png,combo-input-field|region.filter-bar.advanced-expand|region.filter-bar.basic|region.filter-bar.compact-inline|region.form-section.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M065,InputNumber 数字输入框,数据录入,场景/数据 录入/InputNumber 数字输入框.png,combo-input-number-field,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M066,Radio 单选框,数据录入,场景/数据 录入/Radio 单选框.png,combo-radio-group,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M067,Select 选择器,数据录入,场景/数据 录入/Select 选择器.png,combo-select-field|region.filter-bar.advanced-expand|region.filter-bar.basic|region.filter-bar.compact-inline|region.form-section.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M068,Sidebar Contents 分栏目录,数据录入,场景/数据 录入/Sidebar Contents 分栏目录.png,combo-sidebar-contents|region.anchor.basic|region.settings-layout.anchor,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M069,上传 Upload,数据录入,场景/数据 录入/上传 Upload.png,combo-upload-field|module-upload-file-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M070,多选 Checkbox (1),数据录入,场景/数据 录入/多选 Checkbox (1).png,combo-checkbox-group,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M071,开关 Switch,数据录入,场景/数据 录入/开关 Switch.png,combo-switch-setting|region.setting-section.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M072,日期时间选择器 DatePicker,数据录入,场景/数据 录入/日期时间选择器 DatePicker.png,combo-date-picker-field|region.filter-bar.advanced-expand|region.filter-bar.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M073,日期时间选择器 TimePicker,数据录入,场景/数据 录入/日期时间选择器 TimePicker.png,combo-time-picker-field,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M074,树选择 TreeSelect,数据录入,场景/数据 录入/树选择 TreeSelect.png,combo-tree-select-field|module-tree-basic|region.filter-bar.advanced-expand,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M075,级联选择 Cascader (1),数据录入,场景/数据 录入/级联选择 Cascader (1).png,combo-cascader-field|region.filter-bar.advanced-expand,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M076,表单 Form,数据录入,场景/数据 录入/表单 Form.png,region.form-section.basic|region.form-section.multi-section,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M077,Badge 徽标,数据展示,场景/数据展示/Badge 徽标.png,combo-badge,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M078,Empty 空状态,数据展示,场景/数据展示/Empty 空状态.png,,listed_not_yet_mapped_in_step8,后续步骤复核；未映射不等于遗漏，可能属于规则/壳子/非内容区资产
+M079,FilePreview 文件预览,数据展示,场景/数据展示/FilePreview 文件预览.png,module-file-preview-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M080,Image 图片,数据展示,场景/数据展示/Image 图片.png,combo-image-list|region.card-grid.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M081,Segmented 分段控制器,数据展示,场景/数据展示/Segmented 分段控制器.png,combo-segmented|region.tabs.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M082,Tag 标签,数据展示,场景/数据展示/Tag 标签.png,combo-tag-status|region.card-grid.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M083,Tour 漫游式引导,数据展示,场景/数据展示/Tour 漫游式引导.png,combo-tour-card,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M084,Tree 树形控件,数据展示,场景/数据展示/Tree 树形控件.png,module-tree-basic|region.split-layout.master-detail,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M085,折叠面板 Collapse,数据展示,场景/数据展示/折叠面板 Collapse.png,module-collapse-basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M086,描述列表 Descriptions,数据展示,场景/数据展示/描述列表 Descriptions.png,module-descriptions-basic|region.detail-info-section.basic|region.detail-side-layout.basic|region.detail-summary.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M087,文字提示 Tooltip,数据展示,场景/数据展示/文字提示 Tooltip.png,combo-tooltip,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M088,气泡卡片  Popover,数据展示,场景/数据展示/气泡卡片  Popover.png,combo-popover-card,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M089,表格 Table,数据展示,场景/数据展示/表格 Table.png,module-related-table-basic|region.data-table.basic|region.data-table.with-selection-summary|region.table-toolbar.with-column-settings,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M090,表格-表头筛选,数据展示,场景/数据展示/表格-表头筛选.png,module-table-header-filter-dropdown|module-table-header-settings-panel|region.data-table.basic|region.data-table.with-selection-summary|region.table-toolbar.with-column-settings,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据
+M091,走马灯 Carousel,数据展示,场景/数据展示/走马灯 Carousel.png,combo-carousel|region.card-grid.basic,mapped_to_asset_or_recipe,已进入统一检索或页面配方数据

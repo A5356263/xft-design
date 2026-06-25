@@ -1,0 +1,11 @@
+rule_id,behavior,reason,severity
+D001,跳过 ROUTE_DECISION,无法保证页面路由正确,blocker
+D002,跳过 CONTENT_ASSET_DECISION,会回到 AI 自由拼页面,blocker
+D003,读取 examples/archive,会继承旧示例结构,blocker
+D004,自造 class,会破坏设计系统一致性,high
+D005,新增大段页面级 CSS,会绕开资产系统,high
+D006,把 overlay 写入内容区,覆盖层层级错误,high
+D007,未命中资产却现场手写复杂模块,资产体系失效,blocker
+D008,一次性读取全量 assets,会导致模型混乱,high
+D009,修改 shell 结构,壳子稳定性被破坏,high
+D010,无校验即声称完成,交付不可控,blocker

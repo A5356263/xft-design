@@ -159,8 +159,8 @@
 ### 输出检查
 
 - [ ] 是否输出完整单文件 HTML？
-- [ ] 输出文件是否位于 `examples/` 根目录，且符合 `{slug}-{YYYY-MM-DD}-v<N>.html` 命名格式？
-- [ ] 是否没有输出到 `examples/archive/` 或 skill 包外部？
+- [ ] 输出文件是否位于 `output/` 根目录，且符合 `{slug}-{YYYY-MM-DD}-v<N>.html` 命名格式？
+- [ ] 是否没有输出到 `output/archive/` 或其他非约定目录？
 - [ ] `XFT_ROUTE` 是否紧跟 `<!DOCTYPE html>` 之后？
 - [ ] 第一个 `<style>` 是否确实为 `tokens.css` 原文？
 - [ ] style 块顺序是否为：tokens.css → shell 原 style → 组件 CSS（来自 components.html） → 页面级新增 CSS？
@@ -168,8 +168,8 @@
 
 ### 示例复制检查
 
-- [ ] 是否没有复制 `examples/` 中的业务字段、页面标题、示例数据、品牌信息和业务流程？
-- [ ] 是否没有读取或引用 `examples/archive/` 下的任何文件？archive 目录仅供人工历史对比，不得作为生成依据。
+- [ ] 是否没有复制 `output/` 中的业务字段、页面标题、示例数据、品牌信息和业务流程？
+- [ ] 是否没有读取或引用 `output/archive/` 下的任何文件？archive 目录仅供人工历史对比，不得作为生成依据。
 
 ## 复审闭环
 

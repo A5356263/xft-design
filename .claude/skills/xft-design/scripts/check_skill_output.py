@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+import json
 import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, List
+
+
+BUNDLED_SKILL_ROOT = Path(__file__).resolve().parents[1]
 
 
 OLD_TOKEN_VARS = [
@@ -49,6 +53,8 @@ FULL_PAGE_MARKERS = [
     'class="micro-wrapper"',
     'class="page-content-container"',
 ]
+
+BANNED_CLASS_PREFIXES = ("custom", "new", "random")
 
 
 class OverlayRootParser(HTMLParser):
@@ -116,20 +122,31 @@ def strip_route(html: str) -> str:
     return re.sub(r"<!--\s*XFT_ROUTE.*?-->", "", html, flags=re.S)
 
 
+def extract_content_asset_decision(html: str) -> Dict[str, object]:
+    match = re.search(r"<!--\s*CONTENT_ASSET_DECISION(?P<body>.*?)-->", html, flags=re.S)
+    if not match:
+        return {}
+    body = match.group("body").strip()
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        return {"_invalid_json": body}
+
+
 def main() -> int:
     args = sys.argv[1:]
     check_style_rgba = "--check-style-rgba" in args
     positional = [a for a in args if not a.startswith("--")]
 
     if len(positional) != 1:
-        print("Usage: python3 scripts/check_skill_output.py examples/<page-type>-<date>-v<N>.html [--check-style-rgba]")
+        print("Usage: python3 scripts/check_skill_output.py output/<page-type>-<date>-v<N>.html [--check-style-rgba]")
         return 1
 
     html_path = Path(positional[0])
     if not html_path.exists():
         print("FAIL: check_skill_output")
         print(f"- [P0] file not found: {html_path}")
-        print("- [P0] expected final artifact path: examples/<slug>-<date>-v<N>.html")
+        print("- [P0] expected final artifact path: output/<slug>-<date>-v<N>.html")
         return 1
 
     if not html_path.is_file():
@@ -140,18 +157,23 @@ def main() -> int:
     html = html_path.read_text(encoding="utf-8")
     route = extract_route(html)
     html_without_route = strip_route(html)
+    decision = extract_content_asset_decision(html)
 
     errors: List[str] = []
     warnings: List[str] = []
 
     if not route:
         errors.append("[P0] missing XFT_ROUTE")
+    if not decision:
+        errors.append("[P0] missing CONTENT_ASSET_DECISION")
+    elif "_invalid_json" in decision:
+        errors.append("[P0] CONTENT_ASSET_DECISION is not valid JSON")
 
     normalized_path = html_path.as_posix()
-    if "examples/archive/" in normalized_path:
-        errors.append("[P0] output must not be written to examples/archive/")
-    elif not re.search(r"(?:^|/)examples/[a-z0-9-]+-\d{4}-\d{2}-\d{2}-v\d+\.html$", normalized_path):
-        errors.append("[P0] output filename must match examples/{slug}-{YYYY-MM-DD}-v{N}.html")
+    if "output/archive/" in normalized_path:
+        errors.append("[P0] output must not be written to output/archive/")
+    elif not re.search(r"(?:^|/)output/[a-z0-9-]+-\d{4}-\d{2}-\d{2}-v\d+\.html$", normalized_path):
+        errors.append("[P0] output filename must match output/{slug}-{YYYY-MM-DD}-v{N}.html")
 
     route_at_top = re.search(
         r"^\s*<!DOCTYPE html>\s*<!--\s*XFT_ROUTE.*?-->\s*<html\b",
@@ -169,6 +191,9 @@ def main() -> int:
 
     if re.search(r"<!--\s*(PAGE_CONTENT_SLOT|CONTENT_SLOT|OVERLAY_SLOT)\s*-->", html_without_route):
         errors.append("[P0] unresolved shell slot comment remains")
+
+    if "PAGE_CONTENT_SLOT" in html_without_route or "CONTENT_SLOT" in html_without_route:
+        errors.append("[P0] unresolved content slot marker remains")
 
     for text in PLACEHOLDER_TEXTS:
         if text in html_without_route:
@@ -206,6 +231,10 @@ def main() -> int:
             if re.search(pattern, block):
                 errors.append(f"[P0] legacy token variable found: {token_var}")
 
+    for prefix in BANNED_CLASS_PREFIXES:
+        if re.search(rf'class=["\'][^"\']*\b{re.escape(prefix)}[-_a-zA-Z0-9]*', html):
+            errors.append(f"[P0] banned class prefix found: {prefix}")
+
     scope = route.get("scope")
     overlay_type = route.get("overlay_type")
     route_has_overlay = bool(overlay_type and overlay_type != "None")
@@ -228,6 +257,23 @@ def main() -> int:
         elif not overlay_parser.has_data_overlay:
             errors.append("[P0] overlay is not mounted inside overlay-root (data-overlay attribute not found)")
 
+    if decision and "_invalid_json" not in decision:
+        root = BUNDLED_SKILL_ROOT
+        support_css = decision.get("support_css", [])
+        if isinstance(support_css, list):
+            for css_path in support_css:
+                if isinstance(css_path, str) and not (root / css_path).exists():
+                    errors.append(f"[P0] support_css path not found: {css_path}")
+
+        read_order = decision.get("read_order", [])
+        if isinstance(read_order, list):
+            for item in read_order:
+                if not isinstance(item, dict):
+                    continue
+                html_ref = item.get("html_path")
+                if isinstance(html_ref, str) and html_ref and not (root / html_ref).exists():
+                    errors.append(f"[P0] read_order html_path not found: {html_ref}")
+
     if errors:
         print("FAIL: check_skill_output")
         for item in errors:
@@ -248,3 +294,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+BUNDLED_SKILL_ROOT = Path(__file__).resolve().parents[1]
