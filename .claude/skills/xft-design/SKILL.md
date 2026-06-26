@@ -40,8 +40,10 @@ od:
 ```text
 Requirement Structuring
 → ROUTE_DECISION
+→ FIELD_SCHEMA_DEFINITION (when form-region is needed)
 → Run search_content_assets.py
 → CONTENT_ASSET_DECISION
+→ FIELD_ASSET_RENDER (when schema is provided)
 → Run search_icons.py
 → ICON_DECISION
 → Conditional Reads
@@ -103,6 +105,81 @@ output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 - 登录、注册、找回密码：`LoginPage`
 - 明确无导航页面：`BlankPage`
 
+## Field Schema Definition
+
+当 `page_type` 为 `CreatePage` 或 `EditPage` 且命中 `region.form-section` 资产时，必须先构造 Field Schema JSON。
+
+Schema 是表单生成的唯一输入源，不得直接编写 HTML 字段结构。
+
+### Schema 结构
+
+```json
+{
+  "pageType": "CreatePage",
+  "region": "form-region",
+  "mode": "basic | horizontal | multi",
+  "sections": [
+    {
+      "title": "基础信息",
+      "description": "录入主体字段并完成提交前校验。",
+      "fields": [
+        {
+          "type": "field.text",
+          "label": "姓名",
+          "required": true,
+          "span": 1,
+          "props": { "placeholder": "请输入姓名" }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    { "type": "button.primary", "label": "提交" },
+    { "type": "button.secondary", "label": "取消" }
+  ]
+}
+```
+
+### Field 类型库
+
+Field 类型必须来自 `data/content-assets/field-type-registry.csv`：
+
+| field_type | combo_asset_id | 用途 |
+|------------|---------------|------|
+| field.text | combo-input-field | 单行文本输入 |
+| field.select | combo-select-field | 下拉选择 |
+| field.multiSelect | combo-checkbox-group | 多选 |
+| field.textarea | combo-textarea-field | 多行文本 |
+| field.date | combo-date-picker-field | 日期选择 |
+| field.switch | combo-switch-setting | 开关设置 |
+
+### Field 标准结构
+
+每个 field 必须包含：
+- `type`: field 类型标识
+- `label`: 展示名称
+- `required`: 是否必填
+- `span`: 1 或 2（占列数）
+- `props`: 控件属性（placeholder, options, help, description, checked 等）
+
+### Field 渲染规则
+
+- Field 不控制布局，布局由 Region + Mode 控制。
+- Field 只描述语义和类型，不包含 HTML 结构。
+- Field 渲染由 `scripts/field_renderer.py` 负责：
+  1. 查询 field-type-registry.csv 获得 combo_asset_id 和 combo HTML 路径
+  2. 读取 combo HTML 片段
+  3. 个性化：替换 label、placeholder、help，标记 required
+  4. 包装为标准 form-field wrapper：`<div class="form-field span-{n}">...</div>`
+  5. 注入 form-region 模板的 `<!-- FIELD_SLOT -->`
+
+### 禁止行为
+
+- 不得在 form-region 中硬编码 `<div class="form-field">` 字段 HTML
+- 不得绕过 field-type-registry.csv 直接编写表单控件
+- 不得使用 field-type-registry.csv 未注册的 field type
+- 不得直接选择 HTML 模板文件作为表单内容
+
 ## Content Asset Decision
 
 `ROUTE_DECISION` 后，必须运行或读取 `scripts/search_content_assets.py` 的结果，并输出 `CONTENT_ASSET_DECISION`。
@@ -145,8 +222,9 @@ output: output/{slug}-{YYYY-MM-DD}-v<N>.html
 7. 当前 shell
 8. `CONTENT_ASSET_DECISION.support_css` 里列出的 support CSS
 9. `CONTENT_ASSET_DECISION.read_order` 里列出的 HTML 资产
-10. 如页面需要 icon，先读取 `data/icons.csv`，再按 `ICON_DECISION` 读取 `assets/icons/`
-11. 必要时读取校验脚本和清单
+10. 如页面需要 form-region 且有 Field Schema，先读取 `data/content-assets/field-type-registry.csv`，再按 field type 读取对应 combo HTML
+11. 如页面需要 icon，先读取 `data/icons.csv`，再按 `ICON_DECISION` 读取 `assets/icons/`
+12. 必要时读取校验脚本和清单
 
 禁止读取：
 

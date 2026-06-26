@@ -20,11 +20,6 @@
 状态,region.filter-bar.basic,region,region,TablePage,1.0,step4
 列表筛选,region.filter-bar.basic,region,region,TablePage,1.0,step4
 基础筛选区,region.filter-bar.basic,region,region,TablePage,0.6,step4
-提交,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
-取消,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
-底部按钮,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
-footer,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,1.0,step4
-表单底部操作区,region.form-footer-actions.sticky,region,region,CreatePage|EditPage,0.6,step4
 表单,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
 基础信息,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
 字段,region.form-section.basic,region,region,CreatePage|EditPage,1.0,step4
@@ -303,10 +298,10 @@ OV_MODAL_CONFIRM,OV_MODAL_CONFIRM,overlay,confirm-modal,Page Overlay | Full Page
 新增,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
 信息补充,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,1.0,step6
 OV_MODAL_FUNCTIONAL,OV_MODAL_FUNCTIONAL,overlay,modal,Page Overlay | Full Page,0.6,step6
-摘要,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
-填写说明,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
-生效范围,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
-提交校验,region.form-summary-card.basic,region,form_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+摘要,region.summary-region.basic,region,readonly_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+填写说明,region.summary-region.basic,region,readonly_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+生效范围,region.summary-region.basic,region,readonly_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
+提交校验,region.summary-region.basic,region,readonly_region,CreatePage|EditPage|SettingsPage,1.0,recipe-gap
 动态字段,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
 动态明细,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap
 批量录入,module-dynamic-form-list-basic,module,business_module,CreatePage|EditPage|Modal,1.0,recipe-gap

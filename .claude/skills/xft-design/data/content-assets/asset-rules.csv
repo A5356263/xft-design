@@ -31,15 +31,14 @@ validation.region.data-table.basic,asset_validation,region.data-table.basic,Tabl
 validation.region.detail-info-section.basic,asset_validation,region.detail-info-section.basic,DetailPage,详情信息区 校验规则,字段按双列展示;只读字段不用表单控件,,"基础信息,描述列表,详情字段",100,100,M012;M013;M086,step4,data/region-assets.csv
 validation.region.detail-summary.basic,asset_validation,region.detail-summary.basic,DetailPage,详情摘要区 校验规则,摘要项 3-4 个优先;状态必须可扫读,,"摘要,状态,负责人,编号,关键字段",100,100,M012;M013;M014;M086,step4,data/region-assets.csv
 validation.region.filter-bar.basic,asset_validation,region.filter-bar.basic,TablePage,基础筛选区 校验规则,必须包含查询和重置;操作区在右侧或末尾,,"查询,筛选,搜索,状态,列表筛选",100,100,M006;M041;M058;M064;M067;M072,step4,data/region-assets.csv
-validation.region.form-footer-actions.sticky,asset_validation,region.form-footer-actions.sticky,CreatePage|EditPage,表单底部操作区 校验规则,主按钮在右;取消在左;底部固定不遮挡内容,,"提交,取消,底部按钮,footer",100,100,M056;M060;M002;M003,step4,data/region-assets.csv
-validation.region.form-section.basic,asset_validation,region.form-section.basic,CreatePage|EditPage,基础表单区域 校验规则,字段按双列栅格;长文本单独使用 textarea,,"表单,基础信息,字段,录入",100,100,M002;M003;M076;M064;M067,step4,data/region-assets.csv
+validation.region.form-section.basic,asset_validation,region.form-section.basic,CreatePage|EditPage,统一表单区域 校验规则,data-mode=basic 时字段按双列栅格;ActionZone 必须并入 Form 内部,,"表单,基础信息,字段,录入",100,100,M002;M003;M076;M064;M067,step4,data/region-assets.csv
 validation.region.page-header.basic,asset_validation,region.page-header.basic,All,基础页面头部 校验规则,必须位于内容区最上方;不得放入卡片内部,,"页面标题,页面说明,头部,header",100,100,M006;M012;M015;M016;M057,step4,data/region-assets.csv
 validation.region.pagination.basic,asset_validation,region.pagination.basic,TablePage|CardListPage,分页区 校验规则,分页在列表下方;不得放到表格上方,,"分页,上一页,下一页,总数",100,100,M047;M006,step4,data/region-assets.csv
 validation.region.setting-section.basic,asset_validation,region.setting-section.basic,SettingsPage,设置分组区域 校验规则,设置项左文案右状态/操作;不要改成表格,,"设置项,开关,配置,状态",100,100,M015;M054;M060;M071,step4,data/region-assets.csv
 validation.layout.settings-anchor.basic,asset_validation,layout.settings-anchor.basic,SettingsPage,设置页锚点布局 校验规则,左侧只做导航;右侧承载配置项,,"设置页,锚点,分组导航,配置",100,100,M015;M052;M068,semantic-refactor,data/manual
 validation.region.table-toolbar.basic,asset_validation,region.table-toolbar.basic,TablePage,基础表格工具栏 校验规则,工具栏与筛选区分离;新建为主按钮,,"表格工具栏,新建,导出,列表标题,toolbar",100,100,M006;M058;M060;M063,step4,data/region-assets.csv
 validation.region.page-header.with-actions,asset_validation,region.page-header.with-actions,TablePage|DetailPage|SettingsPage|HomePage,带操作页面头部 校验规则,主按钮最多 1 个;次要操作在主操作左侧,,"主操作,新建,导出,头部操作,header action",98,98,M006;M054;M057;M060,step4,data/region-assets.csv
-validation.region.form-section.multi-section,asset_validation,region.form-section.multi-section,CreatePage|EditPage,多分组表单区域 校验规则,分组间用标题和分隔;不要连续堆卡片,,"高级表单,分组表单,业务信息,多段表单",95,95,M001;M002;M003;M011;M076,step4,data/region-assets.csv
+validation.region.form-section.multi-section,asset_validation,region.form-section.multi-section,CreatePage|EditPage,统一表单多分组模式 校验规则,data-mode=multi 时必须展示至少两个分组;ActionZone 仍保留在 Form 内部,,"高级表单,分组表单,业务信息,多段表单",95,95,M001;M002;M003;M011;M076,step4,data/region-assets.csv
 validation.region.page-header.with-back,asset_validation,region.page-header.with-back,DetailPage|EditPage|CreatePage,带返回页面头部 校验规则,返回入口在标题上方;提交操作右侧固定,,"返回,详情,编辑,提交,取消",95,95,M011;M012;M051;M057,step4,data/region-assets.csv
 validation.region.metric-grid.basic,asset_validation,region.metric-grid.basic,HomePage|ReportPage,指标卡片区 校验规则,指标数量 3-4 个优先;不要堆过多视觉装饰,,"首页,指标,概览,汇总,数据看板",92,92,M016;M017;M008;M009,step4,data/region-assets.csv
 validation.region.table-toolbar.with-column-settings,asset_validation,region.table-toolbar.with-column-settings,TablePage,带列设置工具栏 校验规则,列设置为次要操作;新建仍为主操作,,"列设置,表头设置,批量操作,表格工具栏",92,92,M006;M042;M058;M089;M090,step4,data/region-assets.csv
@@ -116,8 +115,8 @@ validation.combo-segmented,asset_validation,combo-segmented,TablePage | Dashboar
 validation.combo-tag-status,asset_validation,combo-tag-status,All,状态标签组合 校验规则,状态色必须有语义；不要把标签当按钮,,标签 tag 状态 结果 标识,P2,60,M082,step7,data/component-combo-assets.csv
 validation.combo-tooltip,asset_validation,combo-tooltip,All,文字提示组合 校验规则,只放短文本；不可承载关键操作,,tooltip 文字提示 说明 解释,P2,60,M087,step7,data/component-combo-assets.csv
 validation.combo-tour-card,asset_validation,combo-tour-card,All,漫游引导卡片 校验规则,必须有跳过路径；每步只说明一个目标,,tour 引导 新手引导 功能介绍,P2,60,M083,step7,data/component-combo-assets.csv
-composition.form-summary-card,asset_composition,region.form-summary-card.basic,CreatePage | EditPage | SettingsPage,表单摘要卡 组合规则,用于表单顶部说明、生效范围和提交前提示，适合高级表单和复杂设置页,,摘要 说明 生效范围 提交校验,P1,88,recipe-gap,data/manual
-validation.form-summary-card,asset_validation,region.form-summary-card.basic,CreatePage | EditPage | SettingsPage,表单摘要卡 校验规则,必须包含至少两类信息：范围/角色/校验；不得只放一句空泛说明,,摘要 说明 生效范围 校验,P1,88,recipe-gap,data/manual
+composition.summary-region,asset_composition,region.summary-region.basic,CreatePage | EditPage | SettingsPage,摘要说明区域 组合规则,用于表单顶部说明、生效范围和提交前提示，属于只读摘要区而非 Form 本体,,摘要 说明 生效范围 提交校验,P1,88,recipe-gap,data/manual
+validation.summary-region,asset_validation,region.summary-region.basic,CreatePage | EditPage | SettingsPage,摘要说明区域 校验规则,必须包含至少两类信息：范围/角色/校验；不得只放一句空泛说明,,摘要 说明 生效范围 校验,P1,88,recipe-gap,data/manual
 composition.dynamic-form-list,asset_composition,module-dynamic-form-list-basic,CreatePage | EditPage | Modal,动态表单明细模块 组合规则,用于可重复条目录入，支持新增、删除和行内编辑,,动态字段 动态明细 批量录入 增减行,P1,90,recipe-gap,data/manual
 validation.dynamic-form-list,asset_validation,module-dynamic-form-list-basic,CreatePage | EditPage | Modal,动态表单明细模块 校验规则,必须包含新增入口和行级删除动作；至少保留一行示例数据,,动态字段 动态明细 增减行 明细录入,P1,90,recipe-gap,data/manual
 composition.tab-panel-basic,asset_composition,module-tab-panel-basic,DetailPage | SettingsPage,基础标签面板 组合规则,用于标签页中的概览内容区，承载核心字段和当前状态,,标签面板 tab 概览 基础信息,P1,86,recipe-gap,data/manual
@@ -130,8 +129,8 @@ composition.tab-panel-table,asset_composition,module-tab-panel-table,DetailPage 
 validation.tab-panel-table,asset_validation,module-tab-panel-table,DetailPage | TablePage,表格标签面板 校验规则,必须包含表头和至少一行数据；表格标题要明确,,表格标签 关联表 明细表,P1,88,recipe-gap,data/manual
 composition.editable-table,asset_composition,region.editable-table.basic,TablePage | EditPage,可编辑表格区 组合规则,用于表格内直接录入和修改字段，适合轻量明细编辑和行级保存场景,,可编辑表格 编辑表格 行内编辑 表格录入,P1,92,semantic-refactor,data/manual
 validation.editable-table,asset_validation,region.editable-table.basic,TablePage | EditPage,可编辑表格区 校验规则,必须包含可编辑控件和行级保存/删除动作；不得退化成纯只读表格,,可编辑表格 编辑表格 行内编辑 保存表格,P1,92,semantic-refactor,data/manual
-composition.horizontal-form,asset_composition,region.form-section.horizontal,CreatePage | EditPage,左右对齐表单区域 组合规则,用于字段数量适中且强调标签对齐和信息扫描效率的录入页面,,横向表单 左右表单 标签对齐 基础录入,P1,91,semantic-refactor,data/manual
-validation.horizontal-form,asset_validation,region.form-section.horizontal,CreatePage | EditPage,左右对齐表单区域 校验规则,必须保持稳定标签列宽和控件对齐；不得退化成多分组卡片堆叠,,横向表单 左右表单 标签对齐 编辑资料,P1,91,semantic-refactor,data/manual
+composition.horizontal-form,asset_composition,region.form-section.horizontal,CreatePage | EditPage,统一表单横向模式 组合规则,用于字段数量适中且强调标签对齐和信息扫描效率的录入页面,,横向表单 左右表单 标签对齐 基础录入,P1,91,semantic-refactor,data/manual
+validation.horizontal-form,asset_validation,region.form-section.horizontal,CreatePage | EditPage,统一表单横向模式 校验规则,data-mode=horizontal 时必须保持稳定标签列宽和控件对齐；不得退化成多分组卡片堆叠,,横向表单 左右表单 标签对齐 编辑资料,P1,91,semantic-refactor,data/manual
 composition.config-editor-panel,asset_composition,module.config-editor-panel,SettingsPage | EditPage | Drawer,配置编辑器面板 组合规则,用于集中编辑复杂配置，同时承载预览、影响说明或保存操作,,配置编辑 配置面板 规则配置 字段配置,P1,90,semantic-refactor,data/manual
 validation.config-editor-panel,asset_validation,module.config-editor-panel,SettingsPage | EditPage | Drawer,配置编辑器面板 校验规则,必须包含编辑区和预览或说明区；保存动作明确且不与普通设置项混淆,,配置编辑 配置面板 预览保存 字段配置,P1,90,semantic-refactor,data/manual
 composition.home-task-panel,asset_composition,region.home-task-panel.basic,HomePage | BusinessHomePage,首页待办面板 组合规则,用于首页承载待处理任务和快速处理入口，优先呈现最近需要关注的事项,,待办 任务 待处理 首页任务,P1,89,semantic-refactor,data/manual

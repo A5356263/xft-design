@@ -208,12 +208,19 @@ def expand_settings_sections(base_html: str) -> str:
     return "\n".join(sections)
 
 
-def read_asset_html(asset: Dict[str, Any], query: str, route: Dict[str, Any]) -> str:
+def read_asset_html(asset: Dict[str, Any], query: str, route: Dict[str, Any], schema: Dict[str, Any] | None = None) -> str:
     html_path = asset.get("html_path", "")
     if not html_path:
         return ""
-    html = read_text(ROOT / html_path)
     asset_id = str(asset.get("asset_id", ""))
+
+    # Schema-driven form rendering: delegate to field_renderer when schema is provided
+    if schema is not None and asset_id.startswith("region.form-section"):
+        from field_renderer import render_form_region
+
+        return render_form_region(schema, base_html_path=ROOT / html_path)
+
+    html = read_text(ROOT / html_path)
     html = personalize_asset_html(asset_id, html, query, route)
     if asset_id == "region.setting-section.basic" and str(route.get("page_type", "")) == "SettingsPage":
         return expand_settings_sections(html)
@@ -233,7 +240,7 @@ def default_render_assets(decision: Dict[str, Any]) -> Tuple[List[Dict[str, Any]
     return page_assets, overlay_assets
 
 
-def compose_page_content(page_assets: List[Dict[str, Any]], query: str, route: Dict[str, Any]) -> str:
+def compose_page_content(page_assets: List[Dict[str, Any]], query: str, route: Dict[str, Any], schema: Dict[str, Any] | None = None) -> str:
     if not page_assets:
         return '<div class="page-card"><div class="card-body"></div></div>'
 
@@ -243,15 +250,15 @@ def compose_page_content(page_assets: List[Dict[str, Any]], query: str, route: D
         None,
     )
     if first_layout_index is None:
-        return "\n".join(read_asset_html(asset, query, route) for asset in ordered)
+        return "\n".join(read_asset_html(asset, query, route, schema) for asset in ordered)
 
     before_layout = ordered[:first_layout_index]
     layout_asset = ordered[first_layout_index]
     after_layout = ordered[first_layout_index + 1 :]
 
-    before_html = "\n".join(read_asset_html(asset, query, route) for asset in before_layout if asset.get("html_path"))
-    layout_html = read_asset_html(layout_asset, query, route)
-    inner_html = "\n".join(read_asset_html(asset, query, route) for asset in after_layout if asset.get("html_path"))
+    before_html = "\n".join(read_asset_html(asset, query, route, schema) for asset in before_layout if asset.get("html_path"))
+    layout_html = read_asset_html(layout_asset, query, route, schema)
+    inner_html = "\n".join(read_asset_html(asset, query, route, schema) for asset in after_layout if asset.get("html_path"))
     slot_name = LAYOUT_SLOTS.get(str(layout_asset.get("asset_id", "")))
     if slot_name:
         layout_html = layout_html.replace(f"<!-- {slot_name} -->", inner_html)
@@ -261,11 +268,11 @@ def compose_page_content(page_assets: List[Dict[str, Any]], query: str, route: D
     return "\n".join(part for part in [before_html, layout_html] if part.strip())
 
 
-def compose_overlay_content(overlay_assets: List[Dict[str, Any]], query: str, route: Dict[str, Any]) -> str:
-    return "\n".join(read_asset_html(asset, query, route) for asset in overlay_assets if asset.get("html_path"))
+def compose_overlay_content(overlay_assets: List[Dict[str, Any]], query: str, route: Dict[str, Any], schema: Dict[str, Any] | None = None) -> str:
+    return "\n".join(read_asset_html(asset, query, route, schema) for asset in overlay_assets if asset.get("html_path"))
 
 
-def assemble_html(query: str) -> Tuple[str, Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
+def assemble_html(query: str, schema: Dict[str, Any] | None = None) -> Tuple[str, Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     content_module = load_module("search_content_assets", SCRIPTS_DIR / "search_content_assets.py")
     icon_module = load_module("search_icons", SCRIPTS_DIR / "search_icons.py")
 
@@ -293,8 +300,8 @@ def assemble_html(query: str) -> Tuple[str, Dict[str, Any], Dict[str, Any], Dict
     shell_html = inject_head_styles(shell_html, [tokens_css, components_css, *support_css_blocks])
 
     page_assets, overlay_assets = default_render_assets(content_decision)
-    page_content_html = compose_page_content(page_assets, query, route)
-    overlay_html = compose_overlay_content(overlay_assets, query, route)
+    page_content_html = compose_page_content(page_assets, query, route, schema)
+    overlay_html = compose_overlay_content(overlay_assets, query, route, schema)
 
     shell_html = shell_html.replace("<!-- PAGE_CONTENT_SLOT -->", page_content_html, 1)
     shell_html = shell_html.replace("<!-- OVERLAY_SLOT -->", overlay_html, 1)
@@ -323,9 +330,15 @@ def main() -> None:
     parser.add_argument("query", help="页面需求")
     parser.add_argument("--output", help="输出 HTML 路径")
     parser.add_argument("--slug", help="输出 slug")
+    parser.add_argument("--schema", help="Path to schema JSON file for data-driven form generation")
     args = parser.parse_args()
 
-    html, route, content_decision, icon_decision = assemble_html(args.query)
+    schema: Dict[str, Any] | None = None
+    if args.schema:
+        with open(args.schema, encoding="utf-8") as f:
+            schema = json.load(f)
+
+    html, route, content_decision, icon_decision = assemble_html(args.query, schema)
     slug = args.slug or slugify(args.query)
     output_path = Path(args.output) if args.output else DEFAULT_OUTPUT_DIR / f"{slug}-{date.today().isoformat()}-v1.html"
     write_output(html, output_path)
@@ -336,6 +349,7 @@ def main() -> None:
                 "route": route,
                 "recipe_id": content_decision.get("recipe_id", ""),
                 "icon_count": len(icon_decision.get("icons", [])),
+                "schema_used": args.schema is not None,
             },
             ensure_ascii=False,
             indent=2,

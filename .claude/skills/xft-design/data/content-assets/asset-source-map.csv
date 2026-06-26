@@ -10,9 +10,8 @@ region.table-toolbar.with-column-settings,step4,data/region-assets.csv,assets/re
 region.data-table.basic,step4,data/region-assets.csv,assets/regions/table-region/basic.html,assets/regions/table-region/basic.html,assets/regions/_region-support.css,M006;M089;M090
 region.data-table.with-selection-summary,step4,data/region-assets.csv,assets/regions/table-region/with-selection-summary.html,assets/regions/table-region/with-selection-summary.html,assets/regions/_region-support.css,M006;M058;M089;M090
 region.pagination.basic,step4,data/region-assets.csv,assets/regions/pagination/basic.html,assets/regions/pagination/basic.html,assets/regions/_region-support.css,M047;M006
-region.form-section.basic,step4,data/region-assets.csv,assets/regions/form-region/basic-section.html,assets/regions/form-region/basic-section.html,assets/regions/_region-support.css,M002;M003;M076;M064;M067
-region.form-section.multi-section,step4,data/region-assets.csv,assets/regions/form-region/multi-section.html,assets/regions/form-region/multi-section.html,assets/regions/_region-support.css,M001;M002;M003;M011;M076
-region.form-footer-actions.sticky,step4,data/region-assets.csv,assets/regions/form-region/footer-actions.html,assets/regions/form-region/footer-actions.html,assets/regions/_region-support.css,M056;M060;M002;M003
+region.form-section.basic,step4,data/region-assets.csv,assets/regions/form-region/base.html,assets/regions/form-region/base.html,assets/regions/_region-support.css,M002;M003;M076;M064;M067
+region.form-section.multi-section,step4,data/region-assets.csv,assets/regions/form-region/base.html,assets/regions/form-region/base.html,assets/regions/_region-support.css,M001;M002;M003;M011;M076
 region.step-indicator.basic,step4,data/region-assets.csv,assets/regions/navigation-region/step-indicator.html,assets/regions/navigation-region/step-indicator.html,assets/regions/_region-support.css,M001;M049
 region.detail-summary.basic,step4,data/region-assets.csv,assets/regions/detail-region/summary-card.html,assets/regions/detail-region/summary-card.html,assets/regions/_region-support.css,M012;M013;M014;M086
 region.detail-info-section.basic,step4,data/region-assets.csv,assets/regions/detail-region/info-section.html,assets/regions/detail-region/info-section.html,assets/regions/_region-support.css,M012;M013;M086
@@ -66,6 +65,8 @@ combo-header-actions,step7,data/component-combo-assets.csv,assets/component-comb
 combo-toolbar-actions,step7,data/component-combo-assets.csv,assets/component-combos/button-placement/toolbar-actions.html,assets/component-combos/button-placement/toolbar-actions.html,assets/component-combos/_component-combo-support.css,M058
 combo-body-action-panel,step7,data/component-combo-assets.csv,assets/component-combos/button-placement/body-action-panel.html,assets/component-combos/button-placement/body-action-panel.html,assets/component-combos/_component-combo-support.css,M054
 combo-footer-actions,step7,data/component-combo-assets.csv,assets/component-combos/button-placement/footer-actions.html,assets/component-combos/button-placement/footer-actions.html,assets/component-combos/_component-combo-support.css,M056
+region.summary-region.basic,recipe-gap,data/manual,assets/regions/summary-region/basic.html,assets/regions/summary-region/basic.html,assets/regions/_region-support.css,
+region.form-section.horizontal,semantic-refactor,data/manual,assets/regions/form-region/base.html,assets/regions/form-region/base.html,assets/regions/_region-support.css,
 combo-input-field,step7,data/component-combo-assets.csv,assets/component-combos/form-controls/input.html,assets/component-combos/form-controls/input.html,assets/component-combos/_component-combo-support.css,M064
 combo-input-number-field,step7,data/component-combo-assets.csv,assets/component-combos/form-controls/input-number.html,assets/component-combos/form-controls/input-number.html,assets/component-combos/_component-combo-support.css,M065
 combo-select-field,step7,data/component-combo-assets.csv,assets/component-combos/form-controls/select.html,assets/component-combos/form-controls/select.html,assets/component-combos/_component-combo-support.css,M067

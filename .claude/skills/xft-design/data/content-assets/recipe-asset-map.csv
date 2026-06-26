@@ -25,7 +25,7 @@ recipe.table.card,4,分页区,region,region.pagination.basic,true,PAGE_CONTENT_S
 recipe.table.editable,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.table.editable,2,表格工具栏,region,region.table-toolbar.basic,true,PAGE_CONTENT_SLOT,
 recipe.table.editable,3,可编辑表格,region,region.editable-table.basic,true,PAGE_CONTENT_SLOT,
-recipe.table.editable,4,底部保存区,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,
+recipe.table.editable,4,统一表单动作区,region,region.form-section.basic,true,PAGE_CONTENT_SLOT,ActionZone 内聚到 form-region
 recipe.table.parent-child,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.table.parent-child,2,左右分栏,layout,layout.master-detail.basic,true,PAGE_CONTENT_SLOT,
 recipe.table.summary,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
@@ -38,14 +38,11 @@ recipe.table.report,3,汇总卡片,region,region.report-summary-bar.basic,false,
 recipe.table.report,4,报表表格,region,region.report-table.basic,true,PAGE_CONTENT_SLOT,
 recipe.form.basic.vertical,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.form.basic.vertical,2,表单卡片,region,region.form-section.basic,true,PAGE_CONTENT_SLOT,
-recipe.form.basic.vertical,3,底部操作,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,
 recipe.form.basic.horizontal,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.form.basic.horizontal,2,左右表单,region,region.form-section.horizontal,true,PAGE_CONTENT_SLOT,
-recipe.form.basic.horizontal,3,底部操作,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,
 recipe.form.step,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.form.step,2,步骤条,region,region.step-indicator.basic,true,PAGE_CONTENT_SLOT,
 recipe.form.step,3,步骤表单,region,region.form-section.basic,true,PAGE_CONTENT_SLOT,
-recipe.form.step,4,步骤操作,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,
 recipe.detail.basic.vertical,1,页面头部,region,region.page-header.with-actions,true,PAGE_CONTENT_SLOT,
 recipe.detail.basic.vertical,2,摘要区,region,region.detail-summary.basic,true,PAGE_CONTENT_SLOT,
 recipe.detail.basic.vertical,3,信息分组,region,region.detail-info-section.basic,true,PAGE_CONTENT_SLOT,
@@ -59,7 +56,6 @@ recipe.detail.table.horizontal,2,左右详情布局,layout,layout.detail-side.ba
 recipe.detail.table.horizontal,3,关联表,module,module-related-table-basic,true,PAGE_CONTENT_SLOT,
 recipe.detail.edit,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.detail.edit,2,编辑表单,region,region.form-section.basic,true,PAGE_CONTENT_SLOT,
-recipe.detail.edit,3,底部操作,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,
 recipe.settings.basic,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,
 recipe.settings.basic,2,设置页布局,layout,layout.settings-anchor.basic,true,PAGE_CONTENT_SLOT,
 recipe.settings.basic,3,设置项,region,region.setting-section.basic,true,PAGE_CONTENT_SLOT,
@@ -80,10 +76,9 @@ recipe.workflow.detail,4,信息分组,region,region.detail-info-section.basic,tr
 recipe.workflow.detail,5,附件预览,module,module-file-preview-basic,true,PAGE_CONTENT_SLOT,
 recipe.workflow.detail,6,操作记录,module,module-operation-log-basic,false,PAGE_CONTENT_SLOT,
 recipe.form.advanced,1,页面头部,region,region.page-header.basic,true,PAGE_CONTENT_SLOT,标题/说明/主操作
-recipe.form.advanced,2,填写说明,region,region.form-summary-card.basic,true,PAGE_CONTENT_SLOT,复杂录入前置说明
+recipe.form.advanced,2,填写说明,region,region.summary-region.basic,true,PAGE_CONTENT_SLOT,复杂录入前置说明
 recipe.form.advanced,3,多分组表单,region,region.form-section.multi-section,true,PAGE_CONTENT_SLOT,主体录入区
 recipe.form.advanced,4,动态明细,module,module-dynamic-form-list-basic,false,PAGE_CONTENT_SLOT,重复条目录入
-recipe.form.advanced,5,底部操作,region,region.form-footer-actions.sticky,true,PAGE_CONTENT_SLOT,提交/保存/取消
 recipe.detail.tabs,1,页面头部,region,region.page-header.with-actions,true,PAGE_CONTENT_SLOT,标题/返回/主操作
 recipe.detail.tabs,2,摘要区,region,region.detail-summary.basic,true,PAGE_CONTENT_SLOT,状态和关键字段
 recipe.detail.tabs,3,标签导航,layout,layout.tabs.basic,true,PAGE_CONTENT_SLOT,默认激活首个标签

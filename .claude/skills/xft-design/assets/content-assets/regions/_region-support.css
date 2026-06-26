@@ -137,6 +137,64 @@
 .table-selection-actions { display: inline-flex; gap: var(--spacing-2); }
 
 /* Form region */
+.form-region {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+.form-region-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+.form-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-4);
+}
+.section-description {
+  margin: 0;
+  color: var(--color-text-neutral-gray30);
+  font-size: var(--font-size-small);
+}
+.form-section-group {
+  border-bottom: 1px solid var(--color-divider-neutral);
+  padding-bottom: var(--spacing-5);
+}
+.form-section-group:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.form-region[data-mode="basic"] .form-section-optional,
+.form-region[data-mode="horizontal"] .form-section-optional {
+  display: none;
+}
+.form-region[data-mode="horizontal"] .form-grid {
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+.form-region[data-mode="horizontal"] .form-field {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: var(--spacing-3);
+  align-items: start;
+}
+.form-region[data-mode="horizontal"] .field-label {
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+.form-region[data-mode="horizontal"] .field-help {
+  grid-column: 2;
+}
+.form-field.span-1 { grid-column: span 1; }
+.form-field.span-2 { grid-column: span 2; }
+.form-region[data-mode="summary"] .form-action-zone {
+  display: none;
+}
+.form-action-zone {
+  margin-top: auto;
+}
 .form-footer-actions {
   display: flex;
   justify-content: flex-end;
@@ -167,6 +225,20 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
+}
+.summary-region {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+.summary-label {
+  color: var(--color-text-neutral-gray30);
+  font-size: var(--font-size-small);
+}
+.summary-meta {
+  margin: var(--spacing-1) 0 0;
+  color: var(--color-text-neutral-gray30);
+  font-size: var(--font-size-small);
 }
 
 /* Detail region */

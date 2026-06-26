@@ -25,6 +25,7 @@ DATA_DIR = ROOT / "data" / "content-assets"
 ASSET_ID_ALIASES = {
     "region.page-header.detail": "region.page-header.with-actions",
     "module.detail-summary.basic": "region.detail-summary.basic",
+    "region.form-summary-card.basic": "region.summary-region.basic",
     "module.approval-flow.basic": "module-approval-flow-basic",
     "region.detail-section-stack": "region.detail-info-section.basic",
     "module.operation-log.basic": "module-operation-log-basic",
