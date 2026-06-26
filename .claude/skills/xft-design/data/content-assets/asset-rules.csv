@@ -36,7 +36,7 @@ validation.region.form-section.basic,asset_validation,region.form-section.basic,
 validation.region.page-header.basic,asset_validation,region.page-header.basic,All,基础页面头部 校验规则,必须位于内容区最上方;不得放入卡片内部,,"页面标题,页面说明,头部,header",100,100,M006;M012;M015;M016;M057,step4,data/region-assets.csv
 validation.region.pagination.basic,asset_validation,region.pagination.basic,TablePage|CardListPage,分页区 校验规则,分页在列表下方;不得放到表格上方,,"分页,上一页,下一页,总数",100,100,M047;M006,step4,data/region-assets.csv
 validation.region.setting-section.basic,asset_validation,region.setting-section.basic,SettingsPage,设置分组区域 校验规则,设置项左文案右状态/操作;不要改成表格,,"设置项,开关,配置,状态",100,100,M015;M054;M060;M071,step4,data/region-assets.csv
-validation.region.settings-layout.anchor,asset_validation,region.settings-layout.anchor,SettingsPage,设置页锚点布局 校验规则,左侧只做导航;右侧承载配置项,,"设置页,锚点,分组导航,配置",100,100,M015;M052;M068,step4,data/region-assets.csv
+validation.layout.settings-anchor.basic,asset_validation,layout.settings-anchor.basic,SettingsPage,设置页锚点布局 校验规则,左侧只做导航;右侧承载配置项,,"设置页,锚点,分组导航,配置",100,100,M015;M052;M068,semantic-refactor,data/manual
 validation.region.table-toolbar.basic,asset_validation,region.table-toolbar.basic,TablePage,基础表格工具栏 校验规则,工具栏与筛选区分离;新建为主按钮,,"表格工具栏,新建,导出,列表标题,toolbar",100,100,M006;M058;M060;M063,step4,data/region-assets.csv
 validation.region.page-header.with-actions,asset_validation,region.page-header.with-actions,TablePage|DetailPage|SettingsPage|HomePage,带操作页面头部 校验规则,主按钮最多 1 个;次要操作在主操作左侧,,"主操作,新建,导出,头部操作,header action",98,98,M006;M054;M057;M060,step4,data/region-assets.csv
 validation.region.form-section.multi-section,asset_validation,region.form-section.multi-section,CreatePage|EditPage,多分组表单区域 校验规则,分组间用标题和分隔;不要连续堆卡片,,"高级表单,分组表单,业务信息,多段表单",95,95,M001;M002;M003;M011;M076,step4,data/region-assets.csv
@@ -48,12 +48,12 @@ validation.region.filter-bar.advanced-expand,asset_validation,region.filter-bar.
 validation.region.report-summary-bar.basic,asset_validation,region.report-summary-bar.basic,ReportPage|TablePage,报表汇总区 校验规则,汇总区在筛选区之后或表格前;数量不宜过多,,"报表,汇总,统计,总览",88,88,M008;M009,step4,data/region-assets.csv
 validation.region.step-indicator.basic,asset_validation,region.step-indicator.basic,CreatePage|EditPage,步骤条区域 校验规则,步骤条位于表单内容上方;当前步骤明确,,"分步表单,步骤,流程,提交",88,88,M001;M049,step4,data/region-assets.csv
 validation.region.dashboard-grid.basic,asset_validation,region.dashboard-grid.basic,HomePage,首页内容网格 校验规则,卡片区域有标题;图表和待办分区展示,,"工作台,趋势,待办,快捷入口,首页",86,86,M016;M017;M008,step4,data/region-assets.csv
-validation.region.detail-side-layout.basic,asset_validation,region.detail-side-layout.basic,DetailPage,详情左右布局区 校验规则,主内容在左;辅助导航/状态在右,,"左右布局,锚点,详情,侧栏",85,85,M013;M014;M052;M086,step4,data/region-assets.csv
-validation.region.tabs.basic,asset_validation,region.tabs.basic,DetailPage|TablePage|SettingsPage,标签页区域 校验规则,只做内容分组切换;不要承担流程步骤,,"tabs,标签页,状态切换,分组切换",84,84,M048;M050;M081,step4,data/region-assets.csv
+validation.layout.detail-side.basic,asset_validation,layout.detail-side.basic,DetailPage,详情左右布局区 校验规则,主内容在左;辅助导航/状态在右,,"左右布局,锚点,详情,侧栏",85,85,M013;M014;M052;M086,semantic-refactor,data/manual
+validation.layout.tabs.basic,asset_validation,layout.tabs.basic,DetailPage|TablePage|SettingsPage,标签页布局区 校验规则,只做内容分组切换;不要承担流程步骤,,"tabs,标签页,状态切换,分组切换",84,84,M048;M050;M081,semantic-refactor,data/manual
 validation.region.anchor.basic,asset_validation,region.anchor.basic,DetailPage|SettingsPage,页内锚点区域 校验规则,锚点不承载业务操作;只做定位,,"锚点,分栏目录,页内导航",82,82,M052;M068;M015,step4,data/region-assets.csv
 validation.region.card-grid.basic,asset_validation,region.card-grid.basic,TablePage|HomePage,卡片网格区 校验规则,卡片必须有主标题/说明/状态/操作,,"卡片表格,卡片列表,对象卡片",82,82,M004;M091;M080;M082,step4,data/region-assets.csv
 validation.region.filter-bar.compact-inline,asset_validation,region.filter-bar.compact-inline,TablePage,紧凑搜索筛选区 校验规则,不能伪装成高级筛选;不得超过 2 个字段,,"搜索,关键词,简单查询,单条件",80,80,M006;M058;M064;M067,step4,data/region-assets.csv
-validation.region.split-layout.master-detail,asset_validation,region.split-layout.master-detail,TablePage|DetailPage,主从分栏区域 校验规则,左侧为选择/导航;右侧为数据承载区,,"父子表格,主从结构,左树右表,分栏",80,80,M010;M013;M014;M084,step4,data/region-assets.csv
+validation.layout.master-detail.basic,asset_validation,layout.master-detail.basic,TablePage|DetailPage|SettingsPage,主从分栏区域 校验规则,左侧为选择/导航;右侧为数据承载区,,"父子表格,主从结构,左树右表,分栏",80,80,M010;M013;M014;M084,semantic-refactor,data/manual
 validation.region.result.exception,asset_validation,region.result.exception,ErrorPage,异常结果区 校验规则,必须给恢复路径,,"异常,403,404,500,错误页",75,75,M027,step4,data/region-assets.csv
 validation.region.result.success,asset_validation,region.result.success,ResultPage,成功结果区 校验规则,必须有结果状态、说明、下一步操作,,"成功,结果页,提交成功,下一步",75,75,M027,step4,data/region-assets.csv
 validation.module-approval-flow-basic,asset_validation,module-approval-flow-basic,DetailPage|ApprovalPage|CreatePage,审批流程模块 校验规则,必须包含节点状态、处理人、时间或待处理说明,,"审批,审批流,流程,流转,节点,处理人",100,100,M037|M038|M043,step5,data/module-assets.csv
@@ -128,3 +128,17 @@ composition.tab-panel-log,asset_composition,module-tab-panel-log,DetailPage | Ap
 validation.tab-panel-log,asset_validation,module-tab-panel-log,DetailPage | ApprovalPage,日志标签面板 校验规则,必须体现时间、操作者和动作；不要只有结果状态,,日志标签 操作记录 流转记录,P1,86,recipe-gap,data/manual
 composition.tab-panel-table,asset_composition,module-tab-panel-table,DetailPage | TablePage,表格标签面板 组合规则,用于标签页中的关联表或子表明细,,表格标签 关联表 明细表,P1,88,recipe-gap,data/manual
 validation.tab-panel-table,asset_validation,module-tab-panel-table,DetailPage | TablePage,表格标签面板 校验规则,必须包含表头和至少一行数据；表格标题要明确,,表格标签 关联表 明细表,P1,88,recipe-gap,data/manual
+composition.editable-table,asset_composition,region.editable-table.basic,TablePage | EditPage,可编辑表格区 组合规则,用于表格内直接录入和修改字段，适合轻量明细编辑和行级保存场景,,可编辑表格 编辑表格 行内编辑 表格录入,P1,92,semantic-refactor,data/manual
+validation.editable-table,asset_validation,region.editable-table.basic,TablePage | EditPage,可编辑表格区 校验规则,必须包含可编辑控件和行级保存/删除动作；不得退化成纯只读表格,,可编辑表格 编辑表格 行内编辑 保存表格,P1,92,semantic-refactor,data/manual
+composition.horizontal-form,asset_composition,region.form-section.horizontal,CreatePage | EditPage,左右对齐表单区域 组合规则,用于字段数量适中且强调标签对齐和信息扫描效率的录入页面,,横向表单 左右表单 标签对齐 基础录入,P1,91,semantic-refactor,data/manual
+validation.horizontal-form,asset_validation,region.form-section.horizontal,CreatePage | EditPage,左右对齐表单区域 校验规则,必须保持稳定标签列宽和控件对齐；不得退化成多分组卡片堆叠,,横向表单 左右表单 标签对齐 编辑资料,P1,91,semantic-refactor,data/manual
+composition.config-editor-panel,asset_composition,module.config-editor-panel,SettingsPage | EditPage | Drawer,配置编辑器面板 组合规则,用于集中编辑复杂配置，同时承载预览、影响说明或保存操作,,配置编辑 配置面板 规则配置 字段配置,P1,90,semantic-refactor,data/manual
+validation.config-editor-panel,asset_validation,module.config-editor-panel,SettingsPage | EditPage | Drawer,配置编辑器面板 校验规则,必须包含编辑区和预览或说明区；保存动作明确且不与普通设置项混淆,,配置编辑 配置面板 预览保存 字段配置,P1,90,semantic-refactor,data/manual
+composition.home-task-panel,asset_composition,region.home-task-panel.basic,HomePage | BusinessHomePage,首页待办面板 组合规则,用于首页承载待处理任务和快速处理入口，优先呈现最近需要关注的事项,,待办 任务 待处理 首页任务,P1,89,semantic-refactor,data/manual
+validation.home-task-panel,asset_validation,region.home-task-panel.basic,HomePage | BusinessHomePage,首页待办面板 校验规则,必须包含任务标题和状态；至少保留一条带时间信息的任务,,待办 任务 待处理 首页任务,P1,89,semantic-refactor,data/manual
+composition.quick-entry-grid,asset_composition,region.quick-entry-grid.basic,HomePage | BusinessHomePage,快捷入口网格 组合规则,用于首页集中展示高频动作入口，适合新建、导出、配置等立即执行操作,,快捷入口 快速操作 常用入口 首页入口,P1,88,semantic-refactor,data/manual
+validation.quick-entry-grid,asset_validation,region.quick-entry-grid.basic,HomePage | BusinessHomePage,快捷入口网格 校验规则,入口数量控制在 4-6 个；文案必须可执行；不得退化成纯说明卡片,,快捷入口 快速操作 常用入口 首页入口,P1,88,semantic-refactor,data/manual
+composition.business-section-grid,asset_composition,region.business-section-grid.basic,BusinessHomePage,业务栏目网格 组合规则,用于业务首页按栏目聚合核心模块入口和说明，不应退化成普通按钮堆叠,,业务栏目 业务模块 门户栏目 业务导航,P1,88,semantic-refactor,data/manual
+validation.business-section-grid,asset_validation,region.business-section-grid.basic,BusinessHomePage,业务栏目网格 校验规则,每个栏目必须包含标题和说明；栏目数量建议 3-6 个,,业务栏目 业务模块 门户栏目 业务导航,P1,88,semantic-refactor,data/manual
+composition.report-table,asset_composition,region.report-table.basic,ReportPage | TablePage,报表明细表格区 组合规则,用于承载统计结果明细和按维度展开的数据表，不与普通主列表混用,,报表表格 统计明细 报表明细 汇总表格,P1,87,semantic-refactor,data/manual
+validation.report-table,asset_validation,region.report-table.basic,ReportPage | TablePage,报表明细表格区 校验规则,必须包含统计维度和指标列；表头语义明确；不得退化成纯基础表格,,报表表格 统计明细 报表明细 汇总表格,P1,87,semantic-refactor,data/manual

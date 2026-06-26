@@ -108,6 +108,23 @@
 
 /* Table region */
 .data-table-wrap { width: 100%; overflow-x: auto; }
+.editable-table-wrap { width: 100%; overflow-x: auto; }
+.editable-table .form-control,
+.editable-table .select-control {
+  min-height: 32px;
+  width: 100%;
+  background: var(--color-container-bg-neutral-lightgray);
+}
+.editable-table .form-control.is-inline,
+.editable-table .select-control.is-inline {
+  padding-right: var(--spacing-2);
+}
+.editable-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  white-space: nowrap;
+}
 .table-selection-summary {
   display: flex;
   align-items: center;
@@ -133,6 +150,23 @@
   margin: var(--spacing-6) -24px -24px;
   padding: var(--spacing-4) 24px;
   background: var(--color-container-bg-neutral-bright);
+}
+.horizontal-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-4) var(--spacing-6);
+}
+.horizontal-form-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: var(--spacing-3);
+  align-items: start;
+}
+.horizontal-form-control {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
 }
 
 /* Detail region */

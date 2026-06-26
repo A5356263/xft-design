@@ -26,6 +26,9 @@
 .module-muted { color: var(--color-text-neutral-gray30); font-size: var(--font-size-small); }
 .module-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-4); }
 .module-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); }
+.module-header > div:first-child {
+  min-width: 0;
+}
 
 /* Timeline / approval */
 .approval-flow { display: flex; flex-direction: column; gap: var(--spacing-4); }
@@ -95,6 +98,7 @@
 .preview-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--spacing-4); min-height: 420px; }
 .preview-list { border: 1px solid var(--color-divider-neutral); border-radius: var(--border-radius-large); background: var(--color-container-bg-neutral-bright); overflow: hidden; }
 .preview-area { display: flex; align-items: center; justify-content: center; min-height: 420px; border: 1px solid var(--color-divider-neutral); border-radius: var(--border-radius-large); background: var(--color-container-bg-neutral-lightgray); color: var(--color-text-neutral-gray30); }
+.preview-file-actions { margin-top: var(--spacing-3); }
 .crop-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: var(--spacing-4); }
 .crop-canvas { min-height: 320px; border: 1px dashed var(--color-border-neutral); border-radius: var(--border-radius-large); background: var(--color-container-bg-neutral-lightgray); display: flex; align-items: center; justify-content: center; color: var(--color-text-neutral-gray30); }
 .crop-preview { border: 1px solid var(--color-divider-neutral); border-radius: var(--border-radius-large); padding: var(--spacing-4); background: var(--color-container-bg-neutral-bright); }
@@ -118,3 +122,15 @@
 .description-value { margin-top: var(--spacing-1); color: var(--color-text-neutral-gray50); }
 .operation-log { display: flex; flex-direction: column; gap: var(--spacing-3); }
 .operation-log-item { display: grid; grid-template-columns: 160px minmax(0, 1fr) 120px; gap: var(--spacing-3); color: var(--color-text-neutral-gray40); font-size: var(--font-size-small); }
+.operation-log-time {
+  color: var(--color-text-neutral-gray30);
+  white-space: nowrap;
+}
+.operation-log-text {
+  color: var(--color-text-neutral-gray50);
+}
+.operation-log-result {
+  justify-self: end;
+  color: var(--color-text-accent-regular);
+  font-weight: var(--font-weight-bold);
+}

@@ -29,6 +29,13 @@ ASSET_ID_ALIASES = {
     "region.detail-section-stack": "region.detail-info-section.basic",
     "module.operation-log.basic": "module-operation-log-basic",
     "module.setting-item.basic": "region.setting-section.basic",
+    "region.settings-layout.anchor": "layout.settings-anchor.basic",
+    "region.detail-side-layout.basic": "layout.detail-side.basic",
+    "region.tabs.basic": "layout.tabs.basic",
+    "region.split-layout.master-detail": "layout.master-detail.basic",
+    "region.split-layout.tree-table": "layout.master-detail.basic",
+    "region.config-layout.split": "layout.master-detail.basic",
+    "region.detail-two-column": "layout.detail-side.basic",
 }
 OVERLAY_ROUTE_KEYWORDS = [
     "弹窗",
@@ -203,6 +210,8 @@ def explicit_page_type(query: str) -> str | None:
         return "EditPage"
     if any(k in q for k in ["设置页", "配置页", "参数配置", "权限配置", "公式配置"]):
         return "SettingsPage"
+    if any(k in q for k in ["业务首页", "运营首页", "门户首页", "业务门户"]):
+        return "BusinessHomePage"
     if any(k in q for k in ["首页", "工作台", "仪表盘", "看板"]):
         return "HomePage"
     if any(k in q for k in ["报表页", "统计分析", "查询报表"]):
@@ -255,6 +264,10 @@ def explicit_recipe_id(query: str, page_type: str) -> str | None:
         return "recipe.detail.table-tabs"
     if page_type == "DetailPage" and any(k in q for k in ["多标签详情", "tab详情", "复杂详情", "分tab查看", "多tab详情"]):
         return "recipe.detail.tabs"
+    if page_type == "SettingsPage" and any(
+        k in q for k in ["复杂配置", "字段配置", "表头设置", "筛选项配置", "预览保存", "规则配置"]
+    ):
+        return "recipe.complex.config"
     if page_type == "SettingsPage" and any(k in q for k in ["公式", "公式配置", "公式编辑"]):
         return "recipe.settings.basic"
     return None
@@ -336,6 +349,10 @@ def normalize_asset_path(path: str) -> str:
     if path.startswith("assets/modules/"):
         if path.endswith("/_module-support.css"):
             return "assets/content-assets/_support/module-support.css"
+        return "assets/content-assets/" + path[len("assets/") :]
+    if path.startswith("assets/layouts/"):
+        if path.endswith("/_layout-support.css"):
+            return "assets/content-assets/_support/layout-support.css"
         return "assets/content-assets/" + path[len("assets/") :]
     if path.startswith("assets/feedback/"):
         if path.endswith("/_feedback-support.css"):
