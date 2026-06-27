@@ -1,5 +1,0 @@
-﻿css_id,source_step,css_path,required_when
-region-support,step4,assets/regions/_region-support.css,any region asset is used
-module-support,step5,assets/modules/_module-support.css,any module asset is used
-feedback-support,step6,assets/feedback/_feedback-support.css,any feedback/state/overlay asset is used
-component-combo-support,step7,assets/component-combos/_component-combo-support.css,any component combo asset is used

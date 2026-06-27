@@ -1,3 +1,0 @@
-gap_id,source,issue_type,severity,description,expected_behavior,actual_behavior,suggested_fix,owner,status
-GAP001,validation,A-path,high,示例：read_order 中某个 html_path 不存在,所有 read_order 路径真实存在,路径不存在,修正 file placement 或 data 中路径,Codex,open
-GAP002,validation,B-search,medium,示例：审批详情页没有命中 approval-flow,审批详情页必须包含审批流模块,模块漏选,补充关键词或 recipe-asset-map,Codex,open

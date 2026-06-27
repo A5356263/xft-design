@@ -1,9 +1,0 @@
-read_id,condition,required_file,read_timing,forbidden_before
-R001,all outputs,design-systems/USAGE.md,after CONTENT_ASSET_DECISION,ROUTE_DECISION
-R002,all outputs,design-systems/tokens.css,after CONTENT_ASSET_DECISION,ROUTE_DECISION
-R003,all outputs,design-systems/components.html,after CONTENT_ASSET_DECISION,ROUTE_DECISION
-R004,shell=admin-side-shell,assets/shells/admin-side-shell.html,after CONTENT_ASSET_DECISION,ROUTE_DECISION
-R005,shell=blank-shell,assets/shells/blank-shell.html,after CONTENT_ASSET_DECISION,ROUTE_DECISION
-R006,selected support css,assets/**/_*-support.css,after CONTENT_ASSET_DECISION,CONTENT_ASSET_DECISION
-R007,selected assets,assets/**/*.html,after CONTENT_ASSET_DECISION,CONTENT_ASSET_DECISION
-R008,final check,scripts/check_skill_output.py,before final response,HTML assembly

@@ -1,9 +1,0 @@
-﻿rule_id,material_ids,rule_name,page_type,rule,keywords,priority
-rule-button-principles,M060,button 按钮 使用原则,All,主按钮只保留一个；按钮文案使用动作动词；同一组按钮按风险/主次排序,"button,action,primary,secondary",P0
-rule-button-basic,M055,button 按钮 类型,All,主按钮用于最高优先级动作；次按钮用于辅助动作；文本按钮用于低干扰操作,"button,type,link,danger",P0
-rule-disabled-button,M062,禁用按钮规则,All,禁用按钮必须保留可解释路径；关键操作不建议只用禁用表达失败原因,"disabled,button,reason",P0
-rule-disabled-state-exploration,M061,禁用态探索,All,禁用态用于不可操作状态，不用于隐藏权限边界；必要时配合提示说明原因,"disabled,state,permission",P0
-rule-link-button,M063,链接按钮规则,All,链接按钮用于轻量跳转或表格行内操作；不要承载高风险提交,"link,table action,navigation",P0
-rule-checkbox-switch,M059,勾选和开关使用规则,All,Checkbox 表示选择项；Switch 表示即时启停状态；需要提交确认时不要用 Switch,"checkbox,switch,toggle",P0
-rule-form-control-field,M064-M076,表单控件组合规则,FormPage | Overlay | FilterBar,所有控件必须在字段组内出现：label + control + optional help/error；不要裸放控件,"form,input,field,label",P1
-rule-display-combo,M077 | M080-M083 | M087-M088 | M091,展示组件组合规则,All,展示组件只承担信息表达；复杂操作要升级到模块或覆盖层,"display,tag,badge,popover,tour",P2

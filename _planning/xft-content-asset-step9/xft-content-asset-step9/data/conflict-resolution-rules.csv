@@ -1,8 +1,0 @@
-conflict_id,scope,condition,resolution,priority,description
-conflict.table.card_vs_data_table,recipe,同时命中卡片列表和高密度表格,优先判断字段密度：字段多/需排序筛选用 data-table；对象卡片展示用 card-grid,P0,避免卡片表格误用于高密度数据
-conflict.modal_vs_drawer,overlay,表单/详情都可用弹窗或抽屉,短流程用 modal；复杂配置/保留上下文用 drawer,P0,覆盖层选择闭环
-conflict.filter_basic_vs_advanced,region,筛选字段 4 个以上或需要配置筛选项,使用 advanced-filter 或 filter-config 模块,P0,避免基础筛选区超载
-conflict.form_basic_vs_step,recipe,新建且包含多阶段/流程/分步,使用 step-form recipe,P0,避免长表单堆叠
-conflict.detail_basic_vs_approval,recipe,详情页包含审批/流程节点,使用 approval-detail recipe 或追加 approval-flow 模块,P0,审批信息不能遗漏
-conflict.footer_vs_header_action,component_combo,提交/保存/取消动作和页面头部操作冲突,提交类动作固定底部；页面级跳转/返回可在头部,P0,避免主操作位置漂移
-conflict.settings_vs_table,recipe,配置项中包含列表管理,设置页主结构不变，列表作为 settings-section 内模块,P1,避免配置页面变成普通列表页

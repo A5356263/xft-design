@@ -1,7 +1,0 @@
-threshold_id,target,min_score,max_candidates,action,description
-page_route,page_type_router,1,5,select_top,页面类型至少要有 1 分命中，否则回退通用 TablePage
-recipe,recipe_rules,1,5,select_top,配方至少命中 1 分，否则按 page_type 默认配方
-asset_required,content_assets,0,999,include_by_recipe,必选资产由 recipe-asset-map 兜底，不依赖检索分数
-asset_optional,content_assets,2,8,include_if_score,可选模块必须满足关键词或规则命中
-rule_filter,asset_rules,1,999,apply_matched,命中规则才参与过滤/排序
-unsupported,all,0,0,mark_gap,无资产命中时标记 unsupported，不允许现场发明布局

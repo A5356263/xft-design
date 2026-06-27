@@ -1,7 +1,0 @@
-﻿rule_id,rule_name,rule
-feedback_vs_state,反馈与状态,Message/Notification/Alert 是反馈；Empty/Loading/Result 是状态。不要混用。
-overlay_mount,覆盖层挂载,Modal/Drawer/Confirm 必须挂到 OVERLAY_SLOT，不得插进 page-content-container。
-modal_vs_drawer,弹窗和抽屉选择,短流程用 Modal；长表单、右侧详情、复杂配置用 Drawer；行内轻量危险操作用 Popconfirm。
-blocking_level,阻断级别,Message 不阻断；Alert 弱阻断；Confirm Modal 强阻断；Drawer 保留上下文。
-empty_action,空状态动作,空状态必须给出原因或下一步，不允许只有图。
-loading_choice,加载选择,首屏/卡片加载用 Skeleton；短时局部等待用 Spin；可量化任务用 Progress。
