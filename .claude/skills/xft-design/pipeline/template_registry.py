@@ -1,4 +1,4 @@
-"""Select page, region, overlay, shell, runtime, and icon assets for V0."""
+"""Select page, region, overlay, shell, runtime, and icon assets for V0.1."""
 
 from __future__ import annotations
 
@@ -52,10 +52,16 @@ def _select_runtime(runtime_rows: list[dict[str, str]]) -> dict[str, str]:
     return runtime_rows[0]
 
 
-def _select_icons(scene: str, page_type: str, icon_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+def _select_icons(scene: str, page_type: str, icon_rows: list[dict[str, str]], signals: dict[str, Any]) -> list[dict[str, str]]:
     wanted = ["search", "filter"]
     if page_type == "table":
-        wanted.extend(["plus", "copy", "edit", "delete"])
+        if signals.get("top_primary_action"):
+            wanted.append("plus")
+        if signals.get("top_secondary_actions"):
+            wanted.extend(["download", "upload", "delete"])
+        if signals.get("top_utility_actions"):
+            wanted.append("setting")
+        wanted.extend(["copy", "edit"])
     if scene == "copy_permission":
         wanted.extend(["check-circle", "close", "info-circle"])
     found = {row.get("semantic_name"): row for row in icon_rows}
@@ -94,21 +100,9 @@ def select_templates(schema: dict[str, Any], retrieval_context: dict[str, Any]) 
             "shell": _select_shell(page_type, shell_rows),
             "runtime": _select_runtime(runtime_rows),
             "page_template": page_template,
-            "regions": [
-                {
-                    **region,
-                    "template": template_index.get(region.get("template_id", ""), {}),
-                }
-                for region in selected_regions
-            ],
-            "overlays": [
-                {
-                    **overlay,
-                    "template": template_index.get(overlay.get("template_id", ""), {}),
-                }
-                for overlay in selected_overlays
-            ],
-            "icons": _select_icons(schema.get("scene", "generic"), page_type, icon_rows),
+            "regions": [{**region, "template": template_index.get(region.get("template_id", ""), {})} for region in selected_regions],
+            "overlays": [{**overlay, "template": template_index.get(overlay.get("template_id", ""), {})} for overlay in selected_overlays],
+            "icons": _select_icons(schema.get("scene", "generic"), page_type, icon_rows, schema.get("signals", {})),
             "rewrite_slots": [
                 row
                 for row in rewrite_slots
@@ -125,9 +119,6 @@ def select_templates(schema: dict[str, Any], retrieval_context: dict[str, Any]) 
     return {
         "pages": pages,
         "unsupported": unsupported,
-        "index_shell": next(
-            (row for row in shell_rows if row.get("shell_id") == "shell.blank"),
-            shell_rows[0] if shell_rows else {},
-        ),
+        "index_shell": next((row for row in shell_rows if row.get("shell_id") == "shell.blank"), shell_rows[0] if shell_rows else {}),
         "status": "ready",
     }

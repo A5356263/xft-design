@@ -1,18 +1,148 @@
-<div class="xftv0-table-module" data-template-id="region.table-region">
-  <div class="xftv0-toolbar">
-    <h2 class="xftv0-toolbar-title">{{toolbar_title}}</h2>
-    <div class="xftv0-button-row">
-      <button class="xftv0-button xftv0-button-primary" type="button">{{toolbar_primary}}</button>
-    </div>
+<style>
+  .xftv0-table-region {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .xftv0-table-region-empty {
+    padding: 32px 24px;
+    border: 1px dashed var(--color-divider-neutral);
+    border-radius: var(--border-radius-large);
+    text-align: center;
+    color: var(--color-text-neutral-gray30);
+  }
+
+  .xftv0-table-region-empty h3 {
+    margin: 0 0 8px;
+    color: var(--color-text-neutral-gray50);
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  .xftv0-table-region-empty p {
+    margin: 0;
+  }
+
+  .xftv0-table-region-wrap {
+    overflow: hidden;
+    border: 1px solid var(--color-divider-neutral);
+    border-radius: var(--border-radius-large);
+    background: var(--color-container-bg-neutral-bright);
+  }
+
+  .xftv0-table-region-select-col {
+    width: 48px;
+  }
+
+  .xftv0-table-region-actions {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .xftv0-table-region-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-accent-regular);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .xftv0-table-region-input,
+  .xftv0-table-region-select {
+    width: 100%;
+    min-height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--color-divider-neutral);
+    border-radius: var(--border-radius-regular);
+    background: var(--color-container-bg-neutral-bright);
+    color: var(--color-text-neutral-gray50);
+  }
+
+  .xftv0-table-region-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+  }
+
+  .xftv0-table-region-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .xftv0-table-region-page-button,
+  .xftv0-table-region-page-current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: var(--border-radius-regular);
+    border: 1px solid var(--color-divider-neutral);
+    background: var(--color-container-bg-neutral-bright);
+  }
+
+  .xftv0-table-region-page-current {
+    border-color: var(--color-text-accent-regular);
+    color: var(--color-text-accent-regular);
+  }
+
+  @media (max-width: 768px) {
+    .xftv0-table-region-pagination {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="xftv0-table-region" data-template-id="region.table-region">
+  <div class="xftv0-table-region-empty" data-slot="table_state_slot">
+    <h3>暂无数据</h3>
+    <p>当前筛选条件下没有可展示的记录。</p>
   </div>
-  <div class="xftv0-table-wrap">
+  <div class="xftv0-table-region-wrap">
     <table class="xftv0-table">
-      <thead>
-        <!-- table_columns -->
+      <thead data-slot="table_columns">
+        <tr>
+          <th class="xftv0-table-region-select-col"><input type="checkbox" /></th>
+          <th>姓名</th>
+          <th>手机号</th>
+          <th>部门</th>
+          <th>角色</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
       </thead>
-      <tbody>
-        <!-- table_rows -->
+      <tbody data-slot="table_rows">
+        <tr>
+          <td class="xftv0-table-region-select-col"><input type="checkbox" /></td>
+          <td>王琳</td>
+          <td>138****1024</td>
+          <td>华东运营</td>
+          <td>运营主管</td>
+          <td>已启用</td>
+          <td>
+            <div class="xftv0-table-region-actions">
+              <button class="xftv0-table-region-link" type="button">查看</button>
+              <button class="xftv0-table-region-link" type="button">编辑</button>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
+  </div>
+  <div class="xftv0-table-region-pagination" data-slot="pagination_slot">
+    <span>共 135 条</span>
+    <div class="xftv0-table-region-pagination-controls">
+      <button class="xftv0-table-region-page-button" type="button">上一页</button>
+      <span class="xftv0-table-region-page-current">1</span>
+      <button class="xftv0-table-region-page-button" type="button">下一页</button>
+    </div>
   </div>
 </div>

@@ -1,13 +1,14 @@
-template_id,template_kind,page_type,template_path,css_path,slot_root,notes
-page.table,page,table,templates/pages/table-page.html,templates/styles/v0-prototype.css,page-content,列表页模板
-page.detail,page,detail,templates/pages/detail-page.html,templates/styles/v0-prototype.css,page-content,详情页模板
-page.form,page,form,templates/pages/form-page.html,templates/styles/v0-prototype.css,page-content,表单页模板
-region.page-header,region,any,templates/regions/page-header.html,templates/styles/v0-prototype.css,header-slot,页面头部模板
-region.filter-bar,region,table,templates/regions/filter-bar.html,templates/styles/v0-prototype.css,filter-slot,筛选区模板
-region.table-region,region,table,templates/regions/table-region.html,templates/styles/v0-prototype.css,main-slot,表格区模板
-region.detail-section,region,detail,templates/regions/detail-section.html,templates/styles/v0-prototype.css,main-slot,详情区模板
-region.form-section,region,form,templates/regions/form-section.html,templates/styles/v0-prototype.css,main-slot,表单区模板
-region.footer-actions,region,any,templates/regions/footer-actions.html,templates/styles/v0-prototype.css,footer-slot,底部操作模板
-region.result-panel,region,any,templates/regions/result-panel.html,templates/styles/v0-prototype.css,result-slot,结果面板模板
-overlay.copy-modal,overlay,table,templates/overlays/copy-modal.html,templates/styles/v0-prototype.css,overlay-slot,复制弹窗模板
-overlay.result-modal,overlay,table,templates/overlays/result-modal.html,templates/styles/v0-prototype.css,overlay-slot,结果弹窗模板
+template_id,template_kind,page_type,template_path,css_path,slot_root,base_capacity,has_expand,notes
+page.table,page,table,templates/pages/table-page.html,templates/styles/foundation.css,page-content,,,table page template
+page.detail,page,detail,templates/pages/detail-page.html,templates/styles/foundation.css,page-content,,,detail page template
+page.form,page,form,templates/pages/form-page.html,templates/styles/foundation.css,page-content,,,form page template
+region.page-header,region,any,templates/regions/page-header.html,templates/styles/foundation.css,header-slot,,,page header template
+region.filter-bar,region,table,templates/regions/filter-bar.html,templates/styles/foundation.css,filter-slot,2,true,filter region template
+region.action-bar,region,table,templates/regions/action-bar.html,templates/styles/foundation.css,action-slot,,,top action region template
+region.table-region,region,table,templates/regions/table-region.html,templates/styles/foundation.css,main-slot,,,table region template
+region.detail-section,region,detail,templates/regions/detail-section.html,templates/styles/foundation.css,main-slot,,,detail section template
+region.form-section,region,form,templates/regions/form-section.html,templates/styles/foundation.css,main-slot,,,form section template
+region.footer-actions,region,any,templates/regions/footer-actions.html,templates/styles/foundation.css,footer-slot,,,footer actions template
+region.result-panel,region,any,templates/regions/result-panel.html,templates/styles/foundation.css,result-slot,,,result panel template
+overlay.copy-modal,overlay,table,templates/overlays/copy-modal.html,templates/styles/foundation.css,overlay-slot,,,copy modal template
+overlay.result-modal,overlay,table,templates/overlays/result-modal.html,templates/styles/foundation.css,overlay-slot,,,result modal template
