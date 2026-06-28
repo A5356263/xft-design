@@ -1,7 +1,0 @@
-field_type,combo_asset_id,combo_html_path,wraps_itself,default_props,validation_rules
-field.text,combo-input-field,assets/content-assets/component-combos/form-controls/input.html,true,"{""placeholder"":""请输入""}",""
-field.select,combo-select-field,assets/content-assets/component-combos/form-controls/select.html,true,"{""placeholder"":""请选择""}",""
-field.multiSelect,combo-checkbox-group,assets/content-assets/component-combos/form-controls/checkbox-group.html,true,"{""options"":[""选项一"",""选项二"",""选项三""]}",""
-field.textarea,combo-textarea-field,assets/content-assets/component-combos/form-controls/textarea.html,true,"{""placeholder"":""请输入"",""rows"":4}",""
-field.date,combo-date-picker-field,assets/content-assets/component-combos/form-controls/date-picker.html,true,"{""placeholder"":""请选择日期""}",""
-field.switch,combo-switch-setting,assets/content-assets/component-combos/form-controls/switch-setting.html,true,"{""checked"":false}",""

@@ -1,0 +1,9 @@
+rule_id,stage,input_signal,retrieve_from,decision,notes
+rule.intent,page_spec,page_spec.md,intent-tags.csv,extract_stable_tags,Do not infer style
+rule.routes,intent_tags,page-routes.csv,csv route registry,derive_page_nodes,Prefer csv-driven page decomposition
+rule.regions,page_type_and_signals,region-routes.csv,csv region registry,attach_region_templates,Page first then region
+rule.overlays,page_type_and_signals,overlay-routes.csv,csv overlay registry,attach_overlay_templates,Overlay stays embedded by default
+rule.templates,page_type,template-registry.csv,fixed templates,match_registered_template,Template first HTML assembly
+rule.shell,page_type,shell-registry.csv,fixed shell registry,attach_shell,Use shell as host only
+rule.runtime,page_type,runtime-registry.csv,fixed runtime registry,attach_runtime,Use runtime.basic only
+rule.icons,semantic_actions,icon-registry.csv,fixed icon registry,attach_icons,Only local registered icons

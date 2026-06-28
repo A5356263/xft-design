@@ -1,0 +1,3 @@
+shell_id,path,supported_page_types,default_for,notes
+shell.admin-side,assets/shells/admin-side-shell.html,table|detail|form,backoffice-pages,后台原型宿主
+shell.blank,assets/shells/blank-shell.html,index,entry-and-index,极简入口宿主

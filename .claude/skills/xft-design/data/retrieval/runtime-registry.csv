@@ -1,0 +1,2 @@
+runtime_id,path,supports,default_for,notes
+runtime.basic,assets/runtime/basic-interactions.js,tabs|overlay|collapse|anchor|switch,all-pages,统一轻交互运行时

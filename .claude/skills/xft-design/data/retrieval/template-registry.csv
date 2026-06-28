@@ -1,0 +1,13 @@
+template_id,template_kind,page_type,template_path,css_path,slot_root,notes
+page.table,page,table,templates/pages/table-page.html,templates/styles/v0-prototype.css,page-content,列表页模板
+page.detail,page,detail,templates/pages/detail-page.html,templates/styles/v0-prototype.css,page-content,详情页模板
+page.form,page,form,templates/pages/form-page.html,templates/styles/v0-prototype.css,page-content,表单页模板
+region.page-header,region,any,templates/regions/page-header.html,templates/styles/v0-prototype.css,header-slot,页面头部模板
+region.filter-bar,region,table,templates/regions/filter-bar.html,templates/styles/v0-prototype.css,filter-slot,筛选区模板
+region.table-region,region,table,templates/regions/table-region.html,templates/styles/v0-prototype.css,main-slot,表格区模板
+region.detail-section,region,detail,templates/regions/detail-section.html,templates/styles/v0-prototype.css,main-slot,详情区模板
+region.form-section,region,form,templates/regions/form-section.html,templates/styles/v0-prototype.css,main-slot,表单区模板
+region.footer-actions,region,any,templates/regions/footer-actions.html,templates/styles/v0-prototype.css,footer-slot,底部操作模板
+region.result-panel,region,any,templates/regions/result-panel.html,templates/styles/v0-prototype.css,result-slot,结果面板模板
+overlay.copy-modal,overlay,table,templates/overlays/copy-modal.html,templates/styles/v0-prototype.css,overlay-slot,复制弹窗模板
+overlay.result-modal,overlay,table,templates/overlays/result-modal.html,templates/styles/v0-prototype.css,overlay-slot,结果弹窗模板

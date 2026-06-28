@@ -1,0 +1,3 @@
+priority,route_id,source_signal,overlay_id,template_id,target_page_id,trigger_kind,notes
+1,overlay.copy,copy_flow,copy-modal,overlay.copy-modal,list,row-action,复制弹窗
+2,overlay.result,result_feedback,result-modal,overlay.result-modal,list,submit-result,结果弹窗

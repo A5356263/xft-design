@@ -1,0 +1,10 @@
+tag_id,keywords,notes
+tabular_data,"列表|表格|数据列表|操作列|分页|筛选|table|list|grid|pagination|filter","列表型主页面"
+editable,"创建|编辑|录入|提交|表单|copy|create|edit|form|submit","可编辑内容或弹窗表单"
+read_only,"详情页|独立详情|查看页|detail page|detail-page|详情查看|查看详情","独立详情页面"
+has_overlay,"弹窗|对话框|确认弹窗|结果弹窗|modal|dialog|overlay","存在内嵌 overlay"
+copy_flow,"复制|拷贝|duplicate|copy","复制类场景"
+result_feedback,"结果弹窗|成功|失败|结果反馈|success|error|result","结果反馈场景"
+filtering,"筛选|查询|搜索|filter|search|query","筛选区"
+footer_actions,"底部按钮|确认|取消|footer actions|confirm|cancel","底部操作区"
+high_density,"B端|后台|管理|admin","默认后台密度"
