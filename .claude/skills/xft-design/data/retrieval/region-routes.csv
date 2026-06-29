@@ -1,11 +1,11 @@
 priority,route_id,applies_to_page_type,source_signal,region_id,slot_id,template_id,required,notes
-1,table.header,table,always,page-header,header_slot,region.page-header,true,table header
+1,table.header,table,has_header,page-header,header_slot,region.page-header,false,table header
 2,table.filter,table,filtering,filter-bar,filter_slot,region.filter-bar,false,table filter
 3,table.actions,table,top_actions,action-bar,action_slot,region.action-bar,false,table top actions
-4,table.main,table,always,table-region,main_slot,region.table-region,true,table main region
-10,detail.header,detail,always,page-header,header_slot,region.page-header,true,detail header
-11,detail.main,detail,always,detail-section,main_slot,region.detail-section,true,detail main
+4,table.main,table,has_table,table-region,main_slot,region.table-region,false,table main region
+10,detail.header,detail,has_header,page-header,header_slot,region.page-header,false,detail header
+11,detail.main,detail,has_detail_section,detail-section,main_slot,region.detail-section,false,detail main
 12,detail.footer,detail,footer_actions,footer-actions,footer_slot,region.footer-actions,false,detail footer
-20,form.header,form,always,page-header,header_slot,region.page-header,true,form header
-21,form.main,form,always,form-section,main_slot,region.form-section,true,form main
+20,form.header,form,has_header,page-header,header_slot,region.page-header,false,form header
+21,form.main,form,has_form_section,form-section,main_slot,region.form-section,false,form main
 22,form.footer,form,footer_actions,footer-actions,footer_slot,region.footer-actions,true,form footer

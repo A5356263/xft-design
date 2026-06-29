@@ -41,6 +41,7 @@ def decompose_pages(intent: dict[str, Any]) -> list[dict[str, Any]]:
                     "role": route.get("role", "primary"),
                     "depends_on": [],
                     "route_id": route.get("route_id", ""),
+                    "use_page_template": True,
                 }
             )
             primary_added = True
@@ -55,17 +56,19 @@ def decompose_pages(intent: dict[str, Any]) -> list[dict[str, Any]]:
                     "role": route.get("role", "secondary"),
                     "depends_on": [depends] if depends else [],
                     "route_id": route.get("route_id", ""),
+                    "use_page_template": True,
                 }
             )
 
-    if not primary_added:
+    if not primary_added and (signals.get("filtering") or signals.get("top_actions") or signals.get("copy_flow")):
         pages.append(
             {
-                "id": "form",
-                "page_type": "form",
+                "id": "shell-content",
+                "page_type": "table",
                 "role": "primary",
                 "depends_on": [],
-                "route_id": "fallback.form",
+                "route_id": "direct.table-shell",
+                "use_page_template": False,
             }
         )
 

@@ -1,10 +1,24 @@
-<section class="xftv0-overlay" id="copy-modal" data-overlay aria-hidden="true" hidden data-template-id="overlay.copy-modal">
-  <div class="xftv0-overlay-card">
-    <header class="xftv0-overlay-head">
-      <h2 class="xftv0-overlay-title">{{overlay_title}}</h2>
-      <button class="xftv0-button xftv0-button-subtle" type="button" data-overlay-close>关闭</button>
+<style>
+  .xftv0-checkbox-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: 999px;
+    border: 1px solid var(--color-divider-neutral);
+    background: var(--color-container-bg-neutral-lightgray);
+    color: var(--color-text-neutral-gray50);
+    cursor: pointer;
+  }
+</style>
+
+<section class="xftv0-overlay overlay-mask" id="copy-modal" data-overlay aria-hidden="true" hidden data-template-id="overlay.copy-modal">
+  <div class="xftv0-overlay-card modal">
+    <header class="xftv0-overlay-head overlay-header">
+      <h2 class="xftv0-overlay-title overlay-title">{{overlay_title}}</h2>
+      <button class="xftv0-button xftv0-button-subtle btn btn-text" type="button" data-overlay-close>关闭</button>
     </header>
-    <div class="xftv0-overlay-body">
+    <div class="xftv0-overlay-body overlay-body">
       <div class="xftv0-inline-note">{{source_text}}</div>
       <div class="xftv0-checkbox-group">
         <!-- copy_options -->
@@ -13,7 +27,7 @@
         <!-- target_tags -->
       </div>
     </div>
-    <footer class="xftv0-overlay-foot">
+    <footer class="xftv0-overlay-foot overlay-footer">
       <span class="xftv0-inline-note">仅支持轻交互原型展示，不承载真实业务校验。</span>
       <div class="xftv0-button-row">
         <!-- overlay_actions -->

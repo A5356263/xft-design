@@ -31,6 +31,7 @@ Owns:
 - color system
 - typography rules
 - base component reference language
+- single source of truth for component appearance
 
 Does not own:
 - business page templates
@@ -64,15 +65,19 @@ Current rule:
 
 Owns only:
 - cross-template shared base styles
-- basic control classes
-- generic card, section, and table foundation
+- generic page, section, stack, split, row, cluster, and form-grid layout primitives
 - shared responsive helpers
 
 Must not own:
+- button, input, select, checkbox, radio, table, overlay, or modal appearance
 - `filter-bar`-specific layout
 - `action-bar`-specific layout
 - `table-region`-specific layout
-- any region’s product personality
+- any region's product personality
+
+Default:
+- if a layout pattern cannot clearly prove stable reuse across multiple regions, keep it in the region template
+- `foundation.css` is not a region-style warehouse
 
 ### `assets/runtime/`
 
@@ -106,11 +111,15 @@ Must not own:
 - free-form module generation
 - ad hoc layout invention
 - hidden template product rules that are not registered in assets
+- component appearance rules
 
 Rules:
 - `pipeline` may read template metadata from registry and apply it during assembly
 - `pipeline` may compute instance values needed by a template, such as a current page label-width variable
 - `pipeline` must not become the source of truth for template shape decisions that can live in template assets or registry
+- `shell` is the only host container
+- page templates are optional composition assets, not the only entry point
+- regions may render directly into the shell content slot when no page template is required
 
 ### `AI`
 
@@ -126,6 +135,7 @@ AI must not:
 - invent new JS behavior in generated pages
 - choose unregistered interaction patterns
 - rewrite fixed template structure outside allowed slots
+- reimplement component appearance that already belongs to `design-systems`
 
 ## Decision Rules
 
@@ -134,14 +144,15 @@ AI must not:
 Use this order:
 
 1. `design-systems/`
-   - if the change affects shared visual language, tokens, or global component rules
+   - if the change affects shared visual language, tokens, or component appearance
 2. `foundation.css`
-   - if the change is shared by many templates and is still generic
+   - if the change is shared by many templates, is still generic, and has no region semantics
 3. template-local `<style>`
    - if the change is region-specific, page-specific, or product-shape-specific
 
 Default:
 - layout, spacing rhythm, and structure of a specific region belong in that region template
+- component appearance belongs in `design-systems/`, not in `foundation.css`
 
 ### Where should a new interaction go?
 

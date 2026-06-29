@@ -13,15 +13,7 @@
     gap: var(--spacing-6, 24px);
   }
 
-  .xftv0-filter-region-base-fields {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--spacing-6, 24px);
-    row-gap: 16px;
-  }
-
+  .xftv0-filter-region-base-fields,
   .xftv0-filter-region-expanded-fields {
     flex: 1 1 auto;
     min-width: 0;
@@ -125,11 +117,6 @@
       align-items: stretch;
     }
 
-    .xftv0-filter-region-base-fields,
-    .xftv0-filter-region-expanded-fields {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .xftv0-filter-region-base-actions,
     .xftv0-filter-region-expanded-actions {
       justify-content: flex-end;
@@ -150,19 +137,19 @@
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">姓名</span>
         <div class="xftv0-filter-region-field-control">
-          <input class="xftv0-input" type="text" placeholder="请输入姓名" />
+          <input class="xftv0-input input" type="text" placeholder="请输入姓名" />
         </div>
       </div>
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">手机号</span>
         <div class="xftv0-filter-region-field-control">
-          <input class="xftv0-input" type="text" placeholder="请输入手机号" />
+          <input class="xftv0-input input" type="text" placeholder="请输入手机号" />
         </div>
       </div>
     </section>
     <nav class="xftv0-filter-region-base-actions" data-slot="actions_slot">
-      <button class="xftv0-button" type="button">重置</button>
-      <button class="xftv0-button xftv0-button-primary" type="button">查询</button>
+      <button class="xftv0-button btn" type="button">重置</button>
+      <button class="xftv0-button xftv0-button-primary btn btn-primary" type="button">查询</button>
       <button class="xftv0-filter-region-toggle-button" type="button" data-collapse-toggle="{{advanced_panel_id}}" aria-expanded="false">
         <span class="xftv0-filter-region-toggle-collapsed">更多筛选</span>
         <span class="xftv0-filter-region-toggle-expanded">收起筛选</span>
@@ -172,8 +159,8 @@
   </div>
 
   <aside class="xftv0-filter-region-quick" data-slot="quick_filters">
-    <button class="xftv0-chip" type="button">全部</button>
-    <button class="xftv0-chip" type="button">待处理</button>
+    <button class="xftv0-chip status-tag status-neutral" type="button">全部</button>
+    <button class="xftv0-chip status-tag status-neutral" type="button">待处理</button>
   </aside>
 
   <div class="xftv0-filter-region-expanded-panel" id="{{advanced_panel_id}}" data-slot="advanced_panel_slot" hidden>
@@ -181,7 +168,7 @@
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">部门</span>
         <div class="xftv0-filter-region-field-control">
-          <select class="xftv0-select">
+          <select class="xftv0-select input">
             <option>请选择部门</option>
           </select>
         </div>
@@ -189,7 +176,7 @@
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">状态</span>
         <div class="xftv0-filter-region-field-control">
-          <select class="xftv0-select">
+          <select class="xftv0-select input">
             <option>请选择状态</option>
           </select>
         </div>
@@ -197,21 +184,21 @@
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">创建时间</span>
         <div class="xftv0-filter-region-field-control">
-          <input class="xftv0-input" type="text" placeholder="请选择时间范围" />
+          <input class="xftv0-input input" type="text" placeholder="请选择时间范围" />
         </div>
       </div>
       <div class="xftv0-filter-region-field-item">
         <span class="xftv0-filter-region-field-label">成员归属</span>
         <div class="xftv0-filter-region-field-control">
-          <select class="xftv0-select">
+          <select class="xftv0-select input">
             <option>请选择成员</option>
           </select>
         </div>
       </div>
     </section>
     <nav class="xftv0-filter-region-expanded-actions" data-slot="expanded_actions_slot">
-      <button class="xftv0-button" type="button">重置</button>
-      <button class="xftv0-button xftv0-button-primary" type="button">查询</button>
+      <button class="xftv0-button btn" type="button">重置</button>
+      <button class="xftv0-button xftv0-button-primary btn btn-primary" type="button">查询</button>
       <button class="xftv0-filter-region-toggle-button" type="button" data-collapse-toggle="{{advanced_panel_id}}" aria-expanded="false">
         <span class="xftv0-filter-region-toggle-collapsed">更多筛选</span>
         <span class="xftv0-filter-region-toggle-expanded">收起筛选</span>
